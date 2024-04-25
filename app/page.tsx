@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Light from "./components/Light/Light";
 
 export default function Home() {
   return (
