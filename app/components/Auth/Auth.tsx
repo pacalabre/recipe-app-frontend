@@ -4,7 +4,7 @@ import "./Auth.css";
 import axios from "axios";
 import Link from "next/link";
 
-function Auth() {
+const AuthForm = () => {
   const [registerName, setRegisterName] = useState("");
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
@@ -99,6 +99,6 @@ function Auth() {
       <Link href="/">Home</Link>
     </div>
   );
-}
+};
 
-export default Auth;
+export default AuthForm;
