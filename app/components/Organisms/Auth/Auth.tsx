@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Input from "../../Atoms/Input/Input";
+import Button from "../../Atoms/Button/Button";
 import "./Auth.css";
 import axios from "axios";
 import Link from "next/link";
@@ -85,7 +86,7 @@ const AuthForm = () => {
           type="password"
           onchange={(event: any) => setRegisterPassword(event.target.value)}
         />
-        <button onClick={register}>Submit</button>
+        <Button onclick={register} text="register"></Button>
       </form>
       <form className="register-form">
         <h2>Login</h2>
@@ -96,10 +97,10 @@ const AuthForm = () => {
           type="password"
           onchange={(event: any) => setLoginPassword(event.target.value)}
         />
-        <button onClick={login}>Submit</button>ß
+        <Button onclick={login} text="login"></Button>
       </form>
-      <button onClick={getLoggedinUserInfo}>Get User Info</button>
-      <button onClick={logoutUser}>Logout</button>
+      <Button onClick={getLoggedinUserInfo} text="get user info"></Button>
+      <Button onClick={logoutUser} text="logout"></Button>
       <Link href="/">Home</Link>
     </div>
   );
