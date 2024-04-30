@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import AuthForm from "@/app/components/Auth/Auth";
+import AuthForm from "@/app/components/Organisms/Auth/Auth";
 
 const meta: Meta<typeof AuthForm> = {
   component: AuthForm,
-  title: "Authentication Form",
+  title: "Organisms/Authentication Form",
   argTypes: {
     text: {
       control: { type: "text" },

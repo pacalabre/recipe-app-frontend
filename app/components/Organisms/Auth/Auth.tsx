@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Input from "../../Atoms/Input/Input";
 import "./Auth.css";
 import axios from "axios";
 import Link from "next/link";
@@ -66,34 +67,37 @@ const AuthForm = () => {
 
   return (
     <div className="App">
+      Í
       <form className="register-form">
         <h2>Register</h2>
         <label>Name:</label>
-        <input onChange={(event) => setRegisterName(event.target.value)} />
+        <Input onchange={(event: any) => setRegisterName(event.target.value)} />
         <label>User Name</label>
-        <input onChange={(event) => setRegisterUsername(event.target.value)} />
+        <Input
+          onchange={(event: any) => setRegisterUsername(event.target.value)}
+        />
         <label>Email</label>
-        <input onChange={(event) => setRegisterEmail(event.target.value)} />
+        <Input
+          onchange={(event: any) => setRegisterEmail(event.target.value)}
+        />
         <label>Password</label>
-        <input
+        <Input
           type="password"
-          onChange={(event) => setRegisterPassword(event.target.value)}
+          onchange={(event: any) => setRegisterPassword(event.target.value)}
         />
         <button onClick={register}>Submit</button>
       </form>
-
       <form className="register-form">
         <h2>Login</h2>
         <label>Email</label>
-        <input onChange={(event) => setLoginEmail(event.target.value)} />
+        <Input onchange={(event: any) => setLoginEmail(event.target.value)} />
         <label>Password</label>
-        <input
+        <Input
           type="password"
-          onChange={(event) => setLoginPassword(event.target.value)}
+          onchange={(event: any) => setLoginPassword(event.target.value)}
         />
-        <button onClick={login}>Submit</button>
+        <button onClick={login}>Submit</button>ß
       </form>
-
       <button onClick={getLoggedinUserInfo}>Get User Info</button>
       <button onClick={logoutUser}>Logout</button>
       <Link href="/">Home</Link>
