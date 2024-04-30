@@ -1,6 +1,6 @@
-import "./input.css";
+import "./Input.css";
 
-const Input = (props) => {
+const Input = (props: any) => {
   return <input onChange={props.onchange} className="input" />;
 };
 
