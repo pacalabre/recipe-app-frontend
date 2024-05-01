@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Input from "../../Atoms/Input/Input";
 import Button from "../../Atoms/Button/Button";
-import "./Auth.css";
+import styles from "./Auth.module.css";
 import axios from "axios";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ const AuthForm = () => {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-
+  const [formToShow, setFormToShow] = useState("login");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -67,42 +67,54 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="App">
-      Í
-      <form className="register-form">
-        <h2>Register</h2>
-        <label>Name:</label>
-        <Input onchange={(event: any) => setRegisterName(event.target.value)} />
-        <label>User Name</label>
-        <Input
-          onchange={(event: any) => setRegisterUsername(event.target.value)}
-        />
-        <label>Email</label>
-        <Input
-          onchange={(event: any) => setRegisterEmail(event.target.value)}
-        />
-        <label>Password</label>
-        <Input
-          type="password"
-          onchange={(event: any) => setRegisterPassword(event.target.value)}
-        />
-        <Button onclick={register} text="register"></Button>
-      </form>
-      <form className="register-form">
-        <h2>Login</h2>
-        <label>Email</label>
-        <Input onchange={(event: any) => setLoginEmail(event.target.value)} />
-        <label>Password</label>
-        <Input
-          type="password"
-          onchange={(event: any) => setLoginPassword(event.target.value)}
-        />
-        <Button onclick={login} text="login"></Button>
-      </form>
+    <>
+      {formToShow === "register" ? (
+        <form className={styles.authForm}>
+          <h2>Register</h2>
+          <label>Name:</label>
+          <Input
+            onchange={(event: any) => setRegisterName(event.target.value)}
+          />
+          <label>User Name</label>
+          <Input
+            onchange={(event: any) => setRegisterUsername(event.target.value)}
+          />
+          <label>Email</label>
+          <Input
+            onchange={(event: any) => setRegisterEmail(event.target.value)}
+          />
+          <label>Password</label>
+          <Input
+            type="password"
+            onchange={(event: any) => setRegisterPassword(event.target.value)}
+          />
+          <p>
+            Already have an account?
+            <button onClick={() => setFormToShow("login")}>Login</button>
+          </p>
+          <Button onclick={register} text="register"></Button>
+        </form>
+      ) : (
+        <form className={styles.authForm}>
+          <h2>Login</h2>
+          <label>Email</label>
+          <Input onchange={(event: any) => setLoginEmail(event.target.value)} />
+          <label>Password</label>
+          <Input
+            type="password"
+            onchange={(event: any) => setLoginPassword(event.target.value)}
+          />
+          <p>
+            Don't have an account yet?
+            <button onClick={() => setFormToShow("register")}>Register</button>
+          </p>
+          <Button onclick={login} text="login"></Button>
+        </form>
+      )}
       <Button onClick={getLoggedinUserInfo} text="get user info"></Button>
       <Button onClick={logoutUser} text="logout"></Button>
       <Link href="/">Home</Link>
-    </div>
+    </>
   );
 };
 
