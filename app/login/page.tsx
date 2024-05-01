@@ -3,7 +3,7 @@ import AuthForm from "../components/Organisms/Auth/Auth";
 const Login = () => {
   return (
     <>
-      <h1>Login</h1>
+      <h1 className="page-title">Login</h1>
       <AuthForm />
     </>
   );
