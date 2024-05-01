@@ -5,7 +5,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   title: "Atoms/Button",
   argTypes: {
-    text: {
+    label: {
       control: { type: "text" },
     },
   },
@@ -18,6 +18,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    text: "",
+    label: "",
   },
 };

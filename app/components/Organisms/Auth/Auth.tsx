@@ -100,7 +100,7 @@ const AuthForm = () => {
             Already have an account?
             <button onClick={() => setFormToShow("login")}>Login</button>
           </p>
-          <Button onclick={register} text="register"></Button>
+          <Button onclick={register} label="register"></Button>
         </form>
       ) : (
         <form className={styles.authForm}>
@@ -122,11 +122,11 @@ const AuthForm = () => {
             Don't have an account yet?
             <button onClick={() => setFormToShow("register")}>Register</button>
           </p>
-          <Button onclick={login} text="login"></Button>
+          <Button onclick={login} label="login"></Button>
         </form>
       )}
-      <Button onclick={getLoggedinUserInfo} text="get user info"></Button>
-      <Button onclick={logoutUser} text="logout"></Button>
+      <Button onclick={getLoggedinUserInfo} label="get user info"></Button>
+      <Button onclick={logoutUser} label="logout"></Button>
       <Link href="/">Home</Link>
     </>
   );
