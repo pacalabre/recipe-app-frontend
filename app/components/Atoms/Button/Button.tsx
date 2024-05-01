@@ -1,6 +1,11 @@
 import "./Button.css";
 
-const Button = (props: any) => {
+type Props = {
+  onclick: React.MouseEventHandler<HTMLButtonElement>;
+  text: string;
+};
+
+const Button = (props: Props) => {
   return (
     <button onClick={props.onclick} className="button">
       {props.text}

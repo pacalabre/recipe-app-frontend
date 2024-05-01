@@ -1,7 +1,14 @@
+import { ChangeEventHandler } from "react";
 import "./Input.css";
 
-const Input = (props: any) => {
-  return <input onChange={props.onchange} className="input" />;
+type Props = {
+  onchange: ChangeEventHandler<HTMLInputElement>;
+  inputType?: string;
+};
+const Input = (props: Props) => {
+  return (
+    <input type={props.inputType} onChange={props.onchange} className="input" />
+  );
 };
 
 export default Input;

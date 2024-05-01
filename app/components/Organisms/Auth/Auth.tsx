@@ -73,20 +73,28 @@ const AuthForm = () => {
           <h2>Register</h2>
           <label>Name:</label>
           <Input
-            onchange={(event: any) => setRegisterName(event.target.value)}
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterName(event.target.value)
+            }
           />
           <label>User Name</label>
           <Input
-            onchange={(event: any) => setRegisterUsername(event.target.value)}
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterUsername(event.target.value)
+            }
           />
           <label>Email</label>
           <Input
-            onchange={(event: any) => setRegisterEmail(event.target.value)}
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterEmail(event.target.value)
+            }
           />
           <label>Password</label>
           <Input
-            type="password"
-            onchange={(event: any) => setRegisterPassword(event.target.value)}
+            inputType="password"
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterPassword(event.target.value)
+            }
           />
           <p>
             Already have an account?
@@ -98,11 +106,17 @@ const AuthForm = () => {
         <form className={styles.authForm}>
           <h2>Login</h2>
           <label>Email</label>
-          <Input onchange={(event: any) => setLoginEmail(event.target.value)} />
+          <Input
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setLoginEmail(event.target.value)
+            }
+          />
           <label>Password</label>
           <Input
-            type="password"
-            onchange={(event: any) => setLoginPassword(event.target.value)}
+            inputType="password"
+            onchange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setLoginPassword(event.target.value)
+            }
           />
           <p>
             Don't have an account yet?
@@ -111,8 +125,8 @@ const AuthForm = () => {
           <Button onclick={login} text="login"></Button>
         </form>
       )}
-      <Button onClick={getLoggedinUserInfo} text="get user info"></Button>
-      <Button onClick={logoutUser} text="logout"></Button>
+      <Button onclick={getLoggedinUserInfo} text="get user info"></Button>
+      <Button onclick={logoutUser} text="logout"></Button>
       <Link href="/">Home</Link>
     </>
   );
