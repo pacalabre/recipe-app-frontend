@@ -3,8 +3,13 @@ import { useState } from "react";
 import Input from "../../Atoms/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
-import axios from "axios";
 import Link from "next/link";
+import {
+  registerUser,
+  loginUser,
+  getLoggedinUserInfo,
+  logoutUser,
+} from "@/app/services/auth-service";
 
 const AuthForm = () => {
   const [registerName, setRegisterName] = useState("");
@@ -14,56 +19,48 @@ const AuthForm = () => {
   const [formToShow, setFormToShow] = useState("login");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [loggedinUser, setLoggedinUser] = useState(null);
 
-  const register = (event: React.MouseEvent<HTMLElement>) => {
+  const register = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    axios({
-      method: "POST",
-      data: {
-        name: registerName,
-        userName: registerUsername,
-        email: registerEmail,
-        password: registerPassword,
-      },
-      withCredentials: true,
-      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/register`,
-    }).then((res) => console.log(res));
+    try {
+      const response = await registerUser(
+        registerName,
+        registerUsername,
+        registerEmail,
+        registerPassword
+      );
+    } catch (error) {
+      console.log(`There was an error registering this user: ${error}`);
+    }
   };
 
-  const login = (event: React.MouseEvent<HTMLElement>) => {
+  const login = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    axios({
-      method: "POST",
-      data: {
-        email: loginEmail,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
-    }).then((res) => console.log(res));
+    try {
+      const response = await loginUser(loginEmail, loginPassword);
+    } catch (error) {
+      console.log(`There was an error while logging in the user: ${error}`);
+    }
   };
 
-  const getLoggedinUserInfo = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/user`,
-    }).then((res) => {
-      setLoggedinUser(res.data);
-      console.log(res.data);
-    });
+  const getLoggedinUser = async (event: React.MouseEvent<HTMLElement>) => {
+    try {
+      const response = await getLoggedinUserInfo();
+    } catch (error) {
+      console.log(
+        `There was an error when trying to get the logged in user data: ${error}`
+      );
+    }
   };
 
-  const logoutUser = (event: React.MouseEvent<HTMLElement>) => {
+  const logout = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    axios({
-      method: "POST",
-      withCredentials: true,
-      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/logout`,
-    }).then((res) => console.log(res));
+    try {
+      const response = logoutUser();
+    } catch (error) {
+      console.log(`There was an error when logging out the user: ${error}`);
+    }
   };
 
   return (
@@ -125,8 +122,8 @@ const AuthForm = () => {
           <Button onclick={login} label="login"></Button>
         </form>
       )}
-      <Button onclick={getLoggedinUserInfo} label="get user info"></Button>
-      <Button onclick={logoutUser} label="logout"></Button>
+      <Button onclick={getLoggedinUser} label="get user info"></Button>
+      <Button onclick={logout} label="logout"></Button>
       <Link href="/">Home</Link>
     </>
   );
