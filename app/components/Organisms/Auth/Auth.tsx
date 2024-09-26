@@ -85,7 +85,9 @@ const AuthForm = () => {
               register={register}
               inputType="text"
               formField="registerName"
+              rules={{ required: "Name is required" }}
             />
+            {errors.registerName && <p>{errors.registerName.message}</p>}
             <label>User Name</label>
             <Input
               register={register}
@@ -125,7 +127,9 @@ const AuthForm = () => {
               register={register}
               inputType="text"
               formField="loginEmail"
+              rules={{ required: "Email is required" }}
             />
+            {errors.loginEmail && <p>{errors.loginEmail.message}</p>}
             <label>Password</label>
             <Input
               register={register}
