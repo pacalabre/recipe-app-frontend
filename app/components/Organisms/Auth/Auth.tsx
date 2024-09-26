@@ -46,7 +46,6 @@ const AuthForm = () => {
         console.log(`There was an error registering this user: ${error}`);
       }
     }
-
     if (formToShow === "login") {
       try {
         const response = await loginUser(data.loginEmail, data.loginPassword);
@@ -82,13 +81,29 @@ const AuthForm = () => {
           <>
             <h2>Register</h2>
             <label>Name:</label>
-            <input {...register("registerName")} />
+            <Input
+              register={register}
+              inputType="text"
+              formField="registerName"
+            />
             <label>User Name</label>
-            <input type="text" {...register("registerUsername")} />
+            <Input
+              register={register}
+              inputType="text"
+              formField="registerUsername"
+            />
             <label>Email</label>
-            <input {...register("registerEmail")} />
+            <Input
+              register={register}
+              inputType="text"
+              formField="registerEmail"
+            />
             <label>Password</label>
-            <input type="password" {...register("registerPassword")} />
+            <Input
+              register={register}
+              inputType="password"
+              formField="registerPassword"
+            />
             <p>
               Already have an account?
               <button
@@ -106,13 +121,17 @@ const AuthForm = () => {
           <>
             <h2>Login</h2>
             <label>Email</label>
-            <input
-              placeholder="kurt@beAnz.com"
-              type="text"
-              {...register("loginEmail")}
+            <Input
+              register={register}
+              inputType="text"
+              formField="loginEmail"
             />
             <label>Password</label>
-            <input type="password" {...register("loginPassword")} />
+            <Input
+              register={register}
+              inputType="password"
+              formField="loginPassword"
+            />
             <p>
               Don't have an account yet?
               <button
