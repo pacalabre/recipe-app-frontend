@@ -30,11 +30,10 @@ export const loginUser = async (loginEmail: string, loginPassword: string) => {
         password: loginPassword,
       }
     );
-    return {data, status};
+    return { data, status };
   } catch (error) {
     console.log(`There was an error getting users: ${error}`);
   }
-  
 };
 
 export const getLoggedinUserInfo = () => {
