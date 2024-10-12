@@ -19,8 +19,8 @@ const Users = () => {
     <>
       <h1 className="page-title">Users</h1>
       {users.length > 0 ? (
-        users?.map((user: any) => (
-          <div>
+        users?.map((user: any, index: string) => (
+          <div key={index}>
             <p>Name: {user.name}</p>
             <p>Username: {user.userName}</p>
           </div>
