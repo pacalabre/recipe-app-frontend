@@ -21,18 +21,20 @@ export const registerUser = (
   });
 };
 
-export const loginUser = (loginEmail: string, loginPassword: string) => {
-  axios({
-    method: "POST",
-    data: {
-      email: loginEmail,
-      password: loginPassword,
-    },
-    withCredentials: true,
-    url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
-  }).then((res) => {
-    return res;
-  });
+export const loginUser = async (loginEmail: string, loginPassword: string) => {
+  try {
+    const { data, status } = await axios.post<any>(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
+      {
+        email: loginEmail,
+        password: loginPassword,
+      }
+    );
+    return {data, status};
+  } catch (error) {
+    console.log(`There was an error getting users: ${error}`);
+  }
+  
 };
 
 export const getLoggedinUserInfo = () => {
