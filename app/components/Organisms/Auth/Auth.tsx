@@ -11,6 +11,8 @@ import {
   getLoggedinUserInfo,
   logoutUser,
 } from "@/app/services/auth-service";
+import { useRouter } from 'next/navigation'
+
 
 type Inputs = {
   registerName: string;
@@ -22,6 +24,8 @@ type Inputs = {
 };
 
 const AuthForm = () => {
+  const router = useRouter()
+
   const [formToShow, setFormToShow] = useState("register");
   const [loggedinUser, setLoggedinUser] = useState(null);
   const {
@@ -49,9 +53,12 @@ const AuthForm = () => {
     if (formToShow === "login") {
       try {
         const response = await loginUser(data.loginEmail, data.loginPassword);
+        if(response?.status === 200) {
+          router.push("/recipes")
+        }
       } catch (error) {
         console.log(`There was an error while logging in the user: ${error}`);
-      }
+      } 
     }
   };
 
