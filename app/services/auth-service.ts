@@ -7,7 +7,7 @@ export const registerUser = async (
   registerPassword: string
 ) => {
   try {
-    const { data, status } = await axios.post<any>(
+    const { data, status } = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/register`,
       {
         name: registerName,
@@ -27,7 +27,7 @@ export const registerUser = async (
 
 export const loginUser = async (loginEmail: string, loginPassword: string) => {
   try {
-    const { data, status } = await axios.post<any>(
+    const { data, status } = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
       {
         email: loginEmail,
