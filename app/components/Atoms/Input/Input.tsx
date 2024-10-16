@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from "react";
 import "./Input.css";
 import { UseFormRegister } from "react-hook-form";
 
