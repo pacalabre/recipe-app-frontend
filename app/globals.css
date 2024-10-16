@@ -1,3 +1,22 @@
 .page-title {
   text-align: center;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  justify-content: center;
+  margin: auto;
+  background: #3f96b5;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.input,
+.textarea {
+  border: solid black 1px;
+  font-size: 16px;
+  padding: 5px;
+}

@@ -82,7 +82,7 @@ const AuthForm = () => {
 
   return (
     <>
-      <form className={styles.authForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         {formToShow === "register" ? (
           <>
             <h2>Register</h2>
