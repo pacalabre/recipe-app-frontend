@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useUser } from "../../../contextApi/UserProvider";
 import Input from "../../Atoms/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
@@ -24,6 +25,7 @@ type Inputs = {
 
 const AuthForm = () => {
   const router = useRouter();
+  const { user, setUser } = useUser();
 
   const [formToShow, setFormToShow] = useState("register");
   const [loggedinUser, setLoggedinUser] = useState(null);
@@ -53,6 +55,7 @@ const AuthForm = () => {
       try {
         const response = await loginUser(data.loginEmail, data.loginPassword);
         if (response?.status === 200) {
+          setUser(response.data.user);
           router.push("/recipes");
         }
       } catch (error) {
