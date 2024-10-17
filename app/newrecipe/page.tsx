@@ -4,13 +4,13 @@ import Input from "../components/Atoms/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 
 type NewRecipeInputs = {
-  title: string;
+  recipeName: string;
   subtitle: string;
   description: string;
   ingredients: string;
-  steps: string;
-  easeOfMaking: string;
+  recipeDifficulty: string;
   totaltime: string;
+  recipeInstructions: string;
 };
 
 const NewRecipe = () => {
@@ -31,10 +31,10 @@ const NewRecipe = () => {
         <Input
           register={register}
           inputType="text"
-          formField="title"
-          rules={{ required: "Title is required" }}
+          formField="recipeName"
+          rules={{ required: "Recipe name is required" }}
         />
-        {errors.title && <p>{errors.title.message}</p>}
+        {errors.recipeName && <p>{errors.recipeName.message}</p>}
         <label>Subtitle:</label>
         <Input register={register} inputType="text" formField="subtitle" />
         <label>Description:</label>
@@ -53,23 +53,25 @@ const NewRecipe = () => {
           rules={{ required: "Ingredients are required" }}
         />
         {errors.ingredients && <p>{errors.ingredients.message}</p>}
-        <label>Difficulty:</label>
+        <label>Recipe Difficulty:</label>
         <Input
           register={register}
           inputType="text"
-          formField="easeOfMaking"
-          rules={{ required: "Ease of making is required" }}
+          formField="recipeDifficulty"
+          rules={{ required: "Recipe difficulty is required" }}
         />
-        {errors.easeOfMaking && <p>{errors.easeOfMaking.message}</p>}
+        {errors.recipeDifficulty && <p>{errors.recipeDifficulty.message}</p>}
         <label>Total Time:</label>
         <Input register={register} inputType="text" formField="totaltime" />
         <label>Instructions:</label>
         <TextArea
           register={register}
-          formField="steps"
-          rules={{ required: "Recipe steps are required" }}
+          formField="recipeInstructions"
+          rules={{ required: "Instructions are required" }}
         />
-        {errors.steps && <p>{errors.steps.message}</p>}
+        {errors.recipeInstructions && (
+          <p>{errors.recipeInstructions.message}</p>
+        )}
         <button type="submit">Add Recipe</button>
       </form>
     </>
