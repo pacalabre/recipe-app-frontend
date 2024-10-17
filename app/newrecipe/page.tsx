@@ -1,5 +1,7 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useUser } from "../contextApi/UserProvider";
+import { addNewRecipe } from "../services/recipe-service";
 import Input from "../components/Atoms/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 
@@ -14,6 +16,7 @@ type NewRecipeInputs = {
 };
 
 const NewRecipe = () => {
+  const { user } = useUser();
   const {
     register,
     handleSubmit,
@@ -21,11 +24,23 @@ const NewRecipe = () => {
   } = useForm<NewRecipeInputs>();
 
   const onSubmit: SubmitHandler<NewRecipeInputs> = async (data) => {
-    console.log("data", data);
+    addNewRecipe(
+      data.recipeName,
+      data.subtitle,
+      user.id,
+      data.recipeDifficulty,
+      data.totaltime,
+      data.ingredients,
+      data.description,
+      data.recipeInstructions
+    );
   };
   return (
     <>
       <h2 className="page-title">New Recipe</h2>
+      <span>
+        Loggedin User: {user ? user.name : "No user currently logged in"}
+      </span>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <label>Recipe name:</label>
         <Input

@@ -20,11 +20,8 @@ const Receipes = () => {
   return (
     <>
       <Link href="/login">Home</Link>
-
+      <Link href="/newrecipe">New Recipe</Link>
       <h2>All Recipes</h2>
-      <span>
-        Loggedin User: {user ? user.name : "No user currently logged in"}
-      </span>
       {recipes.length > 0 ? (
         recipes?.map((recipe: any, index: string) => (
           <div key={index}>{recipe.recipeName}</div>
