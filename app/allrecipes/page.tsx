@@ -20,6 +20,7 @@ const Receipes = () => {
     <>
       <Link href="/login">Home</Link>
       <Link href="/newrecipe">New Recipe</Link>
+      <Link href="/profile">Profile</Link>
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
         recipes.map((recipe: Recipe, index: number) => (
