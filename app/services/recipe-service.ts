@@ -16,6 +16,22 @@ export const getAllRecipes = async () => {
   }
 };
 
+export const getRecipe = async (id: string) => {
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${id}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(`There was an error ${error}`);
+  }
+};
+
 export const addNewRecipe = async (
   recipeName: string,
   subtitle: string,

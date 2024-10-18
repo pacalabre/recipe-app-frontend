@@ -24,7 +24,17 @@ const Receipes = () => {
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
         recipes?.map((recipe: any, index: string) => (
-          <div key={index}>{recipe.recipeName}</div>
+          <div>
+            <Link
+              href={{
+                pathname: "/recipe",
+                query: { id: recipe._id },
+              }}
+              key={index}
+            >
+              {recipe.recipeName}
+            </Link>
+          </div>
         ))
       ) : (
         <p>nothing to show</p>
