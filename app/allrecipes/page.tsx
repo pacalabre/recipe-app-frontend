@@ -1,12 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useUser } from "../contextApi/UserProvider";
 import { getAllRecipes } from "../services/recipe-service";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
 
 const Receipes = () => {
-  const { user } = useUser();
   const [recipes, setRecipes] = useState<Recipe[] | []>([]);
 
   const getRecipeList = async () => {
