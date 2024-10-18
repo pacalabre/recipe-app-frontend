@@ -56,7 +56,7 @@ const AuthForm = () => {
         const response = await loginUser(data.loginEmail, data.loginPassword);
         if (response?.status === 200) {
           setUser(response.data.user);
-          router.push("/recipes");
+          router.push("/allrecipes");
         }
       } catch (error) {
         console.log(`There was an error while logging in the user: ${error}`);
