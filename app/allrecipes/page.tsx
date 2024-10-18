@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { useUser } from "../contextApi/UserProvider";
 import { getAllRecipes } from "../services/recipe-service";
 import Link from "next/link";
+import { Recipe } from "../types/recipeTypes";
 
 const Receipes = () => {
   const { user } = useUser();
-  const [recipes, setRecipes] = useState<any>([]);
+  const [recipes, setRecipes] = useState<Recipe[] | []>([]);
 
   const getRecipeList = async () => {
     const response = await getAllRecipes();
@@ -23,7 +24,7 @@ const Receipes = () => {
       <Link href="/newrecipe">New Recipe</Link>
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
-        recipes?.map((recipe: any, index: string) => (
+        recipes.map((recipe: Recipe, index: number) => (
           <div>
             <Link
               href={{
