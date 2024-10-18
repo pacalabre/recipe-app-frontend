@@ -23,13 +23,12 @@ const Receipes = () => {
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
         recipes.map((recipe: Recipe, index: number) => (
-          <div>
+          <div key={index}>
             <Link
               href={{
                 pathname: "/recipe",
                 query: { id: recipe._id },
               }}
-              key={index}
             >
               {recipe.recipeName}
             </Link>
