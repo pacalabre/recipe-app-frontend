@@ -15,3 +15,19 @@ export const getUsers = async () => {
     console.log(`There was an error getting users: ${error}`);
   }
 };
+
+export const getUserRecipes = async (id: string) => {
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${id}/recipes`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(`There was an error getting users recipes: ${error}`);
+  }
+};
