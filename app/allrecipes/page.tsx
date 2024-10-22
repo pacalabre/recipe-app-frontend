@@ -1,10 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getAllRecipes } from "../services/recipe-service";
+import { getAllRecipes, updateRecipe } from "../services/recipe-service";
+import { useUser } from "../contextApi/UserProvider";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
+import Button from "../components/Atoms/Button/Button";
 
 const Receipes = () => {
+  const { user } = useUser();
   const [recipes, setRecipes] = useState<Recipe[] | []>([]);
 
   const getRecipeList = async () => {
@@ -15,6 +18,19 @@ const Receipes = () => {
   useEffect(() => {
     getRecipeList();
   }, []);
+
+  const addFavorite = async (recipe: Recipe, userId: string) => {
+    let updatedRecipe = recipe;
+    if (!userId) return;
+    if (updatedRecipe?.favorites?.includes(userId)) {
+      const indexOfFavorite = updatedRecipe.favorites.indexOf(userId);
+      updatedRecipe.favorites.splice(indexOfFavorite, 1);
+    } else {
+      updatedRecipe.favorites?.push(userId);
+    }
+    const response = await updateRecipe(updatedRecipe);
+    if (response?.status === 200) getRecipeList();
+  };
 
   return (
     <>
@@ -33,6 +49,10 @@ const Receipes = () => {
             >
               {recipe.recipeName}
             </Link>
+            <Button
+              label="Add Favorite"
+              onclick={() => addFavorite(recipe, user.id)}
+            ></Button>
           </div>
         ))
       ) : (
