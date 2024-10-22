@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Recipe } from "../types/recipeTypes";
 
 export const getAllRecipes = async () => {
   try {
@@ -64,6 +65,36 @@ export const addNewRecipe = async (
       }
     );
     return data;
+  } catch (error) {
+    console.log(`There was an error ${error}`);
+  }
+};
+
+export const updateRecipe = async (recipe: Recipe) => {
+  try {
+    const { data, status } = await axios.put(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`,
+      {
+        recipeName: recipe.recipeName,
+        subtitle: recipe.subtitle,
+        author: {
+          _id: recipe.author._id,
+        },
+        recipeDifficulty: recipe.recipeDifficulty,
+        totalMakeTime: recipe.totalMakeTime,
+        ingredients: recipe.ingredients,
+        description: recipe.description,
+        recipeInstructions: recipe.recipeInstructions,
+        favorites: recipe.favorites,
+        tags: recipe.tags,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    return { data, status };
   } catch (error) {
     console.log(`There was an error ${error}`);
   }
