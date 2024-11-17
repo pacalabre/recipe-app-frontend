@@ -28,7 +28,6 @@ const RecipePage = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     setValue,
     formState: { errors },
   } = useForm<RecipeInputs>();
