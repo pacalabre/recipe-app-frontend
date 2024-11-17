@@ -1,5 +1,5 @@
 export type Recipe = {
-  _id: string;
+  _id?: string;
   recipeName: string;
   subtitle?: string;
   author: {
@@ -8,7 +8,7 @@ export type Recipe = {
     userName?: string;
   };
   favorites?: string[];
-  dateCreated: Date;
+  dateCreated?: Date;
   tags?: string[];
   recipeDifficulty: string;
   totalMakeTime?: string;
