@@ -8,6 +8,7 @@ import { Recipe } from "../types/recipeTypes";
 import Input from "../components/Atoms/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Tag } from "../types/tagTypes";
 
 type RecipeInputs = {
   recipeName: string;
@@ -133,6 +134,7 @@ const RecipePage = () => {
           <p>Cooking Time: {recipe?.totalMakeTime}</p>
           <p>Ingredients: {recipe?.ingredients}</p>
           <p>Instructions: {recipe?.recipeInstructions}</p>
+          {recipe?.tags?.map((tag: Tag) => <p>{tag.tagName}</p>)}
         </>
       )}
     </>

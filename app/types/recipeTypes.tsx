@@ -1,3 +1,5 @@
+import { Tag } from "./tagTypes";
+
 export type Recipe = {
   _id?: string;
   recipeName: string;
@@ -9,7 +11,7 @@ export type Recipe = {
   };
   favorites?: string[];
   dateCreated?: Date;
-  tags?: string[];
+  tags?: Tag[];
   recipeDifficulty: string;
   totalMakeTime?: string;
   ingredients: string;

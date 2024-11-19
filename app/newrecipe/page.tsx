@@ -122,7 +122,7 @@ const NewRecipe = () => {
           Tags:
           {tags.length > 0 ? (
             tags.map((tag) => (
-              <button type="button" onClick={() => addTag(tag.tagName)}>
+              <button type="button" onClick={() => addTag(tag._id)}>
                 {tag.tagName}
               </button>
             ))
