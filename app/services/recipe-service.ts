@@ -41,7 +41,8 @@ export const addNewRecipe = async (
   totalMakeTime: string,
   ingredients: string,
   description: string,
-  recipeInstructions: string
+  recipeInstructions: string,
+  tags: string[]
 ) => {
   try {
     const { data, status } = await axios.post(
@@ -57,6 +58,7 @@ export const addNewRecipe = async (
         ingredients: ingredients,
         description: description,
         recipeInstructions: recipeInstructions,
+        tags: tags,
       },
       {
         headers: {
