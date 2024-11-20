@@ -5,9 +5,12 @@ import { useUser } from "../contextApi/UserProvider";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
 import Button from "../components/Atoms/Button/Button";
+import { logoutUser } from "../services/auth-service";
+import { useRouter } from "next/navigation";
 
 const Receipes = () => {
-  const { user } = useUser();
+  const router = useRouter();
+  const { user, setUser } = useUser();
   const [recipes, setRecipes] = useState<Recipe[] | []>([]);
 
   const getRecipeList = async () => {
@@ -32,11 +35,25 @@ const Receipes = () => {
     if (response?.status === 200) getRecipeList();
   };
 
+  const logout = async (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    try {
+      const response = await logoutUser();
+      if (response) {
+        setUser(null);
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log(`There was an error when logging out the user: ${error}`);
+    }
+  };
+
   return (
     <>
       <Link href="/login">Home</Link>
       <Link href="/newrecipe">New Recipe</Link>
       <Link href="/profile">Profile</Link>
+      <Button onclick={logout} label="logout"></Button>
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
         recipes.map((recipe: Recipe, index: number) => (
