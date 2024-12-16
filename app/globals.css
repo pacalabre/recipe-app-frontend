@@ -1,3 +1,46 @@
+:root {
+  --app-color-background: #ecfcf8;
+  --input-color-background-active: #cdeee6;
+  --black: #000000;
+  --active: #70caf7;
+  --error: #fa6d6d;
+}
+
+* {
+  font-family: "Be Vietnam Pro", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 28px;
+}
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
+.subheading {
+  font-style: italic;
+}
+
 .page-title {
   text-align: center;
 }

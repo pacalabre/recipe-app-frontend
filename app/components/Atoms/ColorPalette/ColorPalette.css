@@ -1,0 +1,25 @@
+.color-palette-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
+.color-box {
+  height: 100px;
+  width: 100px;
+}
+
+.black {
+  background: var(--black);
+}
+
+.green {
+  background-color: var(--app-color-background);
+}
+
+.blue {
+  background: var(--active);
+}
+
+.red {
+  background: var(--error);
+}
