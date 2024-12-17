@@ -73,42 +73,50 @@ const NewRecipe = () => {
         Loggedin User: {user ? user.name : "No user currently logged in"}
       </span>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <label>Recipe name:</label>
         <Input
+          label="recipe name"
           register={register}
           inputType="text"
           formField="recipeName"
           rules={{ required: "Recipe name is required" }}
         />
         {errors.recipeName && <p>{errors.recipeName.message}</p>}
-        <label>Subtitle:</label>
-        <Input register={register} inputType="text" formField="subtitle" />
-        <label>Description:</label>
         <Input
+          label="subtitle"
+          register={register}
+          inputType="text"
+          formField="subtitle"
+        />
+        <Input
+          label="description"
           register={register}
           inputType="text"
           formField="description"
           rules={{ required: "Description is required" }}
         />
         {errors.description && <p>{errors.description.message}</p>}
-        <label>Ingredients:</label>
         <Input
+          label="ingredients"
           register={register}
           inputType="text"
           formField="ingredients"
           rules={{ required: "Ingredients are required" }}
         />
         {errors.ingredients && <p>{errors.ingredients.message}</p>}
-        <label>Recipe Difficulty:</label>
         <Input
+          label="recipe difficulty"
           register={register}
           inputType="text"
           formField="recipeDifficulty"
           rules={{ required: "Recipe difficulty is required" }}
         />
         {errors.recipeDifficulty && <p>{errors.recipeDifficulty.message}</p>}
-        <label>Total Time:</label>
-        <Input register={register} inputType="text" formField="totaltime" />
+        <Input
+          label="total time"
+          register={register}
+          inputType="text"
+          formField="totaltime"
+        />
         <label>Instructions:</label>
         <TextArea
           register={register}
