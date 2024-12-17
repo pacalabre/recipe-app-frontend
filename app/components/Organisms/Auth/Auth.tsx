@@ -88,29 +88,28 @@ const AuthForm = () => {
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         {formToShow === "register" ? (
           <>
-            <h2>Register</h2>
-            <label>Name:</label>
             <Input
               register={register}
+              label="name"
               inputType="text"
               formField="registerName"
               rules={{ required: "Name is required" }}
             />
             {errors.registerName && <p>{errors.registerName.message}</p>}
-            <label>User Name</label>
             <Input
+              label="user name"
               register={register}
               inputType="text"
               formField="registerUsername"
             />
-            <label>Email</label>
             <Input
+              label="email"
               register={register}
               inputType="text"
               formField="registerEmail"
             />
-            <label>Password</label>
             <Input
+              label="password"
               register={register}
               inputType="password"
               formField="registerPassword"
@@ -130,17 +129,16 @@ const AuthForm = () => {
           </>
         ) : (
           <>
-            <h2>Login</h2>
-            <label>Email</label>
             <Input
+              label="email"
               register={register}
               inputType="text"
               formField="loginEmail"
               rules={{ required: "Email is required" }}
             />
             {errors.loginEmail && <p>{errors.loginEmail.message}</p>}
-            <label>Password</label>
             <Input
+              label="password"
               register={register}
               inputType="password"
               formField="loginPassword"

@@ -1,0 +1,23 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.inputLabel {
+  text-transform: capitalize;
+  color: var(--black);
+}
+
+.input {
+  padding: 9px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--black);
+  background: transparent;
+  font-size: 16px;
+}
+
+.input:focus {
+  background: var(--input-color-background-active);
+  outline: none;
+}

@@ -1,15 +1,23 @@
-import "./Input.css";
+import styles from "./Input.module.css";
 import { UseFormRegister } from "react-hook-form";
 
 type Props = {
   inputType?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<any> | any;
   formField: string;
   rules?: object;
+  label?: string;
 };
-const Input = ({ register, formField, inputType, rules }: Props) => {
+const Input = ({ register, formField, inputType, rules, label }: Props) => {
   return (
-    <input type={inputType} className="input" {...register(formField, rules)} />
+    <div className={styles.inputContainer}>
+      <label className={styles.inputLabel}>{label}</label>
+      <input
+        type={inputType}
+        className={styles.input}
+        {...register(formField, rules)}
+      />
+    </div>
   );
 };
 

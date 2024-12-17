@@ -4,11 +4,7 @@ import Input from "@/app/components/Atoms/Input/Input";
 const meta: Meta<typeof Input> = {
   component: Input,
   title: "Atoms/Input",
-  argTypes: {
-    text: {
-      control: { type: "text" },
-    },
-  },
+
   tags: ["autodocs"],
 };
 
@@ -18,6 +14,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    text: "",
+    formField: "",
+    label: "name",
+    register: () => {
+      return null;
+    },
   },
 };
