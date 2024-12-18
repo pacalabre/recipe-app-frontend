@@ -4,10 +4,15 @@
   --black: #000000;
   --active: #70caf7;
   --error: #fa6d6d;
+  --errorInputBackground: #f6cece;
 }
 
 * {
   font-family: "Be Vietnam Pro", Helvetica, Arial, sans-serif;
+}
+
+html {
+  background: var(--app-color-background);
 }
 
 h1 {

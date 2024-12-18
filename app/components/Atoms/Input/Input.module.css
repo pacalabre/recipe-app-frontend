@@ -21,3 +21,13 @@
   background: var(--input-color-background-active);
   outline: none;
 }
+
+.error {
+  .input {
+    background: var(--errorInputBackground);
+  }
+
+  .errorMsg {
+    color: var(--error);
+  }
+}
