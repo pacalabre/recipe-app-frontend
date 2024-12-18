@@ -6,6 +6,7 @@ import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { RegisterFormInputs } from "@/app/types/registerFormInputTypes";
 import {
   registerUser,
   loginUser,
@@ -13,15 +14,6 @@ import {
   logoutUser,
 } from "@/app/services/auth-service";
 import { useRouter } from "next/navigation";
-
-type Inputs = {
-  registerName: string;
-  registerUsername: string;
-  registerEmail: string;
-  registerPassword: string;
-  loginEmail: string;
-  loginPassword: string;
-};
 
 const AuthForm = () => {
   const router = useRouter();
@@ -35,9 +27,9 @@ const AuthForm = () => {
     watch,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<RegisterFormInputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     console.log("data", data);
     if (formToShow === "register") {
       try {
@@ -94,8 +86,8 @@ const AuthForm = () => {
               inputType="text"
               formField="registerName"
               rules={{ required: "Name is required" }}
+              errorMsg={errors.registerName?.message}
             />
-            {errors.registerName && <p>{errors.registerName.message}</p>}
             <Input
               label="user name"
               register={register}
