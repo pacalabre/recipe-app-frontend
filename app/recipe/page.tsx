@@ -87,8 +87,8 @@ const RecipePage = () => {
             inputType="text"
             formField="recipeName"
             rules={{ required: "Recipe name is required" }}
+            errorMsg={errors.recipeName?.message}
           />
-          {errors.recipeName && <p>{errors.recipeName.message}</p>}
           <Input
             label="subtitle"
             register={register}
@@ -102,24 +102,24 @@ const RecipePage = () => {
             inputType="text"
             formField="description"
             rules={{ required: "Description is required" }}
+            errorMsg={errors.description?.message}
           />
-          {errors.description && <p>{errors.description.message}</p>}
           <Input
             label="ingredients"
             register={register}
             inputType="text"
             formField="ingredients"
             rules={{ required: "Ingredients are required" }}
+            errorMsg={errors.ingredients?.message}
           />
-          {errors.ingredients && <p>{errors.ingredients.message}</p>}
           <Input
             label="recipe difficulty"
             register={register}
             inputType="text"
             formField="recipeDifficulty"
             rules={{ required: "Recipe difficulty is required" }}
+            errorMsg={errors.recipeDifficulty?.message}
           />
-          {errors.recipeDifficulty && <p>{errors.recipeDifficulty.message}</p>}
           <Input
             label="total time"
             register={register}

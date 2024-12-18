@@ -127,8 +127,8 @@ const AuthForm = () => {
               inputType="text"
               formField="loginEmail"
               rules={{ required: "Email is required" }}
+              errorMsg={errors.loginEmail?.message}
             />
-            {errors.loginEmail && <p>{errors.loginEmail.message}</p>}
             <Input
               label="password"
               register={register}
