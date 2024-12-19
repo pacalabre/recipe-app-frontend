@@ -2,7 +2,9 @@
   --app-color-background: #ecfcf8;
   --input-color-background-active: #cdeee6;
   --black: #000000;
+  --white: #fff;
   --active: #70caf7;
+  --hover-background: #6ffad7;
   --error: #fa6d6d;
   --errorInputBackground: #f6cece;
 }
