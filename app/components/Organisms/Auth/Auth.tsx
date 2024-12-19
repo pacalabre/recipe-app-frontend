@@ -5,6 +5,7 @@ import Input from "../../Atoms/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterFormInputs } from "@/app/types/registerFormInputTypes";
 import {
@@ -58,8 +59,15 @@ const AuthForm = () => {
 
   return (
     <div className={styles.authFormContainer}>
-      <h1 className="page-title">CALADINE</h1>
       <form className={styles.authForm} onSubmit={handleSubmit(onSubmit)}>
+        <Image
+          className={styles.logo}
+          src="logo-skillet.svg"
+          alt="Caladine Logo"
+          width={0}
+          height={0}
+          sizes="100vw"
+        />
         {formToShow === "register" ? (
           <>
             <Input
@@ -100,7 +108,6 @@ const AuthForm = () => {
                   }}
                 ></Button>
               </div>
-
               <Button varient="primary" type="submit" label="register"></Button>
             </div>
           </>
@@ -121,8 +128,8 @@ const AuthForm = () => {
               formField="loginPassword"
             />
             <div className={styles.loginRegisterBtnContainer}>
-              <p>
-                Don't have an account yet?
+              <div className={styles.loginRegisterToggleBtnContainer}>
+                <p>Don't have an account yet?</p>
                 <Button
                   varient="tertiary"
                   label="register"
@@ -131,7 +138,7 @@ const AuthForm = () => {
                     setFormToShow("register");
                   }}
                 ></Button>
-              </p>
+              </div>
               <Button varient="primary" type="submit" label="login"></Button>
             </div>
           </>
