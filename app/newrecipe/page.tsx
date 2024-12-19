@@ -6,6 +6,7 @@ import { addNewRecipe } from "../services/recipe-service";
 import { getAllTags } from "../services/tag-service";
 import Input from "../components/Atoms/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
+import Button from "../components/Atoms/Button/Button";
 
 type NewRecipeInputs = {
   recipeName: string;
@@ -138,7 +139,7 @@ const NewRecipe = () => {
             <p>No tags</p>
           )}
         </div>
-        <button type="submit">Add Recipe</button>
+        <Button type="submit" varient="primary" label="add recipe"></Button>
       </form>
     </>
   );
