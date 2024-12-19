@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useUser } from "../../../contextApi/UserProvider";
-import Input from "../../Atoms/Input/Input";
+import Input from "../../Molecules/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
 import Image from "next/image";

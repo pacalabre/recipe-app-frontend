@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useUser } from "../contextApi/UserProvider";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
-import Input from "../components/Atoms/Input/Input";
+import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tag } from "../types/tagTypes";
