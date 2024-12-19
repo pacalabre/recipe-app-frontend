@@ -3,24 +3,41 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
-  margin-left: 20px;
-  margin-right: 20px;
+  min-height: calc(90vh);
+  margin: 30px 20px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
 }
 
 .authForm {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .loginRegisterBtnContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: normal;
   margin-top: 10px;
 }
 
 .loginRegisterToggleBtnContainer {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .loginRegisterBtnContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .loginRegisterToggleBtnContainer {
+    justify-content: flex-start;
+  }
 }
