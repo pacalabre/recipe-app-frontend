@@ -73,7 +73,7 @@ const NewRecipe = () => {
       <span>
         Loggedin User: {user ? user.name : "No user currently logged in"}
       </span>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="recipe name"
           register={register}

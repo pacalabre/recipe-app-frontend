@@ -85,7 +85,7 @@ const RecipePage = () => {
         ></Button>
       ) : null}
       {isEditing ? (
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="recipe name"
             register={register}

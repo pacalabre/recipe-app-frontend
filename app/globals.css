@@ -52,7 +52,7 @@ p {
   text-align: center;
 }
 
-.form {
+.recipe-form {
   display: flex;
   flex-direction: column;
   max-width: 500px;
