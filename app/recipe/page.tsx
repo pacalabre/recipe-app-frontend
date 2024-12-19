@@ -9,6 +9,7 @@ import Input from "../components/Atoms/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tag } from "../types/tagTypes";
+import Button from "../components/Atoms/Button/Button";
 
 type RecipeInputs = {
   recipeName: string;
@@ -77,7 +78,11 @@ const RecipePage = () => {
         {recipe?.subtitle} by {recipe?.author.name}
       </p>
       {user.id === recipe?.author._id ? (
-        <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
+        <Button
+          onclick={() => setIsEditing(!isEditing)}
+          label="edit"
+          varient="secondary"
+        ></Button>
       ) : null}
       {isEditing ? (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -135,7 +140,11 @@ const RecipePage = () => {
           {errors.recipeInstructions && (
             <p>{errors.recipeInstructions.message}</p>
           )}
-          <button type="submit">Update Recipe</button>
+          <Button
+            type="submit"
+            varient="primary"
+            label="update recipe"
+          ></Button>
         </form>
       ) : (
         <>
