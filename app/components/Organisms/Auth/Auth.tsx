@@ -4,16 +4,10 @@ import { useUser } from "../../../contextApi/UserProvider";
 import Input from "../../Atoms/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
-import Link from "next/link";
 import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterFormInputs } from "@/app/types/registerFormInputTypes";
-import {
-  registerUser,
-  loginUser,
-  getLoggedinUserInfo,
-  logoutUser,
-} from "@/app/services/auth-service";
+import { registerUser, loginUser } from "@/app/services/auth-service";
 import { useRouter } from "next/navigation";
 
 const AuthForm = () => {
@@ -21,11 +15,9 @@ const AuthForm = () => {
   const { user, setUser } = useUser();
 
   const [formToShow, setFormToShow] = useState("register");
-  const [loggedinUser, setLoggedinUser] = useState(null);
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<RegisterFormInputs>();
