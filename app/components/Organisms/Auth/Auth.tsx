@@ -56,25 +56,6 @@ const AuthForm = () => {
     }
   };
 
-  const getLoggedinUser = async (event: React.MouseEvent<HTMLElement>) => {
-    try {
-      const response = await getLoggedinUserInfo();
-    } catch (error) {
-      console.log(
-        `There was an error when trying to get the logged in user data: ${error}`
-      );
-    }
-  };
-
-  const logout = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    try {
-      const response = logoutUser();
-    } catch (error) {
-      console.log(`There was an error when logging out the user: ${error}`);
-    }
-  };
-
   return (
     <>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -155,13 +136,6 @@ const AuthForm = () => {
           </>
         )}
       </form>
-      <Button
-        varient="secondary"
-        onclick={getLoggedinUser}
-        label="get user info"
-      ></Button>
-      <Button varient="secondary" onclick={logout} label="logout"></Button>
-      <Link href="/">Home</Link>
     </>
   );
 };

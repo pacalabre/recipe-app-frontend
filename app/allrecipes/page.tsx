@@ -5,7 +5,7 @@ import { useUser } from "../contextApi/UserProvider";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
 import Button from "../components/Atoms/Button/Button";
-import { logoutUser } from "../services/auth-service";
+import { getLoggedinUserInfo, logoutUser } from "../services/auth-service";
 import { useRouter } from "next/navigation";
 
 const Receipes = () => {
@@ -35,6 +35,16 @@ const Receipes = () => {
     if (response?.status === 200) getRecipeList();
   };
 
+  const getLoggedinUser = async (event: React.MouseEvent<HTMLElement>) => {
+    try {
+      const response = await getLoggedinUserInfo();
+    } catch (error) {
+      console.log(
+        `There was an error when trying to get the logged in user data: ${error}`
+      );
+    }
+  };
+
   const logout = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     try {
@@ -53,7 +63,12 @@ const Receipes = () => {
       <Link href="/login">Home</Link>
       <Link href="/newrecipe">New Recipe</Link>
       <Link href="/profile">Profile</Link>
-      <Button onclick={logout} label="logout"></Button>
+      <Button varient="primary" onclick={logout} label="logout"></Button>
+      <Button
+        varient="secondary"
+        onclick={getLoggedinUser}
+        label="get user info"
+      ></Button>
       <h2>All Recipes</h2>
       {recipes.length > 0 ? (
         recipes.map((recipe: Recipe, index: number) => (
@@ -67,6 +82,7 @@ const Receipes = () => {
               {recipe.recipeName}
             </Link>
             <Button
+              varient="secondary"
               label="Add Favorite"
               onclick={() => addFavorite(recipe, user.id)}
             ></Button>
