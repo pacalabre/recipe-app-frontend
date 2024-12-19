@@ -57,8 +57,9 @@ const AuthForm = () => {
   };
 
   return (
-    <>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <div className={styles.authFormContainer}>
+      <h1 className="page-title">CALADINE</h1>
+      <form className={styles.authForm} onSubmit={handleSubmit(onSubmit)}>
         {formToShow === "register" ? (
           <>
             <Input
@@ -136,7 +137,7 @@ const AuthForm = () => {
           </>
         )}
       </form>
-    </>
+    </div>
   );
 };
 

@@ -15,7 +15,6 @@ const Login = () => {
   }, [user]);
   return (
     <>
-      <h1 className="page-title">CALADINE</h1>
       <AuthForm />
     </>
   );
