@@ -8,6 +8,10 @@ const meta: Meta<typeof Button> = {
     label: {
       control: { type: "text" },
     },
+    varient: {
+      options: ["primary", "secondary", "tertiary"],
+      control: { type: "radio" },
+    },
   },
   tags: ["autodocs"],
 };
@@ -18,6 +22,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    label: "",
+    label: "submit",
   },
 };
