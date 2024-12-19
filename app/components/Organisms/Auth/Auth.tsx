@@ -106,18 +106,21 @@ const AuthForm = () => {
               inputType="password"
               formField="registerPassword"
             />
-            <p>
-              Already have an account?
-              <button
-                onClick={() => {
-                  reset();
-                  setFormToShow("login");
-                }}
-              >
-                Login
-              </button>
-            </p>
-            <button type="submit">Register</button>
+            <div className={styles.loginRegisterBtnContainer}>
+              <div className={styles.loginRegisterToggleBtnContainer}>
+                <p>Already have an account?</p>
+                <Button
+                  varient="tertiary"
+                  label="login"
+                  onclick={() => {
+                    reset();
+                    setFormToShow("login");
+                  }}
+                ></Button>
+              </div>
+
+              <Button varient="primary" type="submit" label="register"></Button>
+            </div>
           </>
         ) : (
           <>
@@ -135,23 +138,29 @@ const AuthForm = () => {
               inputType="password"
               formField="loginPassword"
             />
-            <p>
-              Don't have an account yet?
-              <button
-                onClick={() => {
-                  reset();
-                  setFormToShow("register");
-                }}
-              >
-                Register
-              </button>
-            </p>
-            <button type="submit">Login</button>
+            <div className={styles.loginRegisterBtnContainer}>
+              <p>
+                Don't have an account yet?
+                <Button
+                  varient="tertiary"
+                  label="register"
+                  onclick={() => {
+                    reset();
+                    setFormToShow("register");
+                  }}
+                ></Button>
+              </p>
+              <Button varient="primary" type="submit" label="login"></Button>
+            </div>
           </>
         )}
       </form>
-      <Button onclick={getLoggedinUser} label="get user info"></Button>
-      <Button onclick={logout} label="logout"></Button>
+      <Button
+        varient="secondary"
+        onclick={getLoggedinUser}
+        label="get user info"
+      ></Button>
+      <Button varient="secondary" onclick={logout} label="logout"></Button>
       <Link href="/">Home</Link>
     </>
   );
