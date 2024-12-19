@@ -4,7 +4,7 @@ import { useUser } from "../../../contextApi/UserProvider";
 import Input from "../../Molecules/Input/Input";
 import Button from "../../Atoms/Button/Button";
 import styles from "./Auth.module.css";
-import Image from "next/image";
+import SkilletLogo from "../../Atoms/SkilletLogo/SkilletLogo";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterFormInputs } from "@/app/types/registerFormInputTypes";
 import { registerUser, loginUser } from "@/app/services/auth-service";
@@ -52,14 +52,7 @@ const AuthForm = () => {
   return (
     <div className={styles.authFormContainer}>
       <form className={styles.authForm} onSubmit={handleSubmit(onSubmit)}>
-        <Image
-          className={styles.logo}
-          src="logo-skillet.svg"
-          alt="Caladine Logo"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
+        <SkilletLogo />
         {formToShow === "register" ? (
           <>
             <Input
