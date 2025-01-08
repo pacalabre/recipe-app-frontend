@@ -23,13 +23,17 @@ type NewRecipeInputs = {
 const NewRecipe = () => {
   const { user } = useUser();
   const [tags, setTags] = useState<any[] | []>([]);
+
   const {
     register,
     handleSubmit,
     getValues,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<NewRecipeInputs>();
+
+  const activeTags = watch("tags");
 
   const getTags = async () => {
     const response = await getAllTags();
@@ -129,10 +133,14 @@ const NewRecipe = () => {
           <p>{errors.recipeInstructions.message}</p>
         )}
         <div>
-          Tags:
           {tags.length > 0 ? (
             tags.map((tag) => (
-              <Tag label={tag.tagName} onclick={() => addTag(tag._id)} />
+              <Tag
+                key={tag._id}
+                label={tag.tagName}
+                onclick={() => addTag(tag._id)}
+                isActive={activeTags?.includes(tag._id) ? true : false}
+              />
             ))
           ) : (
             <p>No tags</p>

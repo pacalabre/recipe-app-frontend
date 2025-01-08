@@ -3,6 +3,7 @@ import styles from "./Tag.module.css";
 type Props = {
   onclick?: React.MouseEventHandler<HTMLButtonElement>;
   label: string;
+  isActive: boolean;
 };
 
 const Tag = (props: Props) => {
@@ -10,7 +11,7 @@ const Tag = (props: Props) => {
     <button
       type="button"
       onClick={props.onclick}
-      className={`${styles.tag} ${styles.active}`}
+      className={`${styles.tag} ${props.isActive ? styles.active : ""}`}
     >
       {props.label}
     </button>
