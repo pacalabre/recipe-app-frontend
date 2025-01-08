@@ -7,6 +7,7 @@ import { getAllTags } from "../services/tag-service";
 import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
+import Tag from "../components/Atoms/Tag/Tag";
 
 type NewRecipeInputs = {
   recipeName: string;
@@ -131,9 +132,7 @@ const NewRecipe = () => {
           Tags:
           {tags.length > 0 ? (
             tags.map((tag) => (
-              <button type="button" onClick={() => addTag(tag._id)}>
-                {tag.tagName}
-              </button>
+              <Tag label={tag.tagName} onclick={() => addTag(tag._id)} />
             ))
           ) : (
             <p>No tags</p>

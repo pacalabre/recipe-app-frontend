@@ -1,0 +1,12 @@
+.tag {
+  padding: 7px 15px;
+  background: transparent;
+  border: 1px solid;
+  border-radius: 28px;
+  text-transform: capitalize;
+}
+
+.active {
+  background: var(--active);
+  color: var(--white);
+}
