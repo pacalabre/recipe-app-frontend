@@ -74,10 +74,6 @@ const NewRecipe = () => {
 
   return (
     <>
-      <h2 className="page-title">New Recipe</h2>
-      <span>
-        Loggedin User: {user ? user.name : "No user currently logged in"}
-      </span>
       <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="recipe name"
