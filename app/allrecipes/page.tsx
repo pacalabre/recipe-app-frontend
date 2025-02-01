@@ -60,37 +60,36 @@ const Receipes = () => {
 
   return (
     <>
-      <Link href="/login">Home</Link>
-      <Link href="/newrecipe">New Recipe</Link>
-      <Link href="/profile">Profile</Link>
-      <Button varient="primary" onclick={logout} label="logout"></Button>
+      {/* <Button varient="primary" onclick={logout} label="logout"></Button>
       <Button
         varient="secondary"
         onclick={getLoggedinUser}
         label="get user info"
-      ></Button>
-      <h2>All Recipes</h2>
-      {recipes.length > 0 ? (
-        recipes.map((recipe: Recipe, index: number) => (
-          <div key={index}>
-            <Link
-              href={{
-                pathname: "/recipe",
-                query: { id: recipe._id },
-              }}
-            >
-              {recipe.recipeName}
-            </Link>
-            <Button
-              varient="secondary"
-              label="Add Favorite"
-              onclick={() => addFavorite(recipe, user.id)}
-            ></Button>
-          </div>
-        ))
-      ) : (
-        <p>nothing to show</p>
-      )}
+      ></Button> */}
+
+      <div className="container">
+        {recipes.length > 0 ? (
+          recipes.map((recipe: Recipe, index: number) => (
+            <div key={index}>
+              <Link
+                href={{
+                  pathname: "/recipe",
+                  query: { id: recipe._id },
+                }}
+              >
+                {recipe.recipeName}
+              </Link>
+              <Button
+                varient="secondary"
+                label="Add Favorite"
+                onclick={() => addFavorite(recipe, user.id)}
+              ></Button>
+            </div>
+          ))
+        ) : (
+          <p>nothing to show</p>
+        )}
+      </div>
     </>
   );
 };
