@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import NavLogo from "@/app/components/Atoms/NavLogo/NavLogo";
+import "./../../../globals.css";
 import styles from "./AppNav.module.css";
 import { usePathname } from "next/navigation";
 
