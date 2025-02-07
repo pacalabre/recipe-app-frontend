@@ -1,5 +1,5 @@
 .nav {
-  border-bottom: solid black 3px;
+  border-bottom: solid var(--black) 3px;
   height: 80px;
 }
 
@@ -12,9 +12,9 @@
 }
 
 .logoLink {
-  height: auto;
+  height: 28px;
   display: block;
-  padding: 25px 30px;
+  padding: 25px 20px;
   position: relative;
   z-index: 100;
   width: 200px;
@@ -24,43 +24,114 @@
   content: "";
   width: 50px;
   height: 20px;
-  left: -1px;
+  left: 0;
   right: 0;
   top: 88%;
   margin: auto;
-  background: #ecfcf8;
+  background: var(--app-color-background);
   display: block;
   position: absolute;
   z-index: 50;
 }
 
+.hamburgerMenu {
+  display: block;
+  border: none;
+  background: none;
+  margin-right: 15px;
+
+  .mobileIconLine {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: var(--black);
+    margin: 5px;
+    transition: 0.2s;
+  }
+
+  &.close {
+    .topLine {
+      transform: rotate(45deg);
+    }
+
+    .middleLine {
+      display: none;
+    }
+
+    .bottomLine {
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 32px;
+    }
+  }
+}
+
 .navLinksContainer {
   margin: 27px;
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  flex-direction: column;
+  background: var(--flat-black);
+  width: 45%;
+  top: 80px;
+  right: 0;
+  margin: 0;
+  padding: 20px;
+  transition: 0.2s;
+
+  &.hide {
+    right: -400px;
+  }
 }
 
 .navLink {
+  color: var(--white);
+  font-size: 20px;
   padding: 0 15px;
   border: transparent solid 2px;
   padding: 8px 15px;
+  position: initial;
 }
 
 .activeLink {
   position: relative;
 }
 
-.activeLink:after {
-  content: "";
-  width: 70%;
-  display: block;
-  height: 2px;
-  background: var(--black);
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-}
+@media (min-width: 768px) {
+  .hamburgerMenu {
+    display: none;
+  }
 
-.navLink:not(.activeLink):hover {
-  border-color: var(--black);
+  .navLinksContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+    width: initial;
+    position: initial;
+    background: initial;
+    height: initial;
+    transition: 0s;
+  }
+
+  .navLink {
+    font-size: initial;
+    color: var(--black);
+  }
+
+  .navLink:not(.activeLink):hover {
+    border-color: var(--black);
+  }
+
+  .activeLink:after {
+    content: "";
+    width: 70%;
+    display: block;
+    height: 2px;
+    background: var(--black);
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+  }
 }
