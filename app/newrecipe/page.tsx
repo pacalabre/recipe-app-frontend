@@ -8,6 +8,7 @@ import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Atoms/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
 import Tag from "../components/Atoms/Tag/Tag";
+import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 
 type NewRecipeInputs = {
   recipeName: string;
@@ -75,6 +76,7 @@ const NewRecipe = () => {
   return (
     <>
       <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
+        <FileUpload />
         <Input
           label="recipe name"
           register={register}
