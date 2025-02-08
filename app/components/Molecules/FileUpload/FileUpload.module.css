@@ -1,0 +1,30 @@
+.fileUploadLabel {
+  padding-bottom: 10px;
+}
+
+.fileUploadContentContainer {
+  border: 2px dashed var(--black);
+  padding: 40px;
+}
+
+.imageIcon {
+  display: block;
+  margin: 5px auto;
+  font-size: 130px;
+  color: var(--icon-color);
+}
+
+.fileUploadButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fileUploadP {
+  padding-right: 5px;
+}
+
+.fileUpload {
+  width: 200px;
+}
