@@ -2,9 +2,13 @@
   padding-bottom: 10px;
 }
 
-.fileUploadContentContainer {
+.fileUploadContainer {
   border: 2px dashed var(--black);
+}
+
+.fileUploadContent {
   padding: 40px;
+  cursor: pointer;
 }
 
 .imageIcon {
