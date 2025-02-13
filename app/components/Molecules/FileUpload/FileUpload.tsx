@@ -2,11 +2,30 @@ import "./../../../globals.css";
 import styles from "./FileUpload.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
 
 function FileUpload() {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const onDrop = (files: (string | Blob)[]) => {
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append(
+      "upload_preset",
+      `${process.env.NEXT_PUBLIC_CLOUDINARY_PRESET}`
+    );
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_ACCOUNT}/image/upload`,
+        data
+      )
+      .then((data) => {
+        console.log("data", data);
+      });
+  };
+
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    onDrop,
+  });
 
   const files = acceptedFiles.map((file) => (
     <li key={file.path}>
