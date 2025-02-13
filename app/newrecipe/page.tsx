@@ -11,6 +11,7 @@ import Tag from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 
 type NewRecipeInputs = {
+  recipeImageUrl: string;
   recipeName: string;
   subtitle: string;
   description: string;
@@ -47,6 +48,7 @@ const NewRecipe = () => {
 
   const onSubmit: SubmitHandler<NewRecipeInputs> = async (data) => {
     addNewRecipe(
+      data.recipeImageUrl,
       data.recipeName,
       data.subtitle,
       user.id,
@@ -76,7 +78,7 @@ const NewRecipe = () => {
   return (
     <>
       <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
-        <FileUpload />
+        <FileUpload setValue={setValue} />
         <Input
           label="recipe name"
           register={register}

@@ -72,12 +72,12 @@ const RecipePage = () => {
   }, []);
   return (
     <>
-      <Link href="/allrecipes">All Recipes</Link>
+      <img src={recipe?.image} alt={`Recipe image for ${recipe?.recipeName}`} />
       <h2>{recipe?.recipeName}</h2>
       <p>
         {recipe?.subtitle} by {recipe?.author.name}
       </p>
-      {user.id === recipe?.author._id ? (
+      {user?.id === recipe?.author._id ? (
         <Button
           onclick={() => setIsEditing(!isEditing)}
           label="edit"

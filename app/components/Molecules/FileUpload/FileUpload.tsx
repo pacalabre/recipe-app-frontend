@@ -2,12 +2,17 @@ import "./../../../globals.css";
 import styles from "./FileUpload.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { UseFormSetValue } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { useState } from "react";
 import Button from "../../Atoms/Button/Button";
 
-function FileUpload() {
+type Props = {
+  setValue: UseFormSetValue<any> | any;
+};
+
+function FileUpload({ setValue }: Props) {
   const [recipeImage, setRecipeImage] = useState("");
   const onDrop = (files: (string | Blob)[]) => {
     const data = new FormData();
@@ -23,7 +28,7 @@ function FileUpload() {
       )
       .then((res) => {
         setRecipeImage(res.data.secure_url);
-        console.log("data", data);
+        setValue("recipeImageUrl", res.data.secure_url);
       });
   };
 

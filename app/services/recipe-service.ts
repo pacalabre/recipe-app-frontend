@@ -34,6 +34,7 @@ export const getRecipe = async (id: string) => {
 };
 
 export const addNewRecipe = async (
+  image: string,
   recipeName: string,
   subtitle: string,
   authorId: string,
@@ -48,6 +49,7 @@ export const addNewRecipe = async (
     const { data, status } = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes`,
       {
+        image: image,
         recipeName: recipeName,
         subtitle: subtitle,
         author: {
