@@ -25,10 +25,19 @@
   flex-wrap: wrap;
 }
 
-.fileUploadP {
-  padding-right: 5px;
+.fileUploadMessage {
+  text-align: center;
 }
 
 .fileUpload {
   width: 200px;
+}
+
+.recipeImageContainer {
+  height: 265px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: row-reverse;
 }
