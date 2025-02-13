@@ -1,3 +1,4 @@
+import { ClassNames } from "@emotion/react";
 import styles from "./Button.module.css";
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   label: string;
   varient: string;
   type?: string;
+  className?: string;
 };
 
 const Button = (props: Props) => {
@@ -19,7 +21,9 @@ const Button = (props: Props) => {
 
   const buttonType = props.type === "submit" ? "submit" : "button";
   return (
-    <div className={styles.buttonContainer}>
+    <div
+      className={`${styles.buttonContainer} ${props.className ? props.className : ""}`}
+    >
       <button
         type={buttonType}
         onClick={props.onclick}

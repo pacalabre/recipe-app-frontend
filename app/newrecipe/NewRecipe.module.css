@@ -1,0 +1,9 @@
+.tagsContainer {
+  display: flex;
+  gap: 7px;
+  margin: 15px auto;
+}
+
+.button {
+  flex-direction: row-reverse;
+}

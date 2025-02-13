@@ -9,6 +9,7 @@ import TextArea from "../components/Atoms/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
 import Tag from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
+import styles from "./NewRecipe.module.css";
 
 type NewRecipeInputs = {
   recipeImageUrl: string;
@@ -132,7 +133,7 @@ const NewRecipe = () => {
         {errors.recipeInstructions && (
           <p>{errors.recipeInstructions.message}</p>
         )}
-        <div>
+        <div className={styles.tagsContainer}>
           {tags.length > 0 ? (
             tags.map((tag) => (
               <Tag
@@ -146,7 +147,12 @@ const NewRecipe = () => {
             <p>No tags</p>
           )}
         </div>
-        <Button type="submit" varient="primary" label="add recipe"></Button>
+        <Button
+          className={styles.button}
+          type="submit"
+          varient="primary"
+          label="add recipe"
+        ></Button>
       </form>
     </>
   );
