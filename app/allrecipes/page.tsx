@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import RecipeGallery from "../components/Organisms/RecipeGallery/RecipeGallery";
 import { getAllRecipes, updateRecipe } from "../services/recipe-service";
 import { useUser } from "../contextApi/UserProvider";
-import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
-import Button from "../components/Atoms/Button/Button";
 import { getLoggedinUserInfo, logoutUser } from "../services/auth-service";
 import { useRouter } from "next/navigation";
 
@@ -60,36 +59,13 @@ const Receipes = () => {
 
   return (
     <>
-      {/* <Button varient="primary" onclick={logout} label="logout"></Button>
-      <Button
-        varient="secondary"
-        onclick={getLoggedinUser}
-        label="get user info"
-      ></Button> */}
-
-      <div className="container">
+      <main className="container">
         {recipes.length > 0 ? (
-          recipes.map((recipe: Recipe, index: number) => (
-            <div key={index}>
-              <Link
-                href={{
-                  pathname: "/recipe",
-                  query: { id: recipe._id },
-                }}
-              >
-                {recipe.recipeName}
-              </Link>
-              <Button
-                varient="secondary"
-                label="Add Favorite"
-                onclick={() => addFavorite(recipe, user.id)}
-              ></Button>
-            </div>
-          ))
+          <RecipeGallery recipes={recipes} />
         ) : (
           <p>nothing to show</p>
         )}
-      </div>
+      </main>
     </>
   );
 };
