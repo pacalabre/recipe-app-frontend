@@ -7,7 +7,7 @@ export type Recipe = {
   subtitle?: string;
   author: {
     _id: string;
-    name?: string;
+    name: string;
     userName?: string;
   };
   favorites?: string[];

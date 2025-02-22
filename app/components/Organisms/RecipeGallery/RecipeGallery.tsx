@@ -5,7 +5,11 @@ import Tag from "../../Atoms/Tag/Tag";
 import { getAllTags } from "@/app/services/tag-service";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faGaugeHigh } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faGaugeHigh,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 type RecipeGalleryProps = {
   recipes: Recipe[];
@@ -77,19 +81,17 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                         icon={faClock}
                         className={styles.recipeIcon}
                       ></FontAwesomeIcon>
-                      <span>total make time:</span>
+                      <span>{recipe.totalMakeTime}</span>
                     </div>
-                    <span>{recipe.totalMakeTime}</span>
                   </div>
                   <div className={styles.recipeStatsContainer}>
                     <div>
                       <FontAwesomeIcon
-                        icon={faGaugeHigh}
+                        icon={faUser}
                         className={styles.recipeIcon}
                       ></FontAwesomeIcon>
-                      <span>recipe difficulty:</span>
+                      <span>{recipe.author.name}</span>
                     </div>
-                    <span>{recipe.recipeDifficulty}/5</span>
                   </div>
                 </div>
               </div>
