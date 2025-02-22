@@ -4,6 +4,8 @@ import { Recipe } from "@/app/types/recipeTypes";
 import Tag from "../../Atoms/Tag/Tag";
 import { getAllTags } from "@/app/services/tag-service";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faGaugeHigh } from "@fortawesome/free-solid-svg-icons";
 
 type RecipeGalleryProps = {
   recipes: Recipe[];
@@ -55,6 +57,7 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
         {filteredRecipes.map((recipe: Recipe, index: number) => (
           <div key={index} className={styles.galleryItem}>
             <Link
+              className={styles.recipeLink}
               href={{
                 pathname: "/recipe",
                 query: { id: recipe._id },
@@ -65,6 +68,31 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                 src={recipe.image}
                 alt={recipe.recipeName}
               />
+              <div className={styles.recipeDetails}>
+                <p className={styles.recipeName}>{recipe.recipeName}</p>
+                <div className={styles.recipeIconTextContainer}>
+                  <div className={styles.recipeStatsContainer}>
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faClock}
+                        className={styles.recipeIcon}
+                      ></FontAwesomeIcon>
+                      <span>total make time:</span>
+                    </div>
+                    <span>{recipe.totalMakeTime}</span>
+                  </div>
+                  <div className={styles.recipeStatsContainer}>
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faGaugeHigh}
+                        className={styles.recipeIcon}
+                      ></FontAwesomeIcon>
+                      <span>recipe difficulty:</span>
+                    </div>
+                    <span>{recipe.recipeDifficulty}/5</span>
+                  </div>
+                </div>
+              </div>
             </Link>
           </div>
         ))}
