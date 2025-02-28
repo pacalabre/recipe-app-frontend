@@ -81,8 +81,28 @@ p {
   margin-top: 40px;
 }
 
+.textarea-container,
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.input-label,
+.textarea-label {
+  text-transform: capitalize;
+  color: var(--black);
+}
+
+.input,
 .textarea {
-  border: solid black 1px;
+  padding: 9px;
+  background: transparent;
   font-size: 16px;
-  padding: 5px;
+}
+
+.input:focus,
+.textarea:focus {
+  background: var(--input-color-background-active);
+  outline: none;
 }
