@@ -1,10 +1,10 @@
-.input {
-  border: 1px solid transparent;
-  border-bottom: 1px solid var(--black);
+.textarea {
+  border: 1px solid var(--black);
+  min-height: 100px;
 }
 
 .error {
-  .input {
+  .textarea {
     background: var(--errorInputBackground);
   }
 

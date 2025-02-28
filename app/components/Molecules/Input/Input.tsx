@@ -21,11 +21,11 @@ const Input = ({
 }: Props) => {
   const isError = errorMsg ? styles.error : "";
   return (
-    <div className={`${styles.inputContainer} ${isError}`}>
-      <label className={styles.inputLabel}>{label}</label>
+    <div className={["input-container", isError].join(" ")}>
+      <label className="input-label">{label}</label>
       <input
         type={inputType}
-        className={styles.input}
+        className={["input", styles.input].join(" ")}
         {...register(formField, rules)}
       />
       {errorMsg && <p className={styles.errorMsg}>{errorMsg}</p>}

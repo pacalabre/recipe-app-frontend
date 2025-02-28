@@ -5,7 +5,7 @@ import { useUser } from "../contextApi/UserProvider";
 import { addNewRecipe } from "../services/recipe-service";
 import { getAllTags } from "../services/tag-service";
 import Input from "../components/Molecules/Input/Input";
-import TextArea from "../components/Atoms/TextArea/TextArea";
+import TextArea from "../components/Molecules/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
 import Tag from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
@@ -124,15 +124,13 @@ const NewRecipe = () => {
           inputType="text"
           formField="totaltime"
         />
-        <label>Instructions:</label>
         <TextArea
+          label="instructions"
           register={register}
           formField="recipeInstructions"
+          errorMsg={errors.recipeInstructions?.message}
           rules={{ required: "Instructions are required" }}
         />
-        {errors.recipeInstructions && (
-          <p>{errors.recipeInstructions.message}</p>
-        )}
         <div className={styles.tagsContainer}>
           {tags.length > 0 ? (
             tags.map((tag) => (

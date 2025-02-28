@@ -6,7 +6,7 @@ import { useUser } from "../contextApi/UserProvider";
 import Link from "next/link";
 import { Recipe } from "../types/recipeTypes";
 import Input from "../components/Molecules/Input/Input";
-import TextArea from "../components/Atoms/TextArea/TextArea";
+import TextArea from "../components/Molecules/TextArea/TextArea";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Tag } from "../types/tagTypes";
 import Button from "../components/Atoms/Button/Button";
