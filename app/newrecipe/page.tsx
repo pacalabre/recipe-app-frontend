@@ -10,6 +10,7 @@ import Button from "../components/Atoms/Button/Button";
 import Tag from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import styles from "./NewRecipe.module.css";
+import { useRouter } from "next/navigation";
 
 type NewRecipeInputs = {
   recipeImageUrl: string;
@@ -24,6 +25,7 @@ type NewRecipeInputs = {
 };
 
 const NewRecipe = () => {
+  const router = useRouter();
   const { user } = useUser();
   const [tags, setTags] = useState<any[] | []>([]);
 
@@ -48,7 +50,7 @@ const NewRecipe = () => {
   }, []);
 
   const onSubmit: SubmitHandler<NewRecipeInputs> = async (data) => {
-    addNewRecipe(
+    const response = await addNewRecipe(
       data.recipeImageUrl,
       data.recipeName,
       data.subtitle,
@@ -60,6 +62,10 @@ const NewRecipe = () => {
       data.recipeInstructions,
       data.tags
     );
+
+    if (response) {
+      router.push("/allrecipes");
+    }
   };
 
   function addTag(tagName: any): void {
