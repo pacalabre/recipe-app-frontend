@@ -1,0 +1,91 @@
+.recipeContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+}
+
+.imageContainer {
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 40px 0;
+}
+
+.recipeDetails {
+  padding: 0 20px;
+}
+
+.recipeTitleBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editRecipeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.favoriteBtn {
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 110px;
+}
+
+.favoriteBtnIcon {
+  font-size: 25px;
+  color: var(--icon-color);
+
+  &.active {
+    color: var(--icon-color-favorite);
+  }
+}
+
+.editBtn {
+  margin-left: 20px;
+}
+
+.recipeStats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userIconNameContainer {
+  display: flex;
+  align-items: center;
+  height: min-content;
+}
+
+.userIcon {
+  margin-right: 7px;
+}
+
+.userName {
+  text-transform: capitalize;
+}
+
+.subheading {
+  font-style: italic;
+  margin: 10px auto;
+}
+
+.recipeTags {
+  margin: 50px auto;
+  font-style: italic;
+}
+
+.recipeTagsLabel {
+  margin-right: 7px;
+}
+
+@media screen and (min-width: 825px) {
+  .recipeDetails {
+    padding: 0;
+  }
+}
