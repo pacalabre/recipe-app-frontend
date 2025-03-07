@@ -23,10 +23,9 @@
   align-items: center;
 }
 
-.editRecipeForm {
+.favoriteEditBtnsContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 .favoriteBtn {
@@ -35,7 +34,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
-  width: 110px;
 }
 
 .favoriteBtnIcon {
@@ -47,8 +45,23 @@
   }
 }
 
+.favoriteText {
+  min-width: 95px;
+}
+
+.favoriteTextFade {
+  opacity: 1;
+  animation: fade 1s linear;
+}
+
 .editBtn {
   margin-left: 20px;
+}
+
+.editRecipeForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .recipeStats {
@@ -73,15 +86,32 @@
 .subheading {
   font-style: italic;
   margin: 10px auto;
+  text-align: center;
 }
 
 .recipeTags {
   margin: 50px auto;
   font-style: italic;
+  text-align: center;
 }
 
 .recipeTagsLabel {
   margin-right: 7px;
+}
+
+.updateRecipeBtn {
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @media screen and (min-width: 825px) {

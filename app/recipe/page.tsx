@@ -29,6 +29,7 @@ const RecipePage = () => {
   const searchParams = useSearchParams();
   const recipeId = searchParams.get("id");
   const { user } = useUser();
+  const [isSavedTextVisible, setIsSavedTextVisible] = useState(false);
   const [recipe, setRecipe] = useState<Recipe>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const {
@@ -76,7 +77,7 @@ const RecipePage = () => {
   }, []);
 
   const addFavorite = async (recipe: Recipe, userId: string) => {
-    let updatedRecipe = recipe;
+    let updatedRecipe = { ...recipe };
     if (!userId) return;
     if (updatedRecipe?.favorites?.includes(userId)) {
       const indexOfFavorite = updatedRecipe.favorites.indexOf(userId);
@@ -84,9 +85,21 @@ const RecipePage = () => {
     } else {
       updatedRecipe.favorites?.push(userId);
     }
-    const response = await updateRecipe(updatedRecipe);
-    if (response?.status === 200) setRecipe(response.data);
+    setRecipe(updatedRecipe);
+    favoriteTextDisplay();
+    await updateRecipe(recipe);
   };
+
+  function favoriteTextDisplay() {
+    if (isSavedTextVisible) return;
+    setIsSavedTextVisible(true);
+
+    const timer = setTimeout(() => {
+      setIsSavedTextVisible(false);
+    }, 1000);
+
+    return () => clearTimeout(timer); // Clear timeout if component unmounts
+  }
 
   return (
     <main className={styles.recipeContainer}>
@@ -97,12 +110,20 @@ const RecipePage = () => {
       <section className={styles.recipeDetails}>
         <div className={styles.recipeTitleBtnContainer}>
           <h2>{recipe?.recipeName}</h2>
-          <div>
+          <div className={styles.favoriteEditBtnsContainer}>
             <button
               className={styles.favoriteBtn}
               onClick={() => recipe && addFavorite(recipe, user?.id)}
             >
-              {recipe?.favorites?.includes(user?.id) ? "saved" : "not saved"}
+              <p className={styles.favoriteText}>
+                {isSavedTextVisible ? (
+                  <span className={styles.favoriteTextFade}>
+                    {recipe?.favorites?.includes(user?.id)
+                      ? "saved"
+                      : "not saved"}
+                  </span>
+                ) : null}
+              </p>
               <FontAwesomeIcon
                 icon={faHeart}
                 className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
@@ -178,6 +199,7 @@ const RecipePage = () => {
               <p>{errors.recipeInstructions.message}</p>
             )}
             <Button
+              className={styles.updateRecipeBtn}
               type="submit"
               varient="primary"
               label="update recipe"
