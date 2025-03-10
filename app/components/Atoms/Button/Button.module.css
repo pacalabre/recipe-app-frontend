@@ -19,7 +19,7 @@
 
 .secondary {
   border: black 1px solid;
-  background-color: var(--app-color-background);
+  background-color: transparent;
   color: var(--black);
   width: calc(100% + 2px);
 }
