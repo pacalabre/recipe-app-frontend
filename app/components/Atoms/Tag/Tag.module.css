@@ -4,6 +4,7 @@
   border: 1px solid;
   border-radius: 28px;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .active {
