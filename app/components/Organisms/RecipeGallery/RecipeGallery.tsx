@@ -36,28 +36,30 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
   };
 
   return (
-    <section>
-      <Tag
-        isActive={false}
-        label="All"
-        onclick={() => setFilteredRecipes(recipes)}
-      />
-      {tags.length > 0 ? (
-        tags.map((tag) => (
-          <Tag
-            key={tag._id}
-            label={tag.tagName}
-            onclick={() => {
-              setActiveTag(tag._id);
-              handleFilter(tag._id);
-            }}
-            isActive={activeTag === tag._id ? true : false}
-          />
-        ))
-      ) : (
-        <p>No tags</p>
-      )}
-      <div className={styles.galleryContainer}>
+    <main>
+      <section className={styles.filterBtnsContainer}>
+        <Tag
+          isActive={false}
+          label="All"
+          onclick={() => setFilteredRecipes(recipes)}
+        />
+        {tags.length > 0 ? (
+          tags.map((tag) => (
+            <Tag
+              key={tag._id}
+              label={tag.tagName}
+              onclick={() => {
+                setActiveTag(tag._id);
+                handleFilter(tag._id);
+              }}
+              isActive={activeTag === tag._id ? true : false}
+            />
+          ))
+        ) : (
+          <p>No tags</p>
+        )}
+      </section>
+      <section className={styles.galleryContainer}>
         {filteredRecipes.map((recipe: Recipe, index: number) => (
           <div key={index} className={styles.galleryItem}>
             <Link
@@ -98,8 +100,8 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
             </Link>
           </div>
         ))}
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 
