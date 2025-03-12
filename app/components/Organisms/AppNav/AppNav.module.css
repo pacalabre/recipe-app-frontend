@@ -79,6 +79,7 @@
   margin: 0;
   padding: 20px;
   transition: 0.2s;
+  z-index: 1000;
 
   &.hide {
     right: -400px;
@@ -94,8 +95,29 @@
   position: initial;
 }
 
+.mobileLink {
+  display: block;
+}
+
 .activeLink {
   position: relative;
+}
+
+.userMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.userDropdownBtn {
+  display: none;
+  color: var(--white);
+  background: var(--black);
+  border-radius: 50%;
+  width: 40px;
+}
+
+.dropdownIcon {
+  margin-right: 10px;
 }
 
 @media (min-width: 768px) {
@@ -133,5 +155,15 @@
     left: 0;
     right: 0;
     bottom: -2px;
+  }
+
+  .userDropdownBtn {
+    display: block;
+  }
+  .userMenu {
+    flex-direction: row;
+    .mobileLink {
+      display: none;
+    }
   }
 }
