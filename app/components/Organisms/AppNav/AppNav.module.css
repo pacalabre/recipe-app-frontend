@@ -116,6 +116,12 @@
   width: 40px;
 }
 
+.navLogoutBtn {
+  display: flex;
+  background: var(--black);
+  cursor: pointer;
+}
+
 .dropdownIcon {
   margin-right: 10px;
 }

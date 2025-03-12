@@ -109,12 +109,18 @@ export default function AppNav() {
               >
                 Profile
               </Link>
-              <Button
+              <button
+                className={`${styles.navLink} ${styles.mobileLink} ${styles.navLogoutBtn}`}
+                onClick={logout}
+              >
+                Logout
+              </button>
+              {/* <Button
                 label="logout"
                 varient="primary"
                 className={`${styles.navLink} ${styles.mobileLink}`}
                 onclick={logout}
-              />
+              /> */}
             </div>
           ) : (
             <Link className={styles.navLink} href="/login">
