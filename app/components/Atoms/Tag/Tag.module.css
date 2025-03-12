@@ -1,13 +1,13 @@
 .tag {
   padding: 7px 15px;
   background: transparent;
-  border: 1px solid;
-  border-radius: 28px;
+  border: 1px solid var(--black);
   text-transform: capitalize;
   cursor: pointer;
 }
 
 .active {
-  background: var(--active);
+  background: var(--flat-black);
   color: var(--white);
+  font-weight: 600;
 }
