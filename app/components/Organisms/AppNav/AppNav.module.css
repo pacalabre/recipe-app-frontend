@@ -159,6 +159,7 @@
 
   .userDropdownBtn {
     display: block;
+    cursor: pointer;
   }
   .userMenu {
     flex-direction: row;
