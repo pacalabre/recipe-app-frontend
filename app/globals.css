@@ -90,7 +90,7 @@ p {
 .recipe-form {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 800px;
   justify-content: center;
   margin: auto;
   padding: 20px;

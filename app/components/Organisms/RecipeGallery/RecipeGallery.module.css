@@ -84,7 +84,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1275px) {
   .galleryContainer {
     column-count: 4;
   }
