@@ -24,7 +24,6 @@ const Profile = () => {
 
   return (
     <>
-      <Link href="/allrecipes">All Recipes</Link>
       <h2>Profile</h2>
       <p>Username: {user?.userName}</p>
       <p>Email: {user?.email}</p>
