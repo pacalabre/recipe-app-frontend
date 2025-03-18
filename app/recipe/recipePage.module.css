@@ -1,7 +1,7 @@
 .recipeContainer {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  max-width: 1400px;
   margin: 60px auto;
 }
 
@@ -29,11 +29,27 @@
   }
 }
 
+.recipeTitleAuthorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipeTitle {
+  text-align: center;
+  margin-bottom: 0;
+}
+
 .imageContainer {
   height: 400px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  width: 100%;
+}
+
+.recipeHero {
+  padding: 0 20px;
 }
 
 .recipeDetails {
@@ -56,7 +72,11 @@
   background: none;
   display: inline-flex;
   align-items: center;
-  justify-content: space-around;
+  padding: 0;
+  cursor: pointer;
+  text-transform: capitalize;
+  width: max-content;
+  margin: auto;
 }
 
 .favoriteBtnIcon {
@@ -69,7 +89,7 @@
 }
 
 .favoriteText {
-  min-width: 95px;
+  padding-left: 7px;
 }
 
 .favoriteTextFade {
@@ -78,7 +98,7 @@
 }
 
 .editBtn {
-  margin-left: 20px;
+  display: flex;
 }
 
 .editRecipeForm {
@@ -94,8 +114,7 @@
 
 .userIconNameContainer {
   display: flex;
-  align-items: center;
-  height: min-content;
+  justify-content: center;
 }
 
 .userIcon {
@@ -104,6 +123,7 @@
 
 .userName {
   text-transform: capitalize;
+  margin-top: 0;
 }
 
 .subheading {
@@ -128,8 +148,7 @@
 }
 
 @keyframes fade {
-  0%,
-  100% {
+  0% {
     opacity: 0;
   }
   50% {
@@ -138,16 +157,43 @@
 }
 
 @media screen and (min-width: 825px) {
-  .recipeArticle {
-    box-shadow: 10px 10px 25px #839591;
-    background: var(--recipe-card-background);
+  .recipeHero {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
 
-    .breadcrumbs {
-      padding: 0;
-    }
+  .recipeTitleAuthorContainer {
+    justify-content: center;
+  }
 
-    .recipeDetails {
-      padding: 0 20px;
-    }
+  .recipeTitle {
+    text-align: left;
+  }
+
+  .subheading {
+    text-align: left;
+  }
+
+  .userIconNameContainer {
+    justify-content: flex-start;
+  }
+
+  .favoriteBtn {
+    margin: 0;
+  }
+
+  .imageContainer {
+    width: 60%;
+  }
+
+  .recipeDetails {
+    padding: 0 20px;
   }
 }
+
+/* @media screen and (min-width: 1400px) {
+  .imageContainer {
+    width: 50%;
+  }
+} */

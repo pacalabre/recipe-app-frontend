@@ -29,7 +29,6 @@ const RecipePage = () => {
   const searchParams = useSearchParams();
   const recipeId = searchParams.get("id");
   const { user } = useUser();
-  const [isSavedTextVisible, setIsSavedTextVisible] = useState(false);
   const [recipe, setRecipe] = useState<Recipe>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const {
@@ -86,20 +85,8 @@ const RecipePage = () => {
       updatedRecipe.favorites?.push(userId);
     }
     setRecipe(updatedRecipe);
-    favoriteTextDisplay();
     await updateRecipe(recipe);
   };
-
-  function favoriteTextDisplay() {
-    if (isSavedTextVisible) return;
-    setIsSavedTextVisible(true);
-
-    const timer = setTimeout(() => {
-      setIsSavedTextVisible(false);
-    }, 1000);
-
-    return () => clearTimeout(timer); // Clear timeout if component unmounts
-  }
 
   return (
     <main className={styles.recipeContainer}>
@@ -111,42 +98,51 @@ const RecipePage = () => {
         </p>
       </nav>
       <article className={styles.recipeArticle}>
-        <section
-          className={styles.imageContainer}
-          style={{ backgroundImage: `url(${recipe?.image})` }}
-        ></section>
-        <section className={styles.recipeDetails}>
-          <div className={styles.recipeTitleBtnContainer}>
-            <h2>{recipe?.recipeName}</h2>
-            <div className={styles.favoriteEditBtnsContainer}>
-              <button
-                className={styles.favoriteBtn}
-                onClick={() => recipe && addFavorite(recipe, user?.id)}
-              >
-                <p className={styles.favoriteText}>
-                  {isSavedTextVisible ? (
-                    <span className={styles.favoriteTextFade}>
-                      {recipe?.favorites?.includes(user?.id)
-                        ? "saved"
-                        : "not saved"}
-                    </span>
-                  ) : null}
-                </p>
-                <FontAwesomeIcon
-                  icon={faHeart}
-                  className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
-                ></FontAwesomeIcon>
-              </button>
-              {user?.id === recipe?.author._id ? (
-                <Button
-                  onclick={() => setIsEditing(!isEditing)}
-                  label="edit"
-                  varient="secondary"
-                  className={styles.editBtn}
-                ></Button>
-              ) : null}
+        <section className={styles.recipeHero}>
+          <div
+            className={styles.imageContainer}
+            style={{ backgroundImage: `url(${recipe?.image})` }}
+          ></div>
+          <div className={styles.recipeTitleAuthorContainer}>
+            <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
+            <h4 className={styles.subheading}>{recipe?.subtitle}</h4>
+            <div className={styles.userIconNameContainer}>
+              <FontAwesomeIcon
+                icon={faUser}
+                className={styles.userIcon}
+              ></FontAwesomeIcon>
+              <p className={styles.userName}>{recipe?.author.name}</p>
             </div>
+            <button
+              className={styles.favoriteBtn}
+              onClick={() => recipe && addFavorite(recipe, user?.id)}
+            >
+              <FontAwesomeIcon
+                icon={faHeart}
+                className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
+              ></FontAwesomeIcon>
+              <p className={styles.favoriteText}>
+                {/* {isSavedTextVisible ? ( */}
+                <span className={styles.favoriteTextFade}>
+                  {recipe?.favorites?.includes(user?.id)
+                    ? "saved"
+                    : "not saved"}
+                </span>
+                {/* ) : null} */}
+              </p>
+            </button>
           </div>
+        </section>
+        <section className={styles.recipeDetails}>
+          <div className={styles.recipeTitleBtnContainer}></div>
+          {user?.id === recipe?.author._id ? (
+            <Button
+              onclick={() => setIsEditing(!isEditing)}
+              label="edit"
+              varient="secondary"
+              className={styles.editBtn}
+            ></Button>
+          ) : null}
           {isEditing ? (
             <form
               className={styles.editRecipeForm}
@@ -221,15 +217,8 @@ const RecipePage = () => {
                   <p>Cooking Time: {recipe?.totalMakeTime}</p>
                   <p>Ingredients: {recipe?.ingredients}</p>
                 </div>
-                <div className={styles.userIconNameContainer}>
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className={styles.userIcon}
-                  ></FontAwesomeIcon>
-                  <p className={styles.userName}>{recipe?.author.name}</p>
-                </div>
               </div>
-              <h4 className={styles.subheading}>{recipe?.subtitle}</h4>
+
               <p>{recipe?.recipeInstructions}</p>
               <p className={styles.recipeTags}>
                 <span className={styles.recipeTagsLabel}>tags:</span>
