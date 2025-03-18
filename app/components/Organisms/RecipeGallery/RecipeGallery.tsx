@@ -39,9 +39,12 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
     <main>
       <section className={styles.filterBtnsContainer}>
         <Tag
-          isActive={false}
+          isActive={activeTag === "all" ? true : false}
           label="All"
-          onclick={() => setFilteredRecipes(recipes)}
+          onclick={() => {
+            setFilteredRecipes(recipes);
+            setActiveTag("all");
+          }}
         />
         {tags.length > 0 ? (
           tags.map((tag) => (
