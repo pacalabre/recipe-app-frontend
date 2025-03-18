@@ -16,7 +16,7 @@ type RecipeGalleryProps = {
 };
 const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
   const [tags, setTags] = useState<any[] | []>([]);
-  const [activeTag, setActiveTag] = useState("");
+  const [activeTag, setActiveTag] = useState("all");
   const [filteredRecipes, setFilteredRecipes] = useState<any[] | []>(recipes);
 
   const getTags = async () => {
