@@ -169,14 +169,17 @@
 
   .recipeTitle {
     text-align: left;
+    margin: 10px 0 0 0;
   }
 
   .subheading {
     text-align: left;
+    margin: 0;
   }
 
   .userIconNameContainer {
     justify-content: flex-start;
+    margin-top: 20px;
   }
 
   .favoriteBtn {
