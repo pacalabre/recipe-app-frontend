@@ -5,7 +5,7 @@ const SkilletLogo = () => {
   return (
     <Image
       className={styles.logo}
-      src="logo-skillet.svg"
+      src="cast-iron-icon.svg"
       alt="Caladine Logo"
       width={0}
       height={0}
