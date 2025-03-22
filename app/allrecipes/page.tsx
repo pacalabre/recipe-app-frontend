@@ -6,6 +6,7 @@ import { useUser } from "../contextApi/UserProvider";
 import { Recipe } from "../types/recipeTypes";
 import { getLoggedinUserInfo, logoutUser } from "../services/auth-service";
 import { useRouter } from "next/navigation";
+import Loader from "../components/Atoms/Loader/Loader";
 
 const Receipes = () => {
   const router = useRouter();
@@ -60,11 +61,7 @@ const Receipes = () => {
   return (
     <>
       <main className="container">
-        {recipes.length > 0 ? (
-          <RecipeGallery recipes={recipes} />
-        ) : (
-          <p>nothing to show</p>
-        )}
+        {recipes.length > 0 ? <RecipeGallery recipes={recipes} /> : <Loader />}
       </main>
     </>
   );
