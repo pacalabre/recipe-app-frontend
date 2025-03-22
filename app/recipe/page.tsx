@@ -14,6 +14,7 @@ import Button from "../components/Atoms/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Loader from "../components/Atoms/Loader/Loader";
 
 type RecipeInputs = {
   recipeName: string;
@@ -90,144 +91,148 @@ const RecipePage = () => {
 
   return (
     <main className={styles.recipeContainer}>
-      <nav>
-        <p className={styles.breadcrumbs}>
-          <Link href="/allrecipes">Recipes</Link>{" "}
-          <FontAwesomeIcon icon={faChevronRight} />
-          <span className={styles.currentRecipe}>{recipe?.recipeName}</span>
-        </p>
-      </nav>
-      <article className={styles.recipeArticle}>
-        <section className={styles.recipeHero}>
-          <div
-            className={styles.imageContainer}
-            style={{ backgroundImage: `url(${recipe?.image})` }}
-          ></div>
-          <div className={styles.recipeTitleAuthorContainer}>
-            <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
-            <h4 className={styles.subheading}>{recipe?.subtitle}</h4>
-            <div className={styles.userIconNameContainer}>
-              <FontAwesomeIcon
-                icon={faUser}
-                className={styles.userIcon}
-              ></FontAwesomeIcon>
-              <p className={styles.userName}>{recipe?.author.name}</p>
-            </div>
-            <button
-              className={styles.favoriteBtn}
-              onClick={() => recipe && addFavorite(recipe, user?.id)}
-            >
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
-              ></FontAwesomeIcon>
-              <p className={styles.favoriteText}>
-                {/* {isSavedTextVisible ? ( */}
-                <span className={styles.favoriteTextFade}>
-                  {recipe?.favorites?.includes(user?.id)
-                    ? "saved"
-                    : "not saved"}
-                </span>
-                {/* ) : null} */}
-              </p>
-            </button>
-          </div>
-        </section>
-        <section className={styles.recipeDetails}>
-          <div className={styles.recipeTitleBtnContainer}></div>
-          {user?.id === recipe?.author._id ? (
-            <Button
-              onclick={() => setIsEditing(!isEditing)}
-              label="edit"
-              varient="secondary"
-              className={styles.editBtn}
-            ></Button>
-          ) : null}
-          {isEditing ? (
-            <form
-              className={styles.editRecipeForm}
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <Input
-                label="recipe name"
-                register={register}
-                inputType="text"
-                formField="recipeName"
-                rules={{ required: "Recipe name is required" }}
-                errorMsg={errors.recipeName?.message}
-              />
-              <Input
-                label="subtitle"
-                register={register}
-                inputType="text"
-                formField="subtitle"
-              />
-
-              <Input
-                label="description"
-                register={register}
-                inputType="text"
-                formField="description"
-                rules={{ required: "Description is required" }}
-                errorMsg={errors.description?.message}
-              />
-              <Input
-                label="ingredients"
-                register={register}
-                inputType="text"
-                formField="ingredients"
-                rules={{ required: "Ingredients are required" }}
-                errorMsg={errors.ingredients?.message}
-              />
-              <Input
-                label="recipe difficulty"
-                register={register}
-                inputType="text"
-                formField="recipeDifficulty"
-                rules={{ required: "Recipe difficulty is required" }}
-                errorMsg={errors.recipeDifficulty?.message}
-              />
-              <Input
-                label="total time"
-                register={register}
-                inputType="text"
-                formField="totaltime"
-              />
-              <label>Instructions:</label>
-              <TextArea
-                register={register}
-                formField="recipeInstructions"
-                rules={{ required: "Instructions are required" }}
-              />
-              {errors.recipeInstructions && (
-                <p>{errors.recipeInstructions.message}</p>
-              )}
-              <Button
-                className={styles.updateRecipeBtn}
-                type="submit"
-                varient="primary"
-                label="update recipe"
-              ></Button>
-            </form>
-          ) : (
-            <>
-              <div className={styles.recipeStats}>
-                <div>
-                  <p>Difficulty: {recipe?.recipeDifficulty}</p>
-                  <p>Cooking Time: {recipe?.totalMakeTime}</p>
-                  <p>Ingredients: {recipe?.ingredients}</p>
+      {recipe ? (
+        <>
+          <nav>
+            <p className={styles.breadcrumbs}>
+              <Link href="/allrecipes">Recipes</Link>{" "}
+              <FontAwesomeIcon icon={faChevronRight} />
+              <span className={styles.currentRecipe}>{recipe?.recipeName}</span>
+            </p>
+          </nav>
+          <article className={styles.recipeArticle}>
+            <section className={styles.recipeHero}>
+              <div
+                className={styles.imageContainer}
+                style={{ backgroundImage: `url(${recipe?.image})` }}
+              ></div>
+              <div className={styles.recipeTitleAuthorContainer}>
+                <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
+                <h4 className={styles.subheading}>{recipe?.subtitle}</h4>
+                <div className={styles.userIconNameContainer}>
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className={styles.userIcon}
+                  ></FontAwesomeIcon>
+                  <p className={styles.userName}>{recipe?.author.name}</p>
                 </div>
+                <button
+                  className={styles.favoriteBtn}
+                  onClick={() => recipe && addFavorite(recipe, user?.id)}
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
+                  ></FontAwesomeIcon>
+                  <p className={styles.favoriteText}>
+                    <span className={styles.favoriteTextFade}>
+                      {recipe?.favorites?.includes(user?.id)
+                        ? "saved"
+                        : "not saved"}
+                    </span>
+                  </p>
+                </button>
               </div>
+            </section>
+            <section className={styles.recipeDetails}>
+              <div className={styles.recipeTitleBtnContainer}></div>
+              {user?.id === recipe?.author._id ? (
+                <Button
+                  onclick={() => setIsEditing(!isEditing)}
+                  label="edit"
+                  varient="secondary"
+                  className={styles.editBtn}
+                ></Button>
+              ) : null}
+              {isEditing ? (
+                <form
+                  className={styles.editRecipeForm}
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  <Input
+                    label="recipe name"
+                    register={register}
+                    inputType="text"
+                    formField="recipeName"
+                    rules={{ required: "Recipe name is required" }}
+                    errorMsg={errors.recipeName?.message}
+                  />
+                  <Input
+                    label="subtitle"
+                    register={register}
+                    inputType="text"
+                    formField="subtitle"
+                  />
 
-              <p>{recipe?.recipeInstructions}</p>
-              <p className={styles.recipeTags}>
-                <span className={styles.recipeTagsLabel}>tags:</span>
-                {recipe?.tags?.map((tag: Tag) => <>{tag.tagName}</>)}
-              </p>
-            </>
-          )}
-        </section>
-      </article>
+                  <Input
+                    label="description"
+                    register={register}
+                    inputType="text"
+                    formField="description"
+                    rules={{ required: "Description is required" }}
+                    errorMsg={errors.description?.message}
+                  />
+                  <Input
+                    label="ingredients"
+                    register={register}
+                    inputType="text"
+                    formField="ingredients"
+                    rules={{ required: "Ingredients are required" }}
+                    errorMsg={errors.ingredients?.message}
+                  />
+                  <Input
+                    label="recipe difficulty"
+                    register={register}
+                    inputType="text"
+                    formField="recipeDifficulty"
+                    rules={{ required: "Recipe difficulty is required" }}
+                    errorMsg={errors.recipeDifficulty?.message}
+                  />
+                  <Input
+                    label="total time"
+                    register={register}
+                    inputType="text"
+                    formField="totaltime"
+                  />
+                  <label>Instructions:</label>
+                  <TextArea
+                    register={register}
+                    formField="recipeInstructions"
+                    rules={{ required: "Instructions are required" }}
+                  />
+                  {errors.recipeInstructions && (
+                    <p>{errors.recipeInstructions.message}</p>
+                  )}
+                  <Button
+                    className={styles.updateRecipeBtn}
+                    type="submit"
+                    varient="primary"
+                    label="update recipe"
+                  ></Button>
+                </form>
+              ) : (
+                <>
+                  <div className={styles.recipeStats}>
+                    <div>
+                      <p>Difficulty: {recipe?.recipeDifficulty}</p>
+                      <p>Cooking Time: {recipe?.totalMakeTime}</p>
+                      <p>Ingredients: {recipe?.ingredients}</p>
+                    </div>
+                  </div>
+
+                  <p>{recipe?.recipeInstructions}</p>
+                  <p className={styles.recipeTags}>
+                    <span className={styles.recipeTagsLabel}>tags:</span>
+                    {recipe?.tags?.map((tag: Tag) => <>{tag.tagName}</>)}
+                  </p>
+                </>
+              )}
+            </section>
+          </article>
+        </>
+      ) : (
+        <Loader />
+      )}
     </main>
   );
 };
