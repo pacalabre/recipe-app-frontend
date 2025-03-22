@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import RecipeGallery from "../components/Organisms/RecipeGallery/RecipeGallery";
-import { getAllRecipes, updateRecipe } from "../services/recipe-service";
+import { getAllRecipes } from "../services/recipe-service";
 import { useUser } from "../contextApi/UserProvider";
 import { Recipe } from "../types/recipeTypes";
-import { getLoggedinUserInfo, logoutUser } from "../services/auth-service";
+
 import { useRouter } from "next/navigation";
 import Loader from "../components/Atoms/Loader/Loader";
 
@@ -21,42 +21,6 @@ const Receipes = () => {
   useEffect(() => {
     getRecipeList();
   }, []);
-
-  const addFavorite = async (recipe: Recipe, userId: string) => {
-    let updatedRecipe = recipe;
-    if (!userId) return;
-    if (updatedRecipe?.favorites?.includes(userId)) {
-      const indexOfFavorite = updatedRecipe.favorites.indexOf(userId);
-      updatedRecipe.favorites.splice(indexOfFavorite, 1);
-    } else {
-      updatedRecipe.favorites?.push(userId);
-    }
-    const response = await updateRecipe(updatedRecipe);
-    if (response?.status === 200) getRecipeList();
-  };
-
-  const getLoggedinUser = async (event: React.MouseEvent<HTMLElement>) => {
-    try {
-      const response = await getLoggedinUserInfo();
-    } catch (error) {
-      console.log(
-        `There was an error when trying to get the logged in user data: ${error}`
-      );
-    }
-  };
-
-  const logout = async (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    try {
-      const response = await logoutUser();
-      if (response) {
-        setUser(null);
-        router.push("/login");
-      }
-    } catch (error) {
-      console.log(`There was an error when logging out the user: ${error}`);
-    }
-  };
 
   return (
     <>
