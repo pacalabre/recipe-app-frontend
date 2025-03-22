@@ -1,0 +1,80 @@
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInitalContainer {
+  display: inline-flex;
+  background: var(--black);
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  text-transform: uppercase;
+  border-radius: 50%;
+}
+
+.userInital {
+  font-size: 25px;
+}
+
+.userNameEmail {
+  margin: 0px;
+}
+
+.userName {
+  text-transform: capitalize;
+}
+
+.recipe {
+  background: var(--recipe-card-background);
+  display: flex;
+  margin: 20px auto;
+  text-transform: capitalize;
+}
+
+.recipeImage {
+  height: 150px;
+  width: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.recipeDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px;
+  width: 65%;
+}
+
+.recipeTitle {
+  font-size: 20px;
+  margin: 2px;
+}
+.recipeSubtitle {
+  margin: 2px;
+}
+
+@media (min-width: 500px) {
+  .userDetails {
+    flex-direction: row;
+  }
+
+  .userNameEmail {
+    margin: 0 20px;
+  }
+
+  .recipeTitle {
+    font-size: 25px;
+  }
+}
