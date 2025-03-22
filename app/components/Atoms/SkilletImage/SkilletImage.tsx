@@ -1,11 +1,11 @@
 import Image from "next/image";
-import styles from "./SkilletLogo.module.css";
+import styles from "./SkilletImage.module.css";
 
-const SkilletLogo = () => {
+const SkilletImage = () => {
   return (
     <Image
       className={styles.logo}
-      src="logo-skillet.svg"
+      src="cast-iron-icon.svg"
       alt="Caladine Logo"
       width={0}
       height={0}
@@ -14,4 +14,4 @@ const SkilletLogo = () => {
   );
 };
 
-export default SkilletLogo;
+export default SkilletImage;

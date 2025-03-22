@@ -1,11 +1,12 @@
-import SkilletLogo from "../SkilletLogo/SkilletLogo";
+import SkilletImage from "../SkilletImage/SkilletImage";
+
 import styles from "./Loader.module.css";
 
 const Loader = () => {
   return (
     <div className={styles.loaderContainer}>
       <div className={styles.loadingImage}>
-        <SkilletLogo></SkilletLogo>
+        <SkilletImage></SkilletImage>
       </div>
     </div>
   );
