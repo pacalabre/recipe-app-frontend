@@ -46,63 +46,62 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
             setActiveTag("all");
           }}
         />
-        {tags.length > 0 ? (
-          tags.map((tag) => (
-            <Tag
-              key={tag._id}
-              label={tag.tagName}
-              onclick={() => {
-                setActiveTag(tag._id);
-                handleFilter(tag._id);
-              }}
-              isActive={activeTag === tag._id ? true : false}
-            />
-          ))
-        ) : (
-          <p>No tags</p>
-        )}
+        {tags.length > 0
+          ? tags.map((tag) => (
+              <Tag
+                key={tag._id}
+                label={tag.tagName}
+                onclick={() => {
+                  setActiveTag(tag._id);
+                  handleFilter(tag._id);
+                }}
+                isActive={activeTag === tag._id ? true : false}
+              />
+            ))
+          : null}
       </section>
       <section className={styles.galleryContainer}>
-        {filteredRecipes.map((recipe: Recipe, index: number) => (
-          <div key={index} className={styles.galleryItem}>
-            <Link
-              className={styles.recipeLink}
-              href={{
-                pathname: "/recipe",
-                query: { id: recipe._id },
-              }}
-            >
-              <img
-                className={styles.image}
-                src={recipe.image}
-                alt={recipe.recipeName}
-              />
-              <div className={styles.recipeDetails}>
-                <p className={styles.recipeName}>{recipe.recipeName}</p>
-                <div className={styles.recipeIconTextContainer}>
-                  <div className={styles.recipeStatsContainer}>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faClock}
-                        className={styles.recipeIcon}
-                      ></FontAwesomeIcon>
-                      <span>{recipe.totalMakeTime}</span>
+        {filteredRecipes &&
+          filteredRecipes.map((recipe: Recipe, index: number) => (
+            <div key={index} className={styles.galleryItem}>
+              <Link
+                className={styles.recipeLink}
+                href={{
+                  pathname: "/recipe",
+                  query: { id: recipe._id },
+                }}
+              >
+                <img
+                  className={styles.image}
+                  src={recipe.image}
+                  alt={recipe.recipeName}
+                />
+                <div className={styles.recipeDetails}>
+                  <p className={styles.recipeName}>{recipe.recipeName}</p>
+                  <div className={styles.recipeIconTextContainer}>
+                    <div className={styles.recipeStatsContainer}>
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faClock}
+                          className={styles.recipeIcon}
+                        ></FontAwesomeIcon>
+                        <span>{recipe.totalMakeTime}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.recipeStatsContainer}>
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faUser}
-                        className={styles.recipeIcon}
-                      ></FontAwesomeIcon>
-                      <span>{recipe.author.name}</span>
+                    <div className={styles.recipeStatsContainer}>
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className={styles.recipeIcon}
+                        ></FontAwesomeIcon>
+                        <span>{recipe.author.name}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
       </section>
     </main>
   );
