@@ -24,12 +24,13 @@
 }
 
 .recipeDetails {
-  display: none;
+  display: flex;
   background: rgb(2, 2, 2, 0.6);
   flex-direction: column;
   position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
   height: 100%;
   color: var(--white);
   justify-content: center;
@@ -75,6 +76,10 @@
 @media (min-width: 768px) {
   .galleryContainer {
     column-count: 3;
+  }
+
+  .recipeDetails {
+    display: none;
   }
 
   .galleryItem:hover {
