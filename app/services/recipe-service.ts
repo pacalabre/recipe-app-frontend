@@ -103,3 +103,14 @@ export const updateRecipe = async (recipe: Recipe) => {
     console.log(`There was an error ${error}`);
   }
 };
+
+export const deleteRecipe = async (recipe: Recipe) => {
+  try {
+    const { data, status } = await axios.delete(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`
+    );
+    return { data, status };
+  } catch (error) {
+    console.log(`There was an error ${error}`);
+  }
+};

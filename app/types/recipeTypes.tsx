@@ -1,7 +1,7 @@
 import { Tag } from "./tagTypes";
 
 export type Recipe = {
-  _id?: string;
+  _id: string;
   image?: string;
   recipeName: string;
   subtitle?: string;

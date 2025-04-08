@@ -35,7 +35,22 @@
   text-transform: capitalize;
 }
 
-.recipe {
+.userRecipe {
+  position: relative;
+}
+
+.deleteRecipeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--black);
+  color: var(--white);
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+.recipeLink {
   background: var(--recipe-card-background);
   display: flex;
   margin: 20px auto;
@@ -61,6 +76,7 @@
   font-size: 20px;
   margin: 2px;
 }
+
 .recipeSubtitle {
   margin: 2px;
 }
@@ -76,5 +92,19 @@
 
   .recipeTitle {
     font-size: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .userRecipe:hover {
+    .deleteRecipeButton {
+      display: block;
+    }
+  }
+
+  .deleteRecipeButton:hover {
+    background-color: var(--hover-background);
+    border: solid var(--black) 1px;
+    color: var(--black);
   }
 }
