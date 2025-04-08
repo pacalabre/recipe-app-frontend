@@ -10,6 +10,7 @@ import Link from "next/link";
 import Loader from "../components/Atoms/Loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 const Profile = () => {
   const { user } = useUser();
   const [userRecipes, setUserRecipes] = useState<any>();
@@ -76,10 +77,14 @@ const Profile = () => {
                   <button
                     className={styles.deleteRecipeButton}
                     onClick={async () => {
-                      const response = await deleteRecipe(recipe);
-                      if (response?.status === 200) {
-                        const recipes = await getUserRecipes(user.id);
-                        if (recipes) setUserRecipes(recipes);
+                      try {
+                        const response = await deleteRecipe(recipe);
+                        if (response?.status === 200) {
+                          const recipes = await getUserRecipes(user.id);
+                          if (recipes) setUserRecipes(recipes);
+                        }
+                      } catch (error) {
+                        console.log(`There was an error: ${error}`);
                       }
                     }}
                   >
