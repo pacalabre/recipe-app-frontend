@@ -169,6 +169,7 @@
   }
   .userMenu {
     flex-direction: row;
+    margin-left: 15px;
     .mobileLink {
       display: none;
     }
