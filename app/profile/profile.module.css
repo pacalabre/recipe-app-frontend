@@ -1,9 +1,15 @@
 .profileCard {
   display: flex;
+  align-items: center;
   flex-direction: column;
   margin: 60px auto;
-  max-width: 600px;
+  max-width: 1400px;
   padding: 20px;
+}
+
+.profileContentContainer {
+  width: 100%;
+  max-width: 1100px;
 }
 
 .userDetails {
@@ -33,6 +39,13 @@
 
 .userName {
   text-transform: capitalize;
+}
+
+.profileRecipesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
 }
 
 .userRecipe {
@@ -96,6 +109,10 @@
 }
 
 @media (min-width: 768px) {
+  .profileRecipesContainer {
+    flex-direction: row;
+  }
+
   .userRecipe:hover {
     .deleteRecipeButton {
       display: block;
