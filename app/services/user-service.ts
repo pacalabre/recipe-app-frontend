@@ -31,3 +31,19 @@ export const getUserRecipes = async (id: string) => {
     console.log(`There was an error getting users recipes: ${error}`);
   }
 };
+
+export const getUserFavoriteRecipes = async (id: string) => {
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${id}/favoriteRecipes`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(`There was an error getting users favorite recipes: ${error}`);
+  }
+};
