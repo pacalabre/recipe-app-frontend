@@ -12,10 +12,12 @@ const Receipes = () => {
   const router = useRouter();
   const { user, setUser } = useUser();
   const [recipes, setRecipes] = useState<Recipe[] | []>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getRecipeList = async () => {
     const response = await getAllRecipes();
     setRecipes(response);
+    if (response) setIsLoading(false);
   };
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const Receipes = () => {
   return (
     <>
       <main className="container">
-        {recipes.length > 0 ? <RecipeGallery recipes={recipes} /> : <Loader />}
+        {isLoading ? <Loader /> : <RecipeGallery recipes={recipes} />}
       </main>
     </>
   );

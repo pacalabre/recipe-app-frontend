@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 const AuthForm = () => {
   const router = useRouter();
   const { user, setUser } = useUser();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const [formToShow, setFormToShow] = useState("register");
   const {
@@ -23,14 +24,14 @@ const AuthForm = () => {
   } = useForm<RegisterFormInputs>();
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
-    console.log("data", data);
     if (formToShow === "register") {
       try {
         const response = await registerUser(
           data.registerName,
           data.registerUsername,
           data.registerEmail,
-          data.registerPassword
+          data.registerPassword,
+          isAdmin
         );
       } catch (error) {
         console.log(`There was an error registering this user: ${error}`);
@@ -81,6 +82,16 @@ const AuthForm = () => {
               inputType="password"
               formField="registerPassword"
             />
+            <label>
+              Is User an Admin?
+              <input
+                type="checkbox"
+                checked={isAdmin}
+                onChange={() => {
+                  setIsAdmin(!isAdmin);
+                }}
+              />
+            </label>
             <div className={styles.loginRegisterBtnContainer}>
               <div className={styles.loginRegisterToggleBtnContainer}>
                 <p>Already have an account?</p>

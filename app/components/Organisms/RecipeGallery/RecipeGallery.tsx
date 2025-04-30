@@ -37,72 +37,78 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
 
   return (
     <main>
-      <section className={styles.filterBtnsContainer}>
-        <Tag
-          isActive={activeTag === "all" ? true : false}
-          label="All"
-          onclick={() => {
-            setFilteredRecipes(recipes);
-            setActiveTag("all");
-          }}
-        />
-        {tags.length > 0
-          ? tags.map((tag) => (
-              <Tag
-                key={tag._id}
-                label={tag.tagName}
-                onclick={() => {
-                  setActiveTag(tag._id);
-                  handleFilter(tag._id);
-                }}
-                isActive={activeTag === tag._id ? true : false}
-              />
-            ))
-          : null}
-      </section>
-      <section className={styles.galleryContainer}>
-        {filteredRecipes &&
-          filteredRecipes.map((recipe: Recipe, index: number) => (
-            <div key={index} className={styles.galleryItem}>
-              <Link
-                className={styles.recipeLink}
-                href={{
-                  pathname: "/recipe",
-                  query: { id: recipe._id },
-                }}
-              >
-                <img
-                  className={styles.image}
-                  src={recipe.image}
-                  alt={recipe.recipeName}
-                />
-                <div className={styles.recipeDetails}>
-                  <p className={styles.recipeName}>{recipe.recipeName}</p>
-                  <div className={styles.recipeIconTextContainer}>
-                    <div className={styles.recipeStatsContainer}>
-                      <div>
-                        <FontAwesomeIcon
-                          icon={faClock}
-                          className={styles.recipeIcon}
-                        ></FontAwesomeIcon>
-                        <span>{recipe.totalMakeTime}</span>
+      {recipes.length === 0 ? (
+        "Nothing to show"
+      ) : (
+        <>
+          <section className={styles.filterBtnsContainer}>
+            <Tag
+              isActive={activeTag === "all" ? true : false}
+              label="All"
+              onclick={() => {
+                setFilteredRecipes(recipes);
+                setActiveTag("all");
+              }}
+            />
+            {tags.length > 0
+              ? tags.map((tag) => (
+                  <Tag
+                    key={tag._id}
+                    label={tag.tagName}
+                    onclick={() => {
+                      setActiveTag(tag._id);
+                      handleFilter(tag._id);
+                    }}
+                    isActive={activeTag === tag._id ? true : false}
+                  />
+                ))
+              : null}
+          </section>
+          <section className={styles.galleryContainer}>
+            {filteredRecipes &&
+              filteredRecipes.map((recipe: Recipe, index: number) => (
+                <div key={index} className={styles.galleryItem}>
+                  <Link
+                    className={styles.recipeLink}
+                    href={{
+                      pathname: "/recipe",
+                      query: { id: recipe._id },
+                    }}
+                  >
+                    <img
+                      className={styles.image}
+                      src={recipe.image}
+                      alt={recipe.recipeName}
+                    />
+                    <div className={styles.recipeDetails}>
+                      <p className={styles.recipeName}>{recipe.recipeName}</p>
+                      <div className={styles.recipeIconTextContainer}>
+                        <div className={styles.recipeStatsContainer}>
+                          <div>
+                            <FontAwesomeIcon
+                              icon={faClock}
+                              className={styles.recipeIcon}
+                            ></FontAwesomeIcon>
+                            <span>{recipe.totalMakeTime}</span>
+                          </div>
+                        </div>
+                        <div className={styles.recipeStatsContainer}>
+                          <div>
+                            <FontAwesomeIcon
+                              icon={faUser}
+                              className={styles.recipeIcon}
+                            ></FontAwesomeIcon>
+                            <span>{recipe.author.name}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className={styles.recipeStatsContainer}>
-                      <div>
-                        <FontAwesomeIcon
-                          icon={faUser}
-                          className={styles.recipeIcon}
-                        ></FontAwesomeIcon>
-                        <span>{recipe.author.name}</span>
-                      </div>
-                    </div>
-                  </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          ))}
-      </section>
+              ))}
+          </section>
+        </>
+      )}
     </main>
   );
 };

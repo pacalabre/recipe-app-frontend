@@ -4,7 +4,8 @@ export const registerUser = async (
   registerName: string,
   registerUsername: string,
   registerEmail: string,
-  registerPassword: string
+  registerPassword: string,
+  registerIsAdmin: boolean
 ) => {
   try {
     const { data, status } = await axios.post(
@@ -14,6 +15,7 @@ export const registerUser = async (
         userName: registerUsername,
         email: registerEmail,
         password: registerPassword,
+        isAdmin: registerIsAdmin,
       },
       {
         withCredentials: true,
