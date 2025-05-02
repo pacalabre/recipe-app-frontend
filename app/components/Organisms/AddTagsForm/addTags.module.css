@@ -1,0 +1,18 @@
+.tagLabel {
+  margin-right: 7px;
+  border: solid black;
+  padding: 7px;
+  text-transform: capitalize;
+}
+
+.addTagForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.addTagButton {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}

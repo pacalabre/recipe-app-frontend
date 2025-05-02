@@ -94,27 +94,6 @@
   margin: 2px;
 }
 
-/** Admin Dashboard **/
-
-.tagLabel {
-  margin-right: 7px;
-  border: solid black;
-  padding: 7px;
-  text-transform: capitalize;
-}
-
-.addTagForm {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-}
-
-.addTagButton {
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 @media (min-width: 500px) {
   .userDetails {
     flex-direction: row;

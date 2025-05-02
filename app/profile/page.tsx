@@ -14,10 +14,7 @@ import Loader from "../components/Atoms/Loader/Loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Atoms/Button/Button";
-import { getAllTags, addTag } from "@/app/services/tag-service";
-import Input from "../components/Molecules/Input/Input";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Tag } from "../types/tagTypes";
+import AdminDash from "../components/Templates/AdminDash/admin-dash";
 
 const Profile = () => {
   const { user } = useUser();
@@ -25,26 +22,6 @@ const Profile = () => {
   const [userFavoriteRecipes, setUserFavoriteRecipes] = useState<any>();
   const [initials, setInitials] = useState<string>("");
   const [isAdminDashShowing, setIsAdminDashShowing] = useState(false);
-  const [tags, setTags] = useState([]);
-
-  type addTagForm = {
-    tagName: string;
-  };
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<addTagForm>();
-
-  const addNewTag: SubmitHandler<addTagForm> = async (data) => {
-    const response = await addTag(data.tagName);
-    if (response) {
-      getTags();
-      reset();
-    }
-  };
 
   const callGetUserRecipes = async (id: string) => {
     if (id) {
@@ -60,18 +37,12 @@ const Profile = () => {
     }
   };
 
-  const getTags = async () => {
-    const response = await getAllTags();
-    if (response) setTags(response);
-  };
-
   useEffect(() => {
     if (user) {
       callGetUserRecipes(user.id);
       callGetUserFavoriteRecipes(user.id);
       setInitials(user.name.charAt(0));
     }
-    if (user && user.isAdmin) getTags();
   }, [user]);
 
   return (
@@ -101,30 +72,7 @@ const Profile = () => {
               </div>
             </section>
             {isAdminDashShowing ? (
-              <>
-                <h3>Admin Dash</h3>
-                <form
-                  className={styles.addTagForm}
-                  onSubmit={handleSubmit(addNewTag)}
-                >
-                  <Input
-                    register={register}
-                    inputType="text"
-                    label="Add New Tag"
-                    formField="tagName"
-                  ></Input>
-                  <Button
-                    className={styles.addTagButton}
-                    type="submit"
-                    label="Add Tag"
-                    varient="primary"
-                  ></Button>
-                </form>
-                <p>Current Tags:</p>
-                {tags?.map((tag: Tag) => (
-                  <span className={styles.tagLabel}>{tag.tagName}</span>
-                ))}
-              </>
+              <AdminDash />
             ) : (
               <div className={styles.profileRecipesContainer}>
                 <section>
