@@ -7,4 +7,5 @@ export type User = {
   dateCreated: Date;
   tagsUsed?: string[];
   savedRecipes?: string[];
+  isAdmin: boolean;
 };

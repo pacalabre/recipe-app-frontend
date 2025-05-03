@@ -1,4 +1,5 @@
 import axios from "axios";
+import { User } from "../types/userTypes";
 
 export const getUsers = async () => {
   try {
@@ -45,5 +46,24 @@ export const getUserFavoriteRecipes = async (id: string) => {
     return data;
   } catch (error) {
     console.log(`There was an error getting users favorite recipes: ${error}`);
+  }
+};
+
+export const editUsers = async (user: User) => {
+  try {
+    const { data, status } = await axios.put(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${user._id}`,
+      {
+        isAdmin: user.isAdmin,
+      },
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(`There was an error updating the user: ${error}`);
   }
 };
