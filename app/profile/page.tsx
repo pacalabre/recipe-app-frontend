@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Button from "../components/Atoms/Button/Button";
 import AdminDash from "../components/Templates/AdminDash/admin-dash";
+import ProfileRecipeLink from "../components/Molecules/ProfileRecipeLink/profile-recipe-link";
+import { Backdrop, Box, Fade, Modal } from "@mui/material";
 
 const Profile = () => {
   const { user } = useUser();
@@ -22,6 +24,8 @@ const Profile = () => {
   const [userFavoriteRecipes, setUserFavoriteRecipes] = useState<any>();
   const [initials, setInitials] = useState<string>("");
   const [isAdminDashShowing, setIsAdminDashShowing] = useState(false);
+  const [recipeToDelete, setRecipeToDelete] = useState<Recipe>();
+  const [open, setOpen] = useState(false);
 
   const callGetUserRecipes = async (id: string) => {
     if (id) {
@@ -30,12 +34,53 @@ const Profile = () => {
     }
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const deleteRecipeFromModal = async () => {
+    if (recipeToDelete)
+      try {
+        const response = await deleteRecipe(recipeToDelete);
+        if (response?.status === 200) {
+          callGetUserRecipes(user.id);
+          callGetUserFavoriteRecipes(user.id);
+        }
+        handleClose();
+      } catch (error) {
+        console.log(`There was an error: ${error}`);
+      }
+  };
+
   const callGetUserFavoriteRecipes = async (id: string) => {
     if (id) {
       const response = await getUserFavoriteRecipes(id);
       setUserFavoriteRecipes(response);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      callGetUserRecipes(user.id);
+      callGetUserFavoriteRecipes(user.id);
+    }
+  }, [isAdminDashShowing]);
 
   useEffect(() => {
     if (user) {
@@ -79,51 +124,12 @@ const Profile = () => {
                   <h3>Your Recipes:</h3>
                   {userRecipes?.length
                     ? userRecipes?.map((recipe: Recipe, index: number) => (
-                        <div className={styles.userRecipe}>
-                          <Link
-                            className={styles.recipeLink}
-                            href={{
-                              pathname: "/recipe",
-                              query: { id: recipe._id },
-                            }}
-                          >
-                            <div
-                              style={{
-                                backgroundImage: `url(${recipe?.image})`,
-                              }}
-                              className={styles.recipeImage}
-                            ></div>
-                            <div className={styles.recipeDetails}>
-                              <div className={styles.recipeTitleSubtitle}>
-                                <h4 className={styles.recipeTitle}>
-                                  {recipe.recipeName}
-                                </h4>
-                                <p className={styles.recipeSubtitle}>
-                                  {recipe.subtitle}
-                                </p>
-                              </div>
-                              <div
-                                className={styles.difficultyTotalMakeTime}
-                              ></div>
-                            </div>
-                          </Link>
-                          <button
-                            className={styles.deleteRecipeButton}
-                            onClick={async () => {
-                              try {
-                                const response = await deleteRecipe(recipe);
-                                if (response?.status === 200) {
-                                  const recipes = await getUserRecipes(user.id);
-                                  if (recipes) setUserRecipes(recipes);
-                                }
-                              } catch (error) {
-                                console.log(`There was an error: ${error}`);
-                              }
-                            }}
-                          >
-                            <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-                          </button>
-                        </div>
+                        <ProfileRecipeLink
+                          key={index}
+                          recipe={recipe}
+                          setRecipeToDelete={setRecipeToDelete}
+                          triggerDeleteModal={handleOpen}
+                        />
                       ))
                     : null}
                 </section>
@@ -132,35 +138,12 @@ const Profile = () => {
                   {userFavoriteRecipes?.length
                     ? userFavoriteRecipes?.map(
                         (recipe: Recipe, index: number) => (
-                          <div className={styles.userRecipe}>
-                            <Link
-                              className={styles.recipeLink}
-                              href={{
-                                pathname: "/recipe",
-                                query: { id: recipe._id },
-                              }}
-                            >
-                              <div
-                                style={{
-                                  backgroundImage: `url(${recipe?.image})`,
-                                }}
-                                className={styles.recipeImage}
-                              ></div>
-                              <div className={styles.recipeDetails}>
-                                <div className={styles.recipeTitleSubtitle}>
-                                  <h4 className={styles.recipeTitle}>
-                                    {recipe.recipeName}
-                                  </h4>
-                                  <p className={styles.recipeSubtitle}>
-                                    {recipe.subtitle}
-                                  </p>
-                                </div>
-                                <div
-                                  className={styles.difficultyTotalMakeTime}
-                                ></div>
-                              </div>
-                            </Link>
-                          </div>
+                          <ProfileRecipeLink
+                            key={index}
+                            recipe={recipe}
+                            setRecipeToDelete={setRecipeToDelete}
+                            triggerDeleteModal={handleOpen}
+                          />
                         )
                       )
                     : null}
@@ -168,6 +151,39 @@ const Profile = () => {
               </div>
             )}
           </div>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+              backdrop: {
+                timeout: 500,
+              },
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <h4>
+                  Are you sure you want to delete: {recipeToDelete?.recipeName}?
+                </h4>
+                <div className={styles.modalButtonContainer}>
+                  <Button
+                    onclick={handleClose}
+                    label="cancel"
+                    varient="secondary"
+                  />
+                  <Button
+                    onclick={deleteRecipeFromModal}
+                    label="delete"
+                    varient="primary"
+                  />
+                </div>
+              </Box>
+            </Fade>
+          </Modal>
         </main>
       ) : (
         <Loader />
