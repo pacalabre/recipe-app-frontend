@@ -11,7 +11,7 @@ import { getUsers } from "@/app/services/user-service";
 import { useEffect, useState } from "react";
 import { User } from "@/app/types/userTypes";
 import styles from "./editUsersForm.module.css";
-import Snackbar from "@mui/material/Snackbar/Snackbar";
+import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar/Snackbar";
 
 const EditUsersForm = () => {
   const [users, setUsers] = useState<User[] | []>([]);
@@ -19,6 +19,17 @@ const EditUsersForm = () => {
 
   const handleClick = async () => {
     setOpenSnackbar(true);
+  };
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
   };
 
   const callGetUsers = async () => {
@@ -93,7 +104,8 @@ const EditUsersForm = () => {
       </div>
       <Snackbar
         open={openSnackbar}
-        autoHideDuration={6000}
+        onClose={handleClose}
+        autoHideDuration={3000}
         message="User has been saved"
       />
     </>
@@ -101,9 +113,3 @@ const EditUsersForm = () => {
 };
 
 export default EditUsersForm;
-
-// create edit users service
-// list all users out
-// create a checkbox to give and remove admin status
-// create a button for each user that updates the user when clicked
-// when successful - maybe display a toast saying so
