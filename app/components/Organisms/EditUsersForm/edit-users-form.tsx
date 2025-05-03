@@ -44,7 +44,7 @@ const EditUsersForm = () => {
   }, []);
 
   return (
-    <>
+    <section>
       <h3>Edits Users</h3>
       <div className={styles.editUsersFormContainer}>
         <TableContainer component={Paper}>
@@ -108,7 +108,7 @@ const EditUsersForm = () => {
         autoHideDuration={3000}
         message="User has been saved"
       />
-    </>
+    </section>
   );
 };
 

@@ -39,7 +39,8 @@ const AddTagsForm = () => {
   };
 
   return (
-    <>
+    <section>
+      <h3>Add Tags</h3>
       <form className={styles.addTagForm} onSubmit={handleSubmit(addNewTag)}>
         <Input
           register={register}
@@ -58,7 +59,7 @@ const AddTagsForm = () => {
       {tags?.map((tag: Tag) => (
         <span className={styles.tagLabel}>{tag.tagName}</span>
       ))}
-    </>
+    </section>
   );
 };
 

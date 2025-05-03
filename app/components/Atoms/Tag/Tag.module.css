@@ -4,6 +4,10 @@
   border: 1px solid var(--black);
   text-transform: capitalize;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .active {

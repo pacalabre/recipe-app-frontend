@@ -1,12 +1,14 @@
 import AddTagsForm from "../../Organisms/AddTagsForm/add-tags-form";
+import DeleteRecipes from "../../Organisms/DeleteRecipes/DeleteRecipes";
 import EditUsersForm from "../../Organisms/EditUsersForm/edit-users-form";
 
 const AdminDash = () => {
   return (
     <>
-      <h3>Admin Dash</h3>
+      <h2>Admin Dash</h2>
       <AddTagsForm />
       <EditUsersForm />
+      <DeleteRecipes />
     </>
   );
 };

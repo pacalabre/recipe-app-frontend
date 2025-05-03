@@ -1,0 +1,76 @@
+.profileRecipesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.userRecipe {
+  position: relative;
+}
+
+.deleteRecipeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--black);
+  color: var(--white);
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+.recipeLink {
+  background: var(--recipe-card-background);
+  display: flex;
+  margin: 20px auto;
+  text-transform: capitalize;
+}
+
+.recipeImage {
+  height: 150px;
+  width: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.recipeDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 20px;
+  width: 65%;
+}
+
+.recipeTitle {
+  font-size: 20px;
+  margin: 2px;
+}
+
+.recipeSubtitle {
+  margin: 2px;
+}
+
+@media (min-width: 500px) {
+  .recipeTitle {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profileRecipesContainer {
+    flex-direction: row;
+  }
+
+  .userRecipe:hover {
+    .deleteRecipeButton {
+      display: block;
+    }
+  }
+
+  .deleteRecipeButton:hover {
+    background-color: var(--hover-background);
+    border: solid var(--black) 1px;
+    color: var(--black);
+  }
+}
