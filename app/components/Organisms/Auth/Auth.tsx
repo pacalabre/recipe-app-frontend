@@ -81,6 +81,19 @@ const AuthForm = () => {
               register={register}
               inputType="password"
               formField="registerPassword"
+              rules={{
+                required: "Password is required",
+                validate: (value: string) =>
+                  !value.toLowerCase().includes("password") ||
+                  "Password cannot contain the word 'password'",
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  message:
+                    "Password must have at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character",
+                },
+              }}
+              errorMsg={errors.registerPassword?.message}
             />
             <label>
               Is User an Admin?
