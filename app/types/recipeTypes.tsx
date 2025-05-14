@@ -8,7 +8,6 @@ export type Recipe = {
   author: {
     _id: string;
     name: string;
-    userName?: string;
   };
   favorites?: string[];
   dateCreated?: Date;

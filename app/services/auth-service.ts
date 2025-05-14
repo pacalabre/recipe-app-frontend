@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const registerUser = async (
   registerName: string,
-  registerUsername: string,
   registerEmail: string,
   registerPassword: string,
   registerIsAdmin: boolean
@@ -12,7 +11,6 @@ export const registerUser = async (
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/register`,
       {
         name: registerName,
-        userName: registerUsername,
         email: registerEmail,
         password: registerPassword,
         isAdmin: registerIsAdmin,

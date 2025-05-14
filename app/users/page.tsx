@@ -23,7 +23,7 @@ const Users = () => {
         users?.map((user: User, index: number) => (
           <div key={index}>
             <p>Name: {user.name}</p>
-            <p>Username: {user.userName}</p>
+            <p>Email: {user.email}</p>
           </div>
         ))
       ) : (

@@ -28,7 +28,6 @@ const AuthForm = () => {
       try {
         const response = await registerUser(
           data.registerName,
-          data.registerUsername,
           data.registerEmail,
           data.registerPassword,
           isAdmin
@@ -63,12 +62,6 @@ const AuthForm = () => {
               formField="registerName"
               rules={{ required: "Name is required" }}
               errorMsg={errors.registerName?.message}
-            />
-            <Input
-              label="user name"
-              register={register}
-              inputType="text"
-              formField="registerUsername"
             />
             <Input
               label="email"
