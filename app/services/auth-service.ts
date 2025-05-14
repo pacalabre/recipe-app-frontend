@@ -39,7 +39,7 @@ export const loginUser = async (loginEmail: string, loginPassword: string) => {
     );
     return { data, status };
   } catch (error) {
-    console.log(`There was an error getting users: ${error}`);
+    console.log(`There was an error logging in the user: ${error}`);
   }
 };
 
