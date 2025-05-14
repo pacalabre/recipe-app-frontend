@@ -128,6 +128,8 @@ const AuthForm = () => {
               register={register}
               inputType="password"
               formField="loginPassword"
+              rules={{ required: "Password is required" }}
+              errorMsg={errors.loginPassword?.message}
             />
             <div className={styles.loginRegisterBtnContainer}>
               <div className={styles.loginRegisterToggleBtnContainer}>
