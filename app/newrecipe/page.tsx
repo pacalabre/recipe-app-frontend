@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 type NewRecipeInputs = {
   recipeImageUrl: string;
   recipeName: string;
-  subtitle: string;
   description: string;
   ingredients: string;
   recipeDifficulty: string;
@@ -53,7 +52,6 @@ const NewRecipe = () => {
     const response = await addNewRecipe(
       data.recipeImageUrl,
       data.recipeName,
-      data.subtitle,
       user.id,
       data.recipeDifficulty,
       data.totaltime,
@@ -93,12 +91,6 @@ const NewRecipe = () => {
           formField="recipeName"
           rules={{ required: "Recipe name is required" }}
           errorMsg={errors.recipeName?.message}
-        />
-        <Input
-          label="subtitle"
-          register={register}
-          inputType="text"
-          formField="subtitle"
         />
         <Input
           label="description"

@@ -18,7 +18,6 @@ import Loader from "../components/Atoms/Loader/Loader";
 
 type RecipeInputs = {
   recipeName: string;
-  subtitle: string;
   description: string;
   ingredients: string;
   recipeDifficulty: string;
@@ -43,7 +42,6 @@ const RecipePage = () => {
     if (recipeId) {
       const response = await getRecipe(recipeId);
       setValue("recipeName", response.recipeName);
-      setValue("subtitle", response.subtitle);
       setValue("description", response.description);
       setValue("ingredients", response.ingredients);
       setValue("recipeDifficulty", response.recipeDifficulty);
@@ -57,7 +55,6 @@ const RecipePage = () => {
     const updatedRecipe = {
       _id: recipe?._id,
       recipeName: data.recipeName,
-      subtitle: data.subtitle,
       author: user.id,
       recipeDifficulty: data.recipeDifficulty,
       totalMakeTime: data.totaltime,
@@ -108,7 +105,7 @@ const RecipePage = () => {
               ></div>
               <div className={styles.recipeTitleAuthorContainer}>
                 <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
-                <h4 className={styles.subheading}>{recipe?.subtitle}</h4>
+                <h4 className={styles.subheading}>{recipe?.description}</h4>
                 <div className={styles.userIconNameContainer}>
                   <FontAwesomeIcon
                     icon={faUser}
@@ -157,13 +154,6 @@ const RecipePage = () => {
                     rules={{ required: "Recipe name is required" }}
                     errorMsg={errors.recipeName?.message}
                   />
-                  <Input
-                    label="subtitle"
-                    register={register}
-                    inputType="text"
-                    formField="subtitle"
-                  />
-
                   <Input
                     label="description"
                     register={register}

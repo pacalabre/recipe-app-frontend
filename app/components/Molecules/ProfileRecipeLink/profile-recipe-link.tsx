@@ -32,9 +32,9 @@ const ProfileRecipeLink: React.FC<Props> = ({
           className={styles.recipeImage}
         ></div>
         <div className={styles.recipeDetails}>
-          <div className={styles.recipeTitleSubtitle}>
+          <div className={styles.recipeTitleDescription}>
             <h4 className={styles.recipeTitle}>{recipe.recipeName}</h4>
-            <p className={styles.recipeSubtitle}>{recipe.subtitle}</p>
+            <p className={styles.recipeDescription}>{recipe.description}</p>
           </div>
           <div className={styles.difficultyTotalMakeTime}></div>
         </div>

@@ -36,7 +36,6 @@ export const getRecipe = async (id: string) => {
 export const addNewRecipe = async (
   image: string,
   recipeName: string,
-  subtitle: string,
   authorId: string,
   recipeDifficulty: string,
   totalMakeTime: string,
@@ -51,7 +50,6 @@ export const addNewRecipe = async (
       {
         image: image,
         recipeName: recipeName,
-        subtitle: subtitle,
         author: {
           _id: authorId,
         },
@@ -80,7 +78,6 @@ export const updateRecipe = async (recipe: Recipe) => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`,
       {
         recipeName: recipe.recipeName,
-        subtitle: recipe.subtitle,
         author: {
           _id: recipe.author._id,
         },
