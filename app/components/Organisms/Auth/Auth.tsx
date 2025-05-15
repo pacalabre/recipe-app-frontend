@@ -10,6 +10,7 @@ import { RegisterFormInputs } from "@/app/types/registerFormInputTypes";
 import { registerUser, loginUser } from "@/app/services/auth-service";
 import { useRouter } from "next/navigation";
 import { Snackbar, SnackbarCloseReason } from "@mui/material";
+import Link from "next/link";
 
 const AuthForm = () => {
   const router = useRouter();
@@ -197,6 +198,9 @@ const AuthForm = () => {
         autoHideDuration={3000}
         message={messageToUser}
       />
+      <Link className={styles.seeAllRecipesLink} href={"/allrecipes"}>
+        See recipe list without being able to contribute
+      </Link>
     </div>
   );
 };
