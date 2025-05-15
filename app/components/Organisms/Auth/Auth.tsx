@@ -46,6 +46,12 @@ const AuthForm = () => {
           data.registerPassword,
           isAdmin
         );
+        if (response?.status === 200) {
+          reset();
+          setFormToShow("login");
+          setMessageToUser("User Created. You can now login");
+          setOpenSnackbar(true);
+        }
       } catch (error) {
         console.log(`There was an error registering this user: ${error}`);
       }
@@ -53,11 +59,11 @@ const AuthForm = () => {
     if (formToShow === "login") {
       try {
         const response = await loginUser(data.loginEmail, data.loginPassword);
-        if (response?.status === 401) {
+        if (response?.status === 200 && !response.data.user.id) {
           setMessageToUser("Email or password is incorrect");
           setOpenSnackbar(true);
         }
-        if (response?.status === 200) {
+        if (response?.status === 200 && response.data.user.id) {
           setUser(response.data.user);
           router.push("/allrecipes");
         }
