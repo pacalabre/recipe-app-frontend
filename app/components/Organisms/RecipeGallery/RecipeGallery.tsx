@@ -14,6 +14,7 @@ import {
 type RecipeGalleryProps = {
   recipes: Recipe[];
 };
+
 const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
   const [tags, setTags] = useState<any[] | []>([]);
   const [activeTag, setActiveTag] = useState("all");
@@ -28,9 +29,9 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
     getTags();
   }, []);
 
-  const handleFilter = (tagId: string) => {
+  const handleFilter = (tagName: string) => {
     const filteredItems = recipes.filter((item) =>
-      item.tags?.length ? item.tags[0]._id === tagId : recipes
+      item.tags?.length ? item.tags[0].tagName === tagName : recipes
     );
     setFilteredRecipes(filteredItems);
   };
@@ -56,10 +57,10 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                     key={tag._id}
                     label={tag.tagName}
                     onclick={() => {
-                      setActiveTag(tag._id);
-                      handleFilter(tag._id);
+                      setActiveTag(tag.tagName);
+                      handleFilter(tag.tagName);
                     }}
-                    isActive={activeTag === tag._id ? true : false}
+                    isActive={activeTag === tag.tagName ? true : false}
                   />
                 ))
               : null}
