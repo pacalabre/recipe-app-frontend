@@ -86,15 +86,17 @@ export default function AppNav() {
           >
             Recipes
           </Link>
-          <Link
-            className={`${styles.navLink} ${pathname === "/newrecipe" ? styles.activeLink : ""}`}
-            href="/newrecipe"
-            onClick={() => {
-              setMobileMenuOpen(false);
-            }}
-          >
-            New Recipe
-          </Link>
+          {user && (
+            <Link
+              className={`${styles.navLink} ${pathname === "/newrecipe" ? styles.activeLink : ""}`}
+              href="/newrecipe"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
+            >
+              New Recipe
+            </Link>
+          )}
           {user ? (
             <div className={styles.userMenu}>
               <button className={styles.userDropdownBtn} onClick={handleClick}>
