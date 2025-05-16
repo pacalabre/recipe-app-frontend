@@ -78,6 +78,7 @@ export const updateRecipe = async (recipe: Recipe) => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`,
       {
         recipeName: recipe.recipeName,
+        image: recipe.image,
         author: {
           _id: recipe.author._id,
         },

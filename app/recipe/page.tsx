@@ -18,6 +18,7 @@ import Loader from "../components/Atoms/Loader/Loader";
 
 type RecipeInputs = {
   recipeName: string;
+  image: string;
   description: string;
   ingredients: string;
   recipeDifficulty: string;
@@ -42,6 +43,7 @@ const RecipePage = () => {
     if (recipeId) {
       const response = await getRecipe(recipeId);
       setValue("recipeName", response.recipeName);
+      setValue("image", response.image);
       setValue("description", response.description);
       setValue("ingredients", response.ingredients);
       setValue("recipeDifficulty", response.recipeDifficulty);
@@ -54,6 +56,7 @@ const RecipePage = () => {
   const onSubmit: SubmitHandler<RecipeInputs> = async (data) => {
     const updatedRecipe = {
       _id: recipe?._id,
+      image: data.image,
       recipeName: data.recipeName,
       author: user.id,
       recipeDifficulty: data.recipeDifficulty,
