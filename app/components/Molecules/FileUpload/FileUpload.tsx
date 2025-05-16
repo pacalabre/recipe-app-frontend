@@ -2,7 +2,7 @@ import "./../../../globals.css";
 import styles from "./FileUpload.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { UseFormSetValue } from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { useState } from "react";
@@ -10,9 +10,13 @@ import Button from "../../Atoms/Button/Button";
 
 type Props = {
   setValue: UseFormSetValue<any> | any;
+  rules?: object;
+  errorMsg?: string;
+  register: UseFormRegister<any> | any;
+  formField: string;
 };
 
-function FileUpload({ setValue }: Props) {
+function FileUpload({ setValue, rules, errorMsg, register, formField }: Props) {
   const [recipeImage, setRecipeImage] = useState("");
   const onDrop = (files: (string | Blob)[]) => {
     const data = new FormData();
@@ -28,7 +32,9 @@ function FileUpload({ setValue }: Props) {
       )
       .then((res) => {
         setRecipeImage(res.data.secure_url);
-        setValue("recipeImageUrl", res.data.secure_url);
+        setValue("recipeImageUrl", res.data.secure_url, {
+          shouldValidate: true,
+        });
       });
   };
 
@@ -59,6 +65,7 @@ function FileUpload({ setValue }: Props) {
                 varient="secondary"
                 onclick={() => {
                   setRecipeImage("");
+                  setValue("recipeImageUrl", "");
                 }}
               ></Button>
             </div>
@@ -68,7 +75,7 @@ function FileUpload({ setValue }: Props) {
                 icon={faImage}
                 className={styles.imageIcon}
               ></FontAwesomeIcon>
-              <input {...getInputProps()} />
+              <input {...register(formField, rules)} {...getInputProps()} />
               <p className={styles.fileUploadMessage}>
                 Drag and drop image, or click to select files
               </p>
@@ -76,6 +83,7 @@ function FileUpload({ setValue }: Props) {
           )}
         </div>
       </section>
+      {errorMsg && <p className={styles.errorMsg}>{errorMsg}</p>}
     </>
   );
 }
