@@ -170,8 +170,8 @@ const NewRecipe = () => {
           label="instructions"
           register={register}
           formField="recipeInstructions"
-          errorMsg={errors.recipeInstructions?.message}
           rules={{ required: "Instructions are required" }}
+          errorMsg={errors.recipeInstructions?.message}
         />
         <div className={styles.tagsContainer}>
           {tags.length > 0 ? (
