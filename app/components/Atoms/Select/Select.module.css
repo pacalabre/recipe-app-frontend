@@ -1,0 +1,14 @@
+.select {
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--black);
+}
+
+.error {
+  .select {
+    background: var(--errorInputBackground);
+  }
+
+  .errorMsg {
+    color: var(--error);
+  }
+}

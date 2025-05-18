@@ -11,6 +11,7 @@ import Tag from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import styles from "./NewRecipe.module.css";
 import { useRouter } from "next/navigation";
+import Select from "../components/Atoms/Select/Select";
 
 type NewRecipeInputs = {
   recipeImageUrl: string;
@@ -27,6 +28,7 @@ const NewRecipe = () => {
   const router = useRouter();
   const { user } = useUser();
   const [tags, setTags] = useState<any[] | []>([]);
+  const difficultyOptions = ["1", "2", "3", "4", "5"];
 
   const {
     register,
@@ -133,24 +135,15 @@ const NewRecipe = () => {
           }}
           errorMsg={errors.ingredients?.message}
         />
-        <Input
-          label="recipe difficulty"
+        <Select
           register={register}
-          inputType="text"
           formField="recipeDifficulty"
-          rules={{
-            required: "Recipe difficulty is required",
-            min: {
-              value: 1,
-              message: "Recipe difficulty must be at least 1",
-            },
-            max: {
-              value: 5,
-              message: "Recipe difficulty can not be over 5",
-            },
-          }}
+          placeholder="Select a recipe difficulty level"
+          label="Difficulty"
+          rules={{ required: "Recipe difficulty is required" }}
+          options={difficultyOptions}
           errorMsg={errors.recipeDifficulty?.message}
-        />
+        ></Select>
         <Input
           label="Make time"
           register={register}

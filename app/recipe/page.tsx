@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Atoms/Loader/Loader";
+import Select from "../components/Atoms/Select/Select";
 
 type RecipeInputs = {
   recipeName: string;
@@ -32,6 +33,7 @@ const RecipePage = () => {
   const { user } = useUser();
   const [recipe, setRecipe] = useState<Recipe>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const difficultyOptions = ["1", "2", "3", "4", "5"];
   const {
     register,
     handleSubmit,
@@ -193,24 +195,15 @@ const RecipePage = () => {
                     }}
                     errorMsg={errors.ingredients?.message}
                   />
-                  <Input
-                    label="recipe difficulty"
+                  <Select
                     register={register}
-                    inputType="text"
                     formField="recipeDifficulty"
-                    rules={{
-                      required: "Recipe difficulty is required",
-                      min: {
-                        value: 1,
-                        message: "Recipe difficulty must be at least 1",
-                      },
-                      max: {
-                        value: 5,
-                        message: "Recipe difficulty can not be over 5",
-                      },
-                    }}
+                    placeholder="Select a recipe difficulty level"
+                    label="Difficulty"
+                    rules={{ required: "Recipe difficulty is required" }}
+                    options={difficultyOptions}
                     errorMsg={errors.recipeDifficulty?.message}
-                  />
+                  ></Select>
                   <Input
                     label="total time"
                     register={register}

@@ -98,27 +98,31 @@ p {
 }
 
 .textarea-container,
-.input-container {
+.input-container,
+.select-container {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
 }
 
 .input-label,
-.textarea-label {
+.textarea-label,
+.select-label {
   text-transform: capitalize;
   color: var(--black);
 }
 
 .input,
-.textarea {
+.textarea,
+.select {
   padding: 9px;
   background: transparent;
   font-size: 16px;
 }
 
 .input:focus,
-.textarea:focus {
+.textarea:focus,
+.select:focus {
   background: var(--input-color-background-active);
   outline: none;
 }
