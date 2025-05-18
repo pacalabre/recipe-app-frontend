@@ -95,7 +95,13 @@ const NewRecipe = () => {
           register={register}
           inputType="text"
           formField="recipeName"
-          rules={{ required: "Recipe name is required" }}
+          rules={{
+            required: "Recipe name is required",
+            maxLength: {
+              value: 150,
+              message: "Recipe name can not be longer than 150 characters long",
+            },
+          }}
           errorMsg={errors.recipeName?.message}
         />
         <Input
@@ -103,7 +109,13 @@ const NewRecipe = () => {
           register={register}
           inputType="text"
           formField="description"
-          rules={{ required: "Description is required" }}
+          rules={{
+            maxLength: {
+              value: 250,
+              message:
+                "Recipe description can not be longer than 250 characters long",
+            },
+          }}
           errorMsg={errors.description?.message}
         />
         <Input
@@ -111,7 +123,14 @@ const NewRecipe = () => {
           register={register}
           inputType="text"
           formField="ingredients"
-          rules={{ required: "Ingredients are required" }}
+          rules={{
+            required: "Ingredients are required",
+            maxLength: {
+              value: 1000,
+              message:
+                "Recipe ingredients can not be longer than 1000 characters long",
+            },
+          }}
           errorMsg={errors.ingredients?.message}
         />
         <Input
@@ -119,14 +138,33 @@ const NewRecipe = () => {
           register={register}
           inputType="text"
           formField="recipeDifficulty"
-          rules={{ required: "Recipe difficulty is required" }}
+          rules={{
+            required: "Recipe difficulty is required",
+            min: {
+              value: 1,
+              message: "Recipe difficulty must be at least 1",
+            },
+            max: {
+              value: 5,
+              message: "Recipe difficulty can not be over 5",
+            },
+          }}
           errorMsg={errors.recipeDifficulty?.message}
         />
         <Input
-          label="total time"
+          label="Make time"
           register={register}
           inputType="text"
           formField="totaltime"
+          rules={{
+            required: "Make time is required",
+            maxLength: {
+              value: 500,
+              message:
+                "Recipe make time can not be longer than 500 characters long",
+            },
+          }}
+          errorMsg={errors.totaltime?.message}
         />
         <TextArea
           label="instructions"
