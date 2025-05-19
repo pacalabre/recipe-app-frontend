@@ -10,6 +10,7 @@ import {
   faGaugeHigh,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { truncateString } from "@/app/utilityFunctions/truncateString";
 
 type RecipeGalleryProps = {
   recipes: Recipe[];
@@ -82,7 +83,10 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                       alt={recipe.recipeName}
                     />
                     <div className={styles.recipeDetails}>
-                      <p className={styles.recipeName}>{recipe.recipeName}</p>
+                      <p className={styles.recipeName}>
+                        {recipe.recipeName &&
+                          truncateString(recipe.recipeName, 40)}
+                      </p>
                       <div className={styles.recipeIconTextContainer}>
                         <div className={styles.recipeStatsContainer}>
                           <div>
@@ -90,7 +94,10 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                               icon={faClock}
                               className={styles.recipeIcon}
                             ></FontAwesomeIcon>
-                            <span>{recipe.totalMakeTime}</span>
+                            <span>
+                              {recipe.totalMakeTime &&
+                                truncateString(recipe.totalMakeTime, 10)}
+                            </span>
                           </div>
                         </div>
                         <div className={styles.recipeStatsContainer}>
