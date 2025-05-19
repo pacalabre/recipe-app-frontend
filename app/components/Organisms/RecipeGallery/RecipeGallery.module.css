@@ -1,7 +1,12 @@
+.TagGalleryContainer {
+  width: 100%;
+}
+
 .filterBtnsContainer {
   display: flex;
   gap: 7px;
   margin: 0 20px;
+  flex-wrap: wrap;
 }
 .galleryContainer {
   column-gap: 20px;

@@ -37,7 +37,7 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
   };
 
   return (
-    <main>
+    <div>
       {recipes.length === 0 ? (
         "Nothing to show"
       ) : (
@@ -110,7 +110,7 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
           </section>
         </>
       )}
-    </main>
+    </div>
   );
 };
 
