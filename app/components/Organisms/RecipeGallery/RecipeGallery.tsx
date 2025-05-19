@@ -37,7 +37,7 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
   };
 
   return (
-    <div>
+    <div className={styles.TagGalleryContainer}>
       {recipes.length === 0 ? (
         "Nothing to show"
       ) : (
