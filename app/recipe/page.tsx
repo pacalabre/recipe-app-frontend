@@ -271,7 +271,13 @@ const RecipePage = () => {
                   <p>{recipe?.recipeInstructions}</p>
                   <p className={styles.recipeTags}>
                     <span className={styles.recipeTagsLabel}>tags:</span>
-                    {recipe?.tags?.map((tag: Tag) => <>{tag.tagName}</>)}
+                    {recipe?.tags?.map((tag: Tag, index: number) => (
+                      <>
+                        {index + 1 === recipe?.tags?.length
+                          ? tag.tagName
+                          : `${tag.tagName},`}
+                      </>
+                    ))}
                   </p>
                 </section>
               </article>
