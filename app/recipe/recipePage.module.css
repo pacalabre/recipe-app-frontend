@@ -1,8 +1,14 @@
+.recipeMain {
+  display: flex;
+  justify-content: center;
+}
+
 .recipeContainer {
   display: flex;
   flex-direction: column;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 60px auto;
+  width: 100%;
 }
 
 .breadcrumbs {
@@ -98,10 +104,18 @@
   display: flex;
 }
 
+.editRecipeFormBtnContainer {
+  align-self: flex-end;
+}
+
 .editRecipeForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 600px;
+  width: 100%;
+  margin: 60px auto;
+  padding: 20px;
 }
 
 .recipeStats {

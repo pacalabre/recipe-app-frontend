@@ -92,152 +92,163 @@ const RecipePage = () => {
   };
 
   return (
-    <main className={styles.recipeContainer}>
+    <main className={styles.recipeMain}>
       {recipe ? (
         <>
-          <nav>
-            <p className={styles.breadcrumbs}>
-              <Link href="/allrecipes">Recipes</Link>{" "}
-              <FontAwesomeIcon icon={faChevronRight} />
-              <span className={styles.currentRecipe}>{recipe?.recipeName}</span>
-            </p>
-          </nav>
-          <article className={styles.recipeArticle}>
-            <section className={styles.recipeHero}>
-              <div
-                className={styles.imageContainer}
-                style={{ backgroundImage: `url(${recipe?.image})` }}
-              ></div>
-              <div className={styles.recipeTitleAuthorContainer}>
-                <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
-                <h4 className={styles.subheading}>{recipe?.description}</h4>
-                <div className={styles.userIconNameContainer}>
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className={styles.userIcon}
-                  ></FontAwesomeIcon>
-                  <p className={styles.userName}>{recipe?.author.name}</p>
-                </div>
-                <button
-                  className={styles.favoriteBtn}
-                  onClick={() => recipe && addFavorite(recipe, user?.id)}
-                >
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
-                  ></FontAwesomeIcon>
-                  <p className={styles.favoriteText}>
-                    <span className={styles.favoriteTextFade}>
-                      {recipe?.favorites?.includes(user?.id)
-                        ? "saved"
-                        : "not saved"}
-                    </span>
-                  </p>
-                </button>
-              </div>
-            </section>
-            <section className={styles.recipeDetails}>
-              <div className={styles.recipeTitleBtnContainer}></div>
-              {user?.id === recipe?.author._id ? (
+          {isEditing ? (
+            <form
+              className={styles.editRecipeForm}
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Input
+                label="recipe name"
+                register={register}
+                inputType="text"
+                formField="recipeName"
+                rules={{
+                  required: "Recipe name is required",
+                  maxLength: {
+                    value: 150,
+                    message:
+                      "Recipe name can not be longer than 150 characters long",
+                  },
+                }}
+                errorMsg={errors.recipeName?.message}
+              />
+              <Input
+                label="description"
+                register={register}
+                inputType="text"
+                formField="description"
+                rules={{
+                  maxLength: {
+                    value: 250,
+                    message:
+                      "Recipe description can not be longer than 250 characters long",
+                  },
+                }}
+                errorMsg={errors.description?.message}
+              />
+              <Input
+                label="ingredients"
+                register={register}
+                inputType="text"
+                formField="ingredients"
+                rules={{
+                  required: "Ingredients are required",
+                  maxLength: {
+                    value: 1000,
+                    message:
+                      "Recipe ingredients can not be longer than 1000 characters long",
+                  },
+                }}
+                errorMsg={errors.ingredients?.message}
+              />
+              <Select
+                register={register}
+                formField="recipeDifficulty"
+                placeholder="Select a recipe difficulty level"
+                label="Difficulty"
+                rules={{ required: "Recipe difficulty is required" }}
+                options={difficultyOptions}
+                errorMsg={errors.recipeDifficulty?.message}
+              ></Select>
+              <Input
+                label="total time"
+                register={register}
+                inputType="text"
+                formField="totaltime"
+                rules={{
+                  required: "Make time is required",
+                  maxLength: {
+                    value: 500,
+                    message:
+                      "Recipe make time can not be longer than 500 characters long",
+                  },
+                }}
+                errorMsg={errors.totaltime?.message}
+              />
+              <label>Instructions:</label>
+              <TextArea
+                register={register}
+                formField="recipeInstructions"
+                rules={{ required: "Instructions are required" }}
+                errorMsg={errors.recipeInstructions?.message}
+              />
+              {errors.recipeInstructions && (
+                <p>{errors.recipeInstructions.message}</p>
+              )}
+              <div className={styles.editRecipeFormBtnContainer}>
                 <Button
-                  onclick={() => setIsEditing(!isEditing)}
-                  label="edit"
+                  className={styles.updateRecipeBtn}
+                  type="button"
+                  onclick={() => setIsEditing(false)}
                   varient="secondary"
-                  className={styles.editBtn}
+                  label="cancel"
                 ></Button>
-              ) : null}
-              {isEditing ? (
-                <form
-                  className={styles.editRecipeForm}
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <Input
-                    label="recipe name"
-                    register={register}
-                    inputType="text"
-                    formField="recipeName"
-                    rules={{
-                      required: "Recipe name is required",
-                      maxLength: {
-                        value: 150,
-                        message:
-                          "Recipe name can not be longer than 150 characters long",
-                      },
-                    }}
-                    errorMsg={errors.recipeName?.message}
-                  />
-                  <Input
-                    label="description"
-                    register={register}
-                    inputType="text"
-                    formField="description"
-                    rules={{
-                      maxLength: {
-                        value: 250,
-                        message:
-                          "Recipe description can not be longer than 250 characters long",
-                      },
-                    }}
-                    errorMsg={errors.description?.message}
-                  />
-                  <Input
-                    label="ingredients"
-                    register={register}
-                    inputType="text"
-                    formField="ingredients"
-                    rules={{
-                      required: "Ingredients are required",
-                      maxLength: {
-                        value: 1000,
-                        message:
-                          "Recipe ingredients can not be longer than 1000 characters long",
-                      },
-                    }}
-                    errorMsg={errors.ingredients?.message}
-                  />
-                  <Select
-                    register={register}
-                    formField="recipeDifficulty"
-                    placeholder="Select a recipe difficulty level"
-                    label="Difficulty"
-                    rules={{ required: "Recipe difficulty is required" }}
-                    options={difficultyOptions}
-                    errorMsg={errors.recipeDifficulty?.message}
-                  ></Select>
-                  <Input
-                    label="total time"
-                    register={register}
-                    inputType="text"
-                    formField="totaltime"
-                    rules={{
-                      required: "Make time is required",
-                      maxLength: {
-                        value: 500,
-                        message:
-                          "Recipe make time can not be longer than 500 characters long",
-                      },
-                    }}
-                    errorMsg={errors.totaltime?.message}
-                  />
-                  <label>Instructions:</label>
-                  <TextArea
-                    register={register}
-                    formField="recipeInstructions"
-                    rules={{ required: "Instructions are required" }}
-                    errorMsg={errors.recipeInstructions?.message}
-                  />
-                  {errors.recipeInstructions && (
-                    <p>{errors.recipeInstructions.message}</p>
-                  )}
-                  <Button
-                    className={styles.updateRecipeBtn}
-                    type="submit"
-                    varient="primary"
-                    label="update recipe"
-                  ></Button>
-                </form>
-              ) : (
-                <>
+                <Button
+                  className={styles.updateRecipeBtn}
+                  type="submit"
+                  varient="primary"
+                  label="update recipe"
+                ></Button>
+              </div>
+            </form>
+          ) : (
+            <div className={styles.recipeContainer}>
+              <nav>
+                <p className={styles.breadcrumbs}>
+                  <Link href="/allrecipes">Recipes</Link>{" "}
+                  <FontAwesomeIcon icon={faChevronRight} />
+                  <span className={styles.currentRecipe}>
+                    {recipe?.recipeName}
+                  </span>
+                </p>
+              </nav>
+              <article className={styles.recipeArticle}>
+                <section className={styles.recipeHero}>
+                  <div
+                    className={styles.imageContainer}
+                    style={{ backgroundImage: `url(${recipe?.image})` }}
+                  ></div>
+                  <div className={styles.recipeTitleAuthorContainer}>
+                    <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
+                    <h4 className={styles.subheading}>{recipe?.description}</h4>
+                    <div className={styles.userIconNameContainer}>
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        className={styles.userIcon}
+                      ></FontAwesomeIcon>
+                      <p className={styles.userName}>{recipe?.author.name}</p>
+                    </div>
+                    <button
+                      className={styles.favoriteBtn}
+                      onClick={() => recipe && addFavorite(recipe, user?.id)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
+                      ></FontAwesomeIcon>
+                      <p className={styles.favoriteText}>
+                        <span className={styles.favoriteTextFade}>
+                          {recipe?.favorites?.includes(user?.id)
+                            ? "saved"
+                            : "not saved"}
+                        </span>
+                      </p>
+                    </button>
+                  </div>
+                </section>
+                <section className={styles.recipeDetails}>
+                  <div className={styles.recipeTitleBtnContainer}></div>
+                  {user?.id === recipe?.author._id ? (
+                    <Button
+                      onclick={() => setIsEditing(!isEditing)}
+                      label="edit"
+                      varient="secondary"
+                      className={styles.editBtn}
+                    ></Button>
+                  ) : null}
                   <div className={styles.recipeStats}>
                     <div>
                       <p>Difficulty: {recipe?.recipeDifficulty}</p>
@@ -251,10 +262,10 @@ const RecipePage = () => {
                     <span className={styles.recipeTagsLabel}>tags:</span>
                     {recipe?.tags?.map((tag: Tag) => <>{tag.tagName}</>)}
                   </p>
-                </>
-              )}
-            </section>
-          </article>
+                </section>
+              </article>
+            </div>
+          )}
         </>
       ) : (
         <Loader />
