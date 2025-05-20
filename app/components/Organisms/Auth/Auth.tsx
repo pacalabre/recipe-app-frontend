@@ -13,19 +13,21 @@ import { Snackbar, SnackbarCloseReason } from "@mui/material";
 import Link from "next/link";
 
 const AuthForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<RegisterFormInputs>();
+
   const router = useRouter();
   const { user, setUser } = useUser();
   const [isAdmin, setIsAdmin] = useState(false);
   const [messageToUser, setMessageToUser] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [formToShow, setFormToShow] = useState("register");
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<RegisterFormInputs>();
+  const password = watch("registerPassword");
 
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -131,6 +133,18 @@ const AuthForm = () => {
                 },
               }}
               errorMsg={errors.registerPassword?.message}
+            />
+            <Input
+              label="confirm password"
+              register={register}
+              inputType="password"
+              formField="confirmPassword"
+              rules={{
+                required: "Confirm Password is required",
+                validate: (value: string) =>
+                  value === password || "Passwords do not match",
+              }}
+              errorMsg={errors.confirmPassword?.message}
             />
             <label>
               Is User an Admin?

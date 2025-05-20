@@ -4,5 +4,6 @@ export type RegisterFormInputs = {
   registerPassword: string;
   loginEmail: string;
   loginPassword: string;
+  confirmPassword: string;
   isAdmin: boolean;
 };
