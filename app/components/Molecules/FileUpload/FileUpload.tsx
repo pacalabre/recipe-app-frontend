@@ -5,10 +5,11 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../Atoms/Button/Button";
 
 type Props = {
+  existingImage?: string;
   setValue: UseFormSetValue<any> | any;
   rules?: object;
   errorMsg?: string;
@@ -16,8 +17,21 @@ type Props = {
   formField: string;
 };
 
-function FileUpload({ setValue, rules, errorMsg, register, formField }: Props) {
+function FileUpload({
+  setValue,
+  rules,
+  errorMsg,
+  register,
+  formField,
+  existingImage,
+}: Props) {
   const [recipeImage, setRecipeImage] = useState("");
+
+  useEffect(() => {
+    if (existingImage) {
+      setRecipeImage(existingImage);
+    }
+  }, []);
   const onDrop = (files: (string | Blob)[]) => {
     const data = new FormData();
     data.append("file", files[0]);

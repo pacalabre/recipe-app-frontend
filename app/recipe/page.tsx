@@ -16,10 +16,11 @@ import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Atoms/Loader/Loader";
 import Select from "../components/Atoms/Select/Select";
+import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 
 type RecipeInputs = {
   recipeName: string;
-  image: string;
+  recipeImageUrl: string;
   description: string;
   ingredients: string;
   recipeDifficulty: string;
@@ -38,6 +39,7 @@ const RecipePage = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<RecipeInputs>();
 
@@ -45,7 +47,7 @@ const RecipePage = () => {
     if (recipeId) {
       const response = await getRecipe(recipeId);
       setValue("recipeName", response.recipeName);
-      setValue("image", response.image);
+      setValue("recipeImageUrl", response.image);
       setValue("description", response.description);
       setValue("ingredients", response.ingredients);
       setValue("recipeDifficulty", response.recipeDifficulty);
@@ -54,11 +56,12 @@ const RecipePage = () => {
       setRecipe(response);
     }
   };
+  const recipeImage = watch("recipeImageUrl");
 
   const onSubmit: SubmitHandler<RecipeInputs> = async (data) => {
     const updatedRecipe = {
       _id: recipe?._id,
-      image: data.image,
+      image: data.recipeImageUrl,
       recipeName: data.recipeName,
       author: user.id,
       recipeDifficulty: data.recipeDifficulty,
@@ -100,6 +103,14 @@ const RecipePage = () => {
               className={styles.editRecipeForm}
               onSubmit={handleSubmit(onSubmit)}
             >
+              <FileUpload
+                register={register}
+                setValue={setValue}
+                formField="recipeImageUrl"
+                existingImage={recipeImage}
+                rules={{ required: "An image is required" }}
+                errorMsg={errors.recipeImageUrl?.message}
+              />
               <Input
                 label="recipe name"
                 register={register}
