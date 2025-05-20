@@ -30,10 +30,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={inter.className}>
+      <body className={[inter.className, "body-container"].join(" ")}>
         <UserProvider>
-          {pathname !== "/login" && <AppNav></AppNav>}
-          {children}
+          <div>
+            {pathname !== "/login" && <AppNav></AppNav>}
+            {children}
+          </div>
           {pathname !== "/login" && <Footer></Footer>}
         </UserProvider>
       </body>
