@@ -1,6 +1,6 @@
 .TagGalleryContainer {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--max-width);
 }
 
 .filterBtnsContainer {
@@ -11,7 +11,7 @@
 }
 .galleryContainer {
   column-gap: 20px;
-  max-width: 1400px;
+  max-width: var(--max-width);
   margin: 20px;
 }
 
