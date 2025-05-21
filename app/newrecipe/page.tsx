@@ -68,16 +68,16 @@ const NewRecipe = () => {
     }
   };
 
-  function addTag(tagName: any): void {
+  function addTag(tagId: string): void {
     const currentTags = getValues("tags");
-    if (currentTags && currentTags.includes(tagName)) {
+    if (currentTags && currentTags.includes(tagId)) {
       let copyOfTags = currentTags;
-      const indexOfTag = copyOfTags.indexOf(tagName);
+      const indexOfTag = copyOfTags.indexOf(tagId);
       copyOfTags.splice(indexOfTag, 1);
       setValue("tags", copyOfTags);
     } else {
       let newTagArray = currentTags || [];
-      newTagArray.push(tagName);
+      newTagArray.push(tagId);
       setValue("tags", newTagArray);
     }
   }
