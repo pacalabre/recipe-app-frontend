@@ -7,7 +7,7 @@ import { getAllTags } from "../services/tag-service";
 import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Molecules/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
-import Tag from "../components/Atoms/Tag/Tag";
+import TagComponent from "../components/Atoms/Tag/Tag";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import styles from "./NewRecipe.module.css";
 import { useRouter } from "next/navigation";
@@ -169,7 +169,7 @@ const NewRecipe = () => {
         <div className={styles.tagsContainer}>
           {tags.length > 0 ? (
             tags.map((tag) => (
-              <Tag
+              <TagComponent
                 key={tag._id}
                 label={tag.tagName}
                 onclick={() => addTag(tag._id)}
