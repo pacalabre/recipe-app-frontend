@@ -43,6 +43,7 @@ const RecipePage = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     watch,
     formState: { errors },
   } = useForm<RecipeInputs>();
@@ -69,6 +70,22 @@ const RecipePage = () => {
     if (response) setTags(response);
   };
 
+  function addTag(tag: Tag): void {
+    const currentTags = getValues("tags");
+    if (currentTags.find((obj) => obj["tagName"] === tag.tagName)) {
+      let copyOfTags = currentTags;
+      const indexOfTag = copyOfTags.findIndex(
+        (item) => item.tagName === tag.tagName
+      );
+      copyOfTags.splice(indexOfTag, 1);
+      setValue("tags", copyOfTags);
+    } else {
+      let newTagArray = currentTags || [];
+      newTagArray.push(tag);
+      setValue("tags", newTagArray);
+    }
+  }
+
   useEffect(() => {
     getTags();
   }, []);
@@ -84,6 +101,7 @@ const RecipePage = () => {
       ingredients: data.ingredients,
       description: data.description,
       recipeInstructions: data.recipeInstructions,
+      tags: data.tags,
     };
     const response = await updateRecipe(updatedRecipe);
     if (response?.status === 200) {
@@ -211,7 +229,7 @@ const RecipePage = () => {
                       <TagComponent
                         key={tag._id}
                         label={tag.tagName}
-                        onclick={() => console.log("tag clicked")}
+                        onclick={() => addTag(tag)}
                         isActive={
                           activeTags.some(
                             (activeTag: Tag) =>
