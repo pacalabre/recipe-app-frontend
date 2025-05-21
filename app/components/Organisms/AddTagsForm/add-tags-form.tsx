@@ -1,7 +1,7 @@
 import Button from "../../Atoms/Button/Button";
 import Input from "../../Molecules/Input/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Tag } from "@/app/types/tagTypes";
+import { TagType } from "@/app/types/tagTypes";
 import { getAllTags, addTag } from "@/app/services/tag-service";
 import { useEffect, useState } from "react";
 import { useUser } from "@/app/contextApi/UserProvider";
@@ -56,7 +56,7 @@ const AddTagsForm = () => {
         ></Button>
       </form>
       <p>Current Tags:</p>
-      {tags?.map((tag: Tag) => (
+      {tags?.map((tag: TagType) => (
         <span className={styles.tagLabel}>{tag.tagName}</span>
       ))}
     </section>

@@ -5,11 +5,7 @@ import Tag from "../../Atoms/Tag/Tag";
 import { getAllTags } from "@/app/services/tag-service";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClock,
-  faGaugeHigh,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { truncateString } from "@/app/utilityFunctions/truncateString";
 
 type RecipeGalleryProps = {

@@ -2,6 +2,7 @@
   display: flex;
   gap: 7px;
   margin: 15px auto;
+  flex-wrap: wrap;
 }
 
 .button {

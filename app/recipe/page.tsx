@@ -8,7 +8,6 @@ import { Recipe } from "../types/recipeTypes";
 import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Molecules/TextArea/TextArea";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Tag } from "../types/tagTypes";
 import styles from "./recipePage.module.css";
 import Button from "../components/Atoms/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +16,9 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Atoms/Loader/Loader";
 import Select from "../components/Atoms/Select/Select";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
+import Tag from "../components/Atoms/Tag/Tag";
+import { TagType } from "../types/tagTypes";
+import { getAllTags } from "../services/tag-service";
 
 type RecipeInputs = {
   recipeName: string;
@@ -26,6 +28,7 @@ type RecipeInputs = {
   recipeDifficulty: string;
   totaltime: string;
   recipeInstructions: string;
+  tags: TagType[];
 };
 
 const RecipePage = () => {
@@ -34,6 +37,7 @@ const RecipePage = () => {
   const { user } = useUser();
   const [recipe, setRecipe] = useState<Recipe>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [tags, setTags] = useState<any[] | []>([]);
   const difficultyOptions = ["1", "2", "3", "4", "5"];
   const {
     register,
@@ -53,10 +57,21 @@ const RecipePage = () => {
       setValue("recipeDifficulty", response.recipeDifficulty);
       setValue("totaltime", response.totalMakeTime);
       setValue("recipeInstructions", response.recipeInstructions);
+      setValue("tags", response.tags);
       setRecipe(response);
     }
   };
   const recipeImage = watch("recipeImageUrl");
+  const activeTags = watch("tags");
+
+  const getTags = async () => {
+    const response = await getAllTags();
+    if (response) setTags(response);
+  };
+
+  useEffect(() => {
+    getTags();
+  }, []);
 
   const onSubmit: SubmitHandler<RecipeInputs> = async (data) => {
     const updatedRecipe = {
@@ -189,6 +204,29 @@ const RecipePage = () => {
               {errors.recipeInstructions && (
                 <p>{errors.recipeInstructions.message}</p>
               )}
+              <div className={styles.tagsContainer}>
+                {tags.length > 0 ? (
+                  tags.map((tag) => (
+                    <>
+                      <Tag
+                        key={tag._id}
+                        label={tag.tagName}
+                        onclick={() => console.log("tag clicked")}
+                        isActive={
+                          activeTags.some(
+                            (activeTag: TagType) =>
+                              activeTag.tagName === tag.tagName
+                          )
+                            ? true
+                            : false
+                        }
+                      />
+                    </>
+                  ))
+                ) : (
+                  <p>No tags</p>
+                )}
+              </div>
               <div className={styles.editRecipeFormBtnContainer}>
                 <Button
                   className={styles.updateRecipeBtn}
@@ -271,7 +309,7 @@ const RecipePage = () => {
                   <p>{recipe?.recipeInstructions}</p>
                   <p className={styles.recipeTags}>
                     <span className={styles.recipeTagsLabel}>tags:</span>
-                    {recipe?.tags?.map((tag: Tag, index: number) => (
+                    {recipe?.tags?.map((tag, index) => (
                       <>
                         {index + 1 === recipe?.tags?.length
                           ? tag.tagName

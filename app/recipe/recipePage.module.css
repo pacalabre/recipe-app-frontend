@@ -210,8 +210,9 @@
   }
 }
 
-/* @media screen and (min-width: 1400px) {
-  .imageContainer {
-    width: 50%;
-  }
-} */
+.tagsContainer {
+  display: flex;
+  gap: 7px;
+  margin: 15px auto;
+  flex-wrap: wrap;
+}
