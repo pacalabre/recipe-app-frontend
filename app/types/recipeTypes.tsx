@@ -1,4 +1,4 @@
-import { TagType } from "./tagTypes";
+import { Tag } from "./tagTypes";
 
 export type Recipe = {
   _id?: string;
@@ -10,7 +10,7 @@ export type Recipe = {
   };
   favorites?: string[];
   dateCreated?: Date;
-  tags?: TagType[];
+  tags?: Tag[];
   recipeDifficulty: string;
   totalMakeTime?: string;
   ingredients: string;

@@ -16,8 +16,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Atoms/Loader/Loader";
 import Select from "../components/Atoms/Select/Select";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
-import Tag from "../components/Atoms/Tag/Tag";
-import { TagType } from "../types/tagTypes";
+import TagComponent from "../components/Atoms/Tag/Tag";
+import { Tag } from "../types/tagTypes";
 import { getAllTags } from "../services/tag-service";
 
 type RecipeInputs = {
@@ -28,7 +28,7 @@ type RecipeInputs = {
   recipeDifficulty: string;
   totaltime: string;
   recipeInstructions: string;
-  tags: TagType[];
+  tags: Tag[];
 };
 
 const RecipePage = () => {
@@ -208,13 +208,13 @@ const RecipePage = () => {
                 {tags.length > 0 ? (
                   tags.map((tag) => (
                     <>
-                      <Tag
+                      <TagComponent
                         key={tag._id}
                         label={tag.tagName}
                         onclick={() => console.log("tag clicked")}
                         isActive={
                           activeTags.some(
-                            (activeTag: TagType) =>
+                            (activeTag: Tag) =>
                               activeTag.tagName === tag.tagName
                           )
                             ? true
