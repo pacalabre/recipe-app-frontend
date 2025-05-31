@@ -18,6 +18,7 @@ import Select from "../components/Atoms/Select/Select";
 import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import TagComponent from "../components/Atoms/Tag/Tag";
 import { Tag } from "../types/tagTypes";
+import { useRouter } from "next/navigation";
 import { getAllTags } from "../services/tag-service";
 
 type RecipeInputs = {
@@ -32,6 +33,7 @@ type RecipeInputs = {
 };
 
 const RecipePage = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const recipeId = searchParams.get("id");
   const { user } = useUser();
@@ -39,6 +41,7 @@ const RecipePage = () => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [tags, setTags] = useState<any[] | []>([]);
   const difficultyOptions = ["1", "2", "3", "4", "5"];
+
   const {
     register,
     handleSubmit,
@@ -51,6 +54,10 @@ const RecipePage = () => {
   const callGetRecipe = async () => {
     if (recipeId) {
       const response = await getRecipe(recipeId);
+      if (response.status === 404) {
+        router.push("/404");
+        return;
+      }
       setValue("recipeName", response.recipeName);
       setValue("recipeImageUrl", response.image);
       setValue("description", response.description);
@@ -286,7 +293,7 @@ const RecipePage = () => {
                         icon={faUser}
                         className={styles.userIcon}
                       ></FontAwesomeIcon>
-                      <p className={styles.userName}>{recipe?.author.name}</p>
+                      <p className={styles.userName}>{recipe?.author?.name}</p>
                     </div>
                     <button
                       className={styles.favoriteBtn}
@@ -308,7 +315,7 @@ const RecipePage = () => {
                 </section>
                 <section className={styles.recipeDetails}>
                   <div className={styles.recipeTitleBtnContainer}></div>
-                  {user?.id === recipe?.author._id ? (
+                  {user?.id === recipe?.author?._id ? (
                     <Button
                       onclick={() => setIsEditing(!isEditing)}
                       label="edit"

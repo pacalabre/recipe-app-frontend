@@ -19,7 +19,8 @@
   font-family: "Be Vietnam Pro", Helvetica, Arial, sans-serif;
 }
 
-html {
+html,
+body {
   background: var(--app-color-background);
 }
 
@@ -134,4 +135,16 @@ p {
 .select:focus {
   background: var(--input-color-background-active);
   outline: none;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
 }

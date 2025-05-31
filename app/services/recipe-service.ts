@@ -30,6 +30,7 @@ export const getRecipe = async (id: string) => {
     return data;
   } catch (error) {
     console.log(`There was an error ${error}`);
+    return error;
   }
 };
 
