@@ -28,7 +28,9 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
 
   const handleFilter = (tagName: string) => {
     const filteredItems = recipes.filter((item) =>
-      item.tags?.length ? item.tags[0].tagName === tagName : recipes
+      item.tags?.length
+        ? item.tags?.some((tag) => tag.tagName === tagName)
+        : null
     );
     setFilteredRecipes(filteredItems);
   };
