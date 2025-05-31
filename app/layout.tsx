@@ -33,10 +33,10 @@ export default function RootLayout({
       <body className={[inter.className, "body-container"].join(" ")}>
         <UserProvider>
           <div>
-            {pathname !== "/login" && <AppNav></AppNav>}
+            {pathname !== "/" && pathname !== "/login" && <AppNav></AppNav>}
             {children}
           </div>
-          {pathname !== "/login" && <Footer></Footer>}
+          {pathname !== "/" && pathname !== "/login" && <Footer></Footer>}
         </UserProvider>
       </body>
     </html>

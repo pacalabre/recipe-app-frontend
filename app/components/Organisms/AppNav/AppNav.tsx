@@ -34,7 +34,7 @@ export default function AppNav() {
       const response = await logoutUser();
       if (response) {
         setUser(null);
-        router.push("/login");
+        router.push("/");
       }
     } catch (error) {
       console.log(`There was an error when logging out the user: ${error}`);
@@ -59,7 +59,7 @@ export default function AppNav() {
   return (
     <nav className={styles.nav}>
       <div className={styles.maxWidthNavContainer}>
-        <Link className={styles.logoLink} href="/login">
+        <Link className={styles.logoLink} href="/">
           <NavLogo />
         </Link>
         <button
@@ -125,7 +125,7 @@ export default function AppNav() {
               /> */}
             </div>
           ) : (
-            <Link className={styles.navLink} href="/login">
+            <Link className={styles.navLink} href="/">
               Login
             </Link>
           )}
