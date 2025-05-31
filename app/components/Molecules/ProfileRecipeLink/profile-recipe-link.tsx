@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./profileRecipeLink.module.css";
 import { Recipe } from "@/app/types/recipeTypes";
 import { Dispatch, SetStateAction } from "react";
+import { useUser } from "@/app/contextApi/UserProvider";
 
 type Props = {
   recipe: Recipe;
@@ -16,6 +17,7 @@ const ProfileRecipeLink: React.FC<Props> = ({
   triggerDeleteModal,
   setRecipeToDelete,
 }) => {
+  const { user } = useUser();
   return (
     <div className={styles.userRecipe}>
       <Link
@@ -39,15 +41,17 @@ const ProfileRecipeLink: React.FC<Props> = ({
           <div className={styles.difficultyTotalMakeTime}></div>
         </div>
       </Link>
-      <button
-        className={styles.deleteRecipeButton}
-        onClick={() => {
-          triggerDeleteModal();
-          setRecipeToDelete(recipe);
-        }}
-      >
-        <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-      </button>
+      {user?.id === recipe?.author._id ? (
+        <button
+          className={styles.deleteRecipeButton}
+          onClick={() => {
+            triggerDeleteModal();
+            setRecipeToDelete(recipe);
+          }}
+        >
+          <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+        </button>
+      ) : null}
     </div>
   );
 };

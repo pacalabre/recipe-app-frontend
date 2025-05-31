@@ -67,7 +67,7 @@
   color: var(--white);
   font-size: 16px;
   cursor: pointer;
-  display: none;
+  display: block;
 }
 
 .recipeLink {
@@ -122,6 +122,10 @@
 
   .recipeList {
     width: 50%;
+  }
+
+  .deleteRecipeButton {
+    display: none;
   }
 
   .userRecipe:hover {
