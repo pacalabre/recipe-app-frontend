@@ -97,7 +97,7 @@ const Profile = () => {
           <div className={styles.profileContentContainer}>
             <section className={styles.userDetails}>
               <div className={styles.userInitalContainer}>
-                <p className="userInital">{initials}</p>
+                <p className={styles.userInital}>{initials}</p>
               </div>
               <div className={styles.userNameEmail}>
                 <p>
