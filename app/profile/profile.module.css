@@ -46,6 +46,13 @@
   flex-direction: column;
   gap: 20px;
   justify-content: center;
+  margin-top: 30px;
+}
+
+.recipeList {
+  background: var(--app-color-background-darker);
+  min-height: 50vh;
+  padding: 0 20px;
 }
 
 .userRecipe {
@@ -111,6 +118,10 @@
 @media (min-width: 768px) {
   .profileRecipesContainer {
     flex-direction: row;
+  }
+
+  .recipeList {
+    width: 50%;
   }
 
   .userRecipe:hover {

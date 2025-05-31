@@ -120,33 +120,37 @@ const Profile = () => {
               <AdminDash />
             ) : (
               <div className={styles.profileRecipesContainer}>
-                <section>
+                <section className={styles.recipeList}>
                   <h3>Your Recipes:</h3>
-                  {userRecipes?.length
-                    ? userRecipes?.map((recipe: Recipe, index: number) => (
+                  {userRecipes?.length ? (
+                    userRecipes?.map((recipe: Recipe, index: number) => (
+                      <ProfileRecipeLink
+                        key={index}
+                        recipe={recipe}
+                        setRecipeToDelete={setRecipeToDelete}
+                        triggerDeleteModal={handleOpen}
+                      />
+                    ))
+                  ) : (
+                    <p>You haven't created any recipes yet.</p>
+                  )}
+                </section>
+                <section className={styles.recipeList}>
+                  <h3>Your Favorite Recipes:</h3>
+                  {userFavoriteRecipes?.length ? (
+                    userFavoriteRecipes?.map(
+                      (recipe: Recipe, index: number) => (
                         <ProfileRecipeLink
                           key={index}
                           recipe={recipe}
                           setRecipeToDelete={setRecipeToDelete}
                           triggerDeleteModal={handleOpen}
                         />
-                      ))
-                    : null}
-                </section>
-                <section>
-                  <h3>Your Favorite Recipes:</h3>
-                  {userFavoriteRecipes?.length
-                    ? userFavoriteRecipes?.map(
-                        (recipe: Recipe, index: number) => (
-                          <ProfileRecipeLink
-                            key={index}
-                            recipe={recipe}
-                            setRecipeToDelete={setRecipeToDelete}
-                            triggerDeleteModal={handleOpen}
-                          />
-                        )
                       )
-                    : null}
+                    )
+                  ) : (
+                    <p>You have no favorite recipes.</p>
+                  )}
                 </section>
               </div>
             )}

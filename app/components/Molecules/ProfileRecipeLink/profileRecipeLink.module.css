@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .userRecipe {
@@ -21,7 +22,7 @@
 }
 
 .recipeLink {
-  background: var(--recipe-card-background);
+  background: var(--app-color-background);
   display: flex;
   margin: 20px auto;
   text-transform: capitalize;
