@@ -1,8 +1,10 @@
 .loaderContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 65vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50px;
+  top: 40%;
 }
 
 .loadingImage {
