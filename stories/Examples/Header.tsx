@@ -52,12 +52,16 @@ export const Header = ({
             <span className="welcome">
               Welcome, <b>{user.name}</b>!
             </span>
-            <Button onclick={onLogout} text="Log out" />
+            <Button onclick={onLogout} varient="primary" label="Log out" />
           </>
         ) : (
           <>
-            <Button onclick={onLogin} text="Log in" />
-            <Button onclick={onCreateAccount} />
+            <Button onclick={onLogin} varient="primary" label="Log in" />
+            <Button
+              onclick={onCreateAccount}
+              varient="primary"
+              label="Create Account"
+            />
           </>
         )}
       </div>
