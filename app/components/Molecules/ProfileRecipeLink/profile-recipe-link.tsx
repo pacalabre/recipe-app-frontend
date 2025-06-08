@@ -41,7 +41,7 @@ const ProfileRecipeLink: React.FC<Props> = ({
           <div className={styles.difficultyTotalMakeTime}></div>
         </div>
       </Link>
-      {user?.id === recipe?.author._id ? (
+      {user?.id === recipe?.author._id || user?.isAdmin ? (
         <button
           className={styles.deleteRecipeButton}
           onClick={() => {
