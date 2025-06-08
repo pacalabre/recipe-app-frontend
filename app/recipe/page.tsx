@@ -135,10 +135,10 @@ const RecipePage = () => {
   };
 
   return (
-    <Suspense fallback={<Loader />}>
-      <main className={styles.recipeMain}>
-        {recipe ? (
-          <>
+    <main className={styles.recipeMain}>
+      {recipe ? (
+        <>
+          <Suspense fallback={<Loader />}>
             {isEditing ? (
               <form
                 className={styles.editRecipeForm}
@@ -355,12 +355,12 @@ const RecipePage = () => {
                 </article>
               </div>
             )}
-          </>
-        ) : (
-          <Loader />
-        )}
-      </main>
-    </Suspense>
+          </Suspense>
+        </>
+      ) : (
+        <Loader />
+      )}
+    </main>
   );
 };
 
