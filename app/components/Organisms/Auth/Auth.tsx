@@ -146,16 +146,6 @@ const AuthForm = () => {
               }}
               errorMsg={errors.confirmPassword?.message}
             />
-            <label>
-              Is User an Admin?
-              <input
-                type="checkbox"
-                checked={isAdmin}
-                onChange={() => {
-                  setIsAdmin(!isAdmin);
-                }}
-              />
-            </label>
             <div className={styles.loginRegisterBtnContainer}>
               <div className={styles.loginRegisterToggleBtnContainer}>
                 <p>Already have an account?</p>
