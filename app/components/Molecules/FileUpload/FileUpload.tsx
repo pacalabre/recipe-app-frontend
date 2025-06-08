@@ -31,7 +31,7 @@ function FileUpload({
     if (existingImage) {
       setRecipeImage(existingImage);
     }
-  }, []);
+  }, [existingImage]);
   const onDrop = (files: (string | Blob)[]) => {
     const data = new FormData();
     data.append("file", files[0]);
