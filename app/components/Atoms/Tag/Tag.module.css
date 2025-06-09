@@ -4,6 +4,7 @@
   border: 1px solid var(--black);
   text-transform: capitalize;
   cursor: pointer;
+  color: var(--black);
 
   &:hover {
     text-decoration: underline;

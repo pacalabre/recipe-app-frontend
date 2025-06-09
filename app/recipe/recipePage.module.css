@@ -79,6 +79,7 @@
   cursor: pointer;
   text-transform: capitalize;
   width: max-content;
+  color: var(--black);
 }
 
 .favoriteBtnIcon {
