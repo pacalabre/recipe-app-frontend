@@ -8,7 +8,7 @@
 }
 
 .authForm {
-  width: 70%;
+  width: 95%;
   max-width: 350px;
 }
 
@@ -27,8 +27,9 @@
 }
 
 .seeAllRecipesLink {
-  margin-top: 10px;
+  margin-top: 40px;
   text-decoration: underline;
+  text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
