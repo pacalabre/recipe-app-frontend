@@ -272,7 +272,7 @@ const RecipePage = () => {
             <div className={styles.recipeContainer}>
               <nav>
                 <p className={styles.breadcrumbs}>
-                  <Link href="/allrecipes">Recipes</Link>{" "}
+                  <Link href="/allrecipes">Recipes</Link>
                   <FontAwesomeIcon icon={faChevronRight} />
                   <span className={styles.currentRecipe}>
                     {recipe?.recipeName}
@@ -315,7 +315,7 @@ const RecipePage = () => {
                 </section>
                 <section className={styles.recipeDetails}>
                   <div className={styles.recipeTitleBtnContainer}></div>
-                  {user?.id === recipe?.author?._id ? (
+                  {user?.id === recipe?.author?._id || user?.isAdmin ? (
                     <Button
                       onclick={() => setIsEditing(!isEditing)}
                       label="edit"
@@ -332,18 +332,18 @@ const RecipePage = () => {
                   </div>
 
                   <p>{recipe?.recipeInstructions}</p>
-                  <p className={styles.recipeTags}>
-                    <span className={styles.recipeTagsLabel}>
-                      {recipe.tags?.length ? "tags" : ""}:
-                    </span>
-                    {recipe?.tags?.map((tag, index) => (
-                      <>
-                        {index + 1 === recipe?.tags?.length
-                          ? tag.tagName
-                          : `${tag.tagName},`}
-                      </>
-                    ))}
-                  </p>
+                  {recipe.tags?.length ? (
+                    <p className={styles.recipeTags}>
+                      <span className={styles.recipeTagsLabel}>tags:</span>
+                      {recipe?.tags?.map((tag, index) => (
+                        <>
+                          {index + 1 === recipe?.tags?.length
+                            ? tag.tagName
+                            : `${tag.tagName},`}
+                        </>
+                      ))}
+                    </p>
+                  ) : null}
                 </section>
               </article>
             </div>
