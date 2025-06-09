@@ -9,7 +9,7 @@
 
 .authForm {
   width: 95%;
-  max-width: 350px;
+  max-width: 400px;
 }
 
 .loginRegisterBtnContainer {
@@ -44,5 +44,6 @@
 
   .loginRegisterToggleBtnContainer {
     justify-content: flex-start;
+    margin-right: 12px;
   }
 }
