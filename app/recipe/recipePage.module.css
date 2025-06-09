@@ -6,8 +6,8 @@
 .recipeContainer {
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
-  margin: 60px auto;
+  max-width: var(--max-width);
+  margin: 50px auto;
   width: 100%;
 }
 
