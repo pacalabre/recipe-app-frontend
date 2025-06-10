@@ -1,6 +1,8 @@
 .select {
   border: 1px solid transparent;
   border-bottom: 1px solid var(--black);
+  border-radius: 0;
+  color: var(--black);
 }
 
 .error {
