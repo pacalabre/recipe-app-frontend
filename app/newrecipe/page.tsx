@@ -107,7 +107,7 @@ const NewRecipe = () => {
           errorMsg={errors.recipeName?.message}
         />
         <Input
-          label="description"
+          label="description (optional)"
           register={register}
           inputType="text"
           formField="description"
