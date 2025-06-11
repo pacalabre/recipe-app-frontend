@@ -1,5 +1,7 @@
 .tagLabel {
   margin-right: 7px;
+  margin-bottom: 7px;
+  display: inline-block;
   border: solid black;
   padding: 7px;
   text-transform: capitalize;
