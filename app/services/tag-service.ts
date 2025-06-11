@@ -8,6 +8,7 @@ export const getAllTags = async () => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -25,6 +26,7 @@ export const addTag = async (tagName: string) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return { data, status };

@@ -9,6 +9,7 @@ export const getUsers = async () => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -25,6 +26,7 @@ export const getUserRecipes = async (id: string) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -41,6 +43,7 @@ export const getUserFavoriteRecipes = async (id: string) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -60,6 +63,7 @@ export const editUsers = async (user: User) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;

@@ -9,6 +9,7 @@ export const getAllRecipes = async () => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -25,6 +26,7 @@ export const getRecipe = async (id: string) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -65,6 +67,7 @@ export const addNewRecipe = async (
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return data;
@@ -95,6 +98,7 @@ export const updateRecipe = async (recipe: Recipe) => {
         headers: {
           Accept: "application/json",
         },
+        withCredentials: true,
       }
     );
     return { data, status };
@@ -106,7 +110,9 @@ export const updateRecipe = async (recipe: Recipe) => {
 export const deleteRecipe = async (recipe: Recipe) => {
   try {
     const { data, status } = await axios.delete(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/recipes/${recipe._id}`,
+
+      { withCredentials: true }
     );
     return { data, status };
   } catch (error) {
