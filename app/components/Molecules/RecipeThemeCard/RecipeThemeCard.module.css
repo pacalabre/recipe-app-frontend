@@ -1,93 +1,68 @@
-.galleryContainer {
-  column-gap: 20px;
-  max-width: var(--max-width);
-  margin: 20px;
-}
-
 .galleryItem {
-  break-inside: avoid;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.recipeLink {
+  background: white;
+  transition: 0.2s;
   display: flex;
-}
-
-.image {
-  width: 100%;
-}
-
-.recipeDetails {
-  display: flex;
-  background: rgb(2, 2, 2, 0.6);
   flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  height: 275px;
+  overflow: hidden;
+}
+
+.imgContainer {
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   position: absolute;
-  left: 0;
-  right: 0;
+  top: 0;
   bottom: 0;
+  right: 0;
+  left: 0;
   height: 100%;
-  color: var(--white);
-  justify-content: center;
-  align-items: center;
-  text-transform: capitalize;
-  padding: 0 5px;
+  transition: 0.2s;
 }
 
 .recipeName {
-  font-size: 25px;
-  margin-bottom: 10px;
-  text-align: center;
+  margin: 0;
+  font-size: 22px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.recipeDetails {
+  backdrop-filter: blur(5px);
+  background: rgba(230, 230, 230, 0.5);
+  padding: 20px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .recipeIconTextContainer {
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: flex-start;
-  display: none;
-}
-
-.recipeIcon {
-  margin-right: 5px;
-}
-
-.recipeStatsContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 7px;
+  justify-content: start;
+  gap: 10px;
+  text-transform: capitalize;
 }
 
-@media (min-width: 576px) {
-  .image {
-    max-width: 400px;
-  }
+.userIconNameContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.difficulty {
+  margin: 0;
 }
 
 @media (min-width: 768px) {
-  .recipeDetails {
-    display: none;
-  }
-
-  .galleryItem:hover {
-    .recipeName {
-      font-size: 20px;
-    }
-
-    .recipeDetails {
-      display: flex;
-    }
-
-    .recipeIconTextContainer {
-      display: flex;
-    }
-  }
-}
-
-@media (min-width: 1100px) {
-  .galleryItem:hover {
-    .recipeIconTextContainer {
-      display: flex;
+  .galleryItem {
+    &:hover {
+      .imgContainer {
+        transform: scale(1.15);
+      }
     }
   }
 }

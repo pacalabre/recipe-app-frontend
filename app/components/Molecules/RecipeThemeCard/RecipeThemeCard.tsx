@@ -9,7 +9,12 @@ type Props = {
   recipe: Recipe;
   index: number;
 };
+
 const RecipeThemeCard = ({ recipe, index }: Props) => {
+  const containerStyle: React.CSSProperties = {
+    backgroundImage: `url(${recipe.image})`,
+  };
+
   return (
     <div className={styles.galleryItem}>
       <Link
@@ -19,36 +24,25 @@ const RecipeThemeCard = ({ recipe, index }: Props) => {
           query: { id: recipe._id },
         }}
       >
-        <img
-          className={styles.image}
-          src={recipe.image}
-          alt={recipe.recipeName}
-        />
+        <div className={styles.imgContainer} style={containerStyle}></div>
         <div className={styles.recipeDetails}>
           <p className={styles.recipeName}>
             {recipe.recipeName && truncateString(recipe.recipeName, 40)}
           </p>
           <div className={styles.recipeIconTextContainer}>
             <div className={styles.recipeStatsContainer}>
-              <div>
-                <FontAwesomeIcon
-                  icon={faClock}
-                  className={styles.recipeIcon}
-                ></FontAwesomeIcon>
-                <span>
-                  {recipe.totalMakeTime &&
-                    truncateString(recipe.totalMakeTime, 10)}
-                </span>
-              </div>
-            </div>
-            <div className={styles.recipeStatsContainer}>
-              <div>
+              <div className={styles.userIconNameContainer}>
                 <FontAwesomeIcon
                   icon={faUser}
                   className={styles.recipeIcon}
                 ></FontAwesomeIcon>
                 <span>{recipe.author.name}</span>
               </div>
+            </div>
+            <div className={styles.recipeStatsContainer}>
+              <p className={styles.difficulty}>
+                Difficulty: {recipe.recipeDifficulty}
+              </p>
             </div>
           </div>
         </div>
