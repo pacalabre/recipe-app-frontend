@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { truncateString } from "@/app/utilityFunctions/truncateString";
+import RecipeThemeCard from "../../Molecules/RecipeThemeCard/RecipeThemeCard";
+import RecipeCard from "../../Molecules/RecipeCard/RecipeCard";
 
 type RecipeGalleryProps = {
   recipes: Recipe[];
@@ -67,50 +69,9 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
           <section className={styles.galleryContainer}>
             {filteredRecipes &&
               filteredRecipes.map((recipe: Recipe, index: number) => (
-                <div key={index} className={styles.galleryItem}>
-                  <Link
-                    className={styles.recipeLink}
-                    href={{
-                      pathname: "/recipe",
-                      query: { id: recipe._id },
-                    }}
-                  >
-                    <img
-                      className={styles.image}
-                      src={recipe.image}
-                      alt={recipe.recipeName}
-                    />
-                    <div className={styles.recipeDetails}>
-                      <p className={styles.recipeName}>
-                        {recipe.recipeName &&
-                          truncateString(recipe.recipeName, 40)}
-                      </p>
-                      <div className={styles.recipeIconTextContainer}>
-                        <div className={styles.recipeStatsContainer}>
-                          <div>
-                            <FontAwesomeIcon
-                              icon={faClock}
-                              className={styles.recipeIcon}
-                            ></FontAwesomeIcon>
-                            <span>
-                              {recipe.totalMakeTime &&
-                                truncateString(recipe.totalMakeTime, 10)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className={styles.recipeStatsContainer}>
-                          <div>
-                            <FontAwesomeIcon
-                              icon={faUser}
-                              className={styles.recipeIcon}
-                            ></FontAwesomeIcon>
-                            <span>{recipe.author.name}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
+                //<RecipeCard key={index} recipe={recipe} index={index} />
+
+                <RecipeThemeCard key={index} recipe={recipe} index={index} />
               ))}
           </section>
         </>
