@@ -74,6 +74,11 @@ const RecipeGallery = ({ recipes }: RecipeGalleryProps) => {
                 <RecipeThemeCard key={index} recipe={recipe} index={index} />
               ))}
           </section>
+          {filteredRecipes.length === 0 && (
+            <p className={styles.noResultsMessage}>
+              There are no results for {activeTag}.
+            </p>
+          )}
         </>
       )}
     </div>
