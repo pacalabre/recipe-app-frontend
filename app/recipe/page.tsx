@@ -289,22 +289,24 @@ const RecipePage = () => {
                       ></FontAwesomeIcon>
                       <p className={styles.userName}>{recipe?.author?.name}</p>
                     </div>
-                    <button
-                      className={styles.favoriteBtn}
-                      onClick={() => recipe && addFavorite(recipe, user?.id)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
-                      ></FontAwesomeIcon>
-                      <p className={styles.favoriteText}>
-                        <span className={styles.favoriteTextFade}>
-                          {recipe?.favorites?.includes(user?.id)
-                            ? "saved"
-                            : "not saved"}
-                        </span>
-                      </p>
-                    </button>
+                    {user && (
+                      <button
+                        className={styles.favoriteBtn}
+                        onClick={() => recipe && addFavorite(recipe, user?.id)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className={`${styles.favoriteBtnIcon} ${recipe?.favorites?.includes(user?.id) ? styles.active : ""}`}
+                        ></FontAwesomeIcon>
+                        <p className={styles.favoriteText}>
+                          <span className={styles.favoriteTextFade}>
+                            {recipe?.favorites?.includes(user?.id)
+                              ? "saved"
+                              : "not saved"}
+                          </span>
+                        </p>
+                      </button>
+                    )}
                   </div>
                 </section>
                 <section className={styles.recipeDetails}>
