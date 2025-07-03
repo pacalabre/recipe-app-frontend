@@ -20,6 +20,7 @@ import TagComponent from "../components/Atoms/Tag/Tag";
 import { Tag } from "../types/tagTypes";
 import { useRouter } from "next/navigation";
 import { getAllTags } from "../services/tag-service";
+import { recipeImageBasedOnTag } from "@/app/utilityFunctions/recipeImageBasedOnTag";
 
 type RecipeInputs = {
   recipeName: string;
@@ -272,11 +273,12 @@ const RecipePage = () => {
                 </p>
               </nav>
               <article className={styles.recipeArticle}>
-                <section className={styles.recipeHero}>
-                  <div
-                    className={styles.imageContainer}
-                    style={{ backgroundImage: `url(${recipe?.image})` }}
-                  ></div>
+                <section
+                  className={styles.recipeHero}
+                  style={recipeImageBasedOnTag(
+                    recipe.tags?.length ? recipe.tags[0].tagName : ""
+                  )}
+                >
                   <div className={styles.recipeTitleAuthorContainer}>
                     <h2 className={styles.recipeTitle}>{recipe?.recipeName}</h2>
                     <h4 className={styles.subheading}>{recipe?.description}</h4>

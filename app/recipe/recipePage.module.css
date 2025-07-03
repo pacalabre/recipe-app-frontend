@@ -40,11 +40,15 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
+  height: 340px;
+  max-width: 500px;
+  margin: auto;
 }
 
 .recipeTitle {
   text-align: center;
   margin-bottom: 0;
+  z-index: 1;
 }
 
 .imageContainer {
@@ -53,6 +57,23 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
+}
+
+.recipeHero {
+  background-size: cover;
+  color: var(--white);
+  background-position: center center;
+  position: relative;
+
+  &::after {
+    content: "";
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .recipeDetails {
@@ -80,11 +101,12 @@
   text-transform: capitalize;
   width: max-content;
   color: var(--black);
+  z-index: 1;
 }
 
 .favoriteBtnIcon {
   font-size: 25px;
-  color: var(--icon-color);
+  color: var(--white);
 
   &.active {
     color: var(--icon-color-favorite);
@@ -93,6 +115,7 @@
 
 .favoriteText {
   padding-left: 7px;
+  color: var(--white);
 }
 
 .favoriteTextFade {
@@ -102,6 +125,7 @@
 
 .editBtn {
   display: flex;
+  margin: 10px auto;
 }
 
 .editRecipeFormBtnContainer {
@@ -126,6 +150,7 @@
 .userIconNameContainer {
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 
 .userIcon {
@@ -141,6 +166,7 @@
   font-style: italic;
   margin: 10px auto;
   text-align: center;
+  z-index: 1;
 }
 
 .recipeTags {
@@ -158,6 +184,13 @@
   justify-content: flex-end;
 }
 
+.tagsContainer {
+  display: flex;
+  gap: 7px;
+  margin: 15px auto;
+  flex-wrap: wrap;
+}
+
 @keyframes fade {
   0% {
     opacity: 0;
@@ -171,53 +204,8 @@
   .breadcrumbs {
     font-size: 18px;
   }
-}
-@media screen and (min-width: 825px) {
+
   .recipeHero {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    padding: 0 20px;
-    gap: 20px;
+    margin: 0 20px;
   }
-
-  .recipeTitleAuthorContainer {
-    justify-content: center;
-    width: 40%;
-    padding: 0;
-  }
-
-  .recipeTitle {
-    text-align: left;
-    margin: 10px 0 0 0;
-  }
-
-  .subheading {
-    text-align: left;
-    margin: 0;
-  }
-
-  .userIconNameContainer {
-    justify-content: flex-start;
-    margin-top: 20px;
-  }
-
-  .favoriteBtn {
-    margin: 0;
-  }
-
-  .imageContainer {
-    width: 60%;
-  }
-
-  .recipeDetails {
-    padding: 0 20px;
-  }
-}
-
-.tagsContainer {
-  display: flex;
-  gap: 7px;
-  margin: 15px auto;
-  flex-wrap: wrap;
 }
