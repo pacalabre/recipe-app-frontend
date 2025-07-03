@@ -85,13 +85,6 @@ const NewRecipe = () => {
   return (
     <>
       <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
-        <FileUpload
-          register={register}
-          setValue={setValue}
-          formField="recipeImageUrl"
-          rules={{ required: "An image is required" }}
-          errorMsg={errors.recipeImageUrl?.message}
-        />
         <Input
           label="recipe name"
           register={register}
