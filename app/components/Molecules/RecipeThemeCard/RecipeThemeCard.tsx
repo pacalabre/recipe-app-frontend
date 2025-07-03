@@ -4,6 +4,7 @@ import { faClock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import styles from "./RecipeThemeCard.module.css";
+import { recipeImageBasedOnTag } from "@/app/utilityFunctions/recipeImageBasedOnTag";
 
 type Props = {
   recipe: Recipe;
@@ -11,10 +12,6 @@ type Props = {
 };
 
 const RecipeThemeCard = ({ recipe, index }: Props) => {
-  const containerStyle: React.CSSProperties = {
-    backgroundImage: `url(${recipe.image})`,
-  };
-
   return (
     <div className={styles.galleryItem}>
       <Link
@@ -24,7 +21,12 @@ const RecipeThemeCard = ({ recipe, index }: Props) => {
           query: { id: recipe._id },
         }}
       >
-        <div className={styles.imgContainer} style={containerStyle}></div>
+        <div
+          className={styles.imgContainer}
+          style={recipeImageBasedOnTag(
+            recipe.tags?.length ? recipe.tags[0].tagName : ""
+          )}
+        ></div>
         <div className={styles.recipeDetails}>
           <p className={styles.recipeName}>
             {recipe.recipeName && truncateString(recipe.recipeName, 40)}
