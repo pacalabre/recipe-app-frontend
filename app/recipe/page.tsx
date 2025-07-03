@@ -15,7 +15,6 @@ import { faChevronRight, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../components/Atoms/Loader/Loader";
 import Select from "../components/Atoms/Select/Select";
-import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import TagComponent from "../components/Atoms/Tag/Tag";
 import { Tag } from "../types/tagTypes";
 import { useRouter } from "next/navigation";

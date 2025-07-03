@@ -8,7 +8,6 @@ import Input from "../components/Molecules/Input/Input";
 import TextArea from "../components/Molecules/TextArea/TextArea";
 import Button from "../components/Atoms/Button/Button";
 import TagComponent from "../components/Atoms/Tag/Tag";
-import FileUpload from "../components/Molecules/FileUpload/FileUpload";
 import styles from "./NewRecipe.module.css";
 import { useRouter } from "next/navigation";
 import Select from "../components/Atoms/Select/Select";
