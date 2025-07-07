@@ -169,6 +169,15 @@
   z-index: 1;
 }
 
+.recipeLabel {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.recipeInstructions {
+  white-space: pre-wrap;
+}
+
 .recipeTags {
   margin: 50px auto;
   font-style: italic;

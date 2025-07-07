@@ -320,13 +320,30 @@ const RecipePage = () => {
                   ) : null}
                   <div className={styles.recipeStats}>
                     <div>
-                      <p>Difficulty: {recipe?.recipeDifficulty}</p>
-                      <p>Cooking Time: {recipe?.totalMakeTime}</p>
-                      <p>Ingredients: {recipe?.ingredients}</p>
+                      <p>
+                        <span className={styles.recipeLabel}>Difficulty: </span>
+                        {recipe?.recipeDifficulty}
+                      </p>
+                      <p>
+                        <span className={styles.recipeLabel}>
+                          Cooking Time:{" "}
+                        </span>
+                        {recipe?.totalMakeTime}
+                      </p>
+                      <p>
+                        <span className={styles.recipeLabel}>
+                          Ingredients:{" "}
+                        </span>
+                        {recipe?.ingredients}
+                      </p>
                     </div>
                   </div>
-
-                  <p>{recipe?.recipeInstructions}</p>
+                  <p>
+                    <span className={styles.recipeLabel}>Instructions:</span>
+                  </p>
+                  <p className={styles.recipeInstructions}>
+                    {recipe?.recipeInstructions}
+                  </p>
                   {recipe.tags?.length ? (
                     <p className={styles.recipeTags}>
                       <span className={styles.recipeTagsLabel}>tags:</span>
