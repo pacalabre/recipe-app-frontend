@@ -11,6 +11,7 @@ import TagComponent from "../components/Atoms/Tag/Tag";
 import styles from "./NewRecipe.module.css";
 import { useRouter } from "next/navigation";
 import Select from "../components/Atoms/Select/Select";
+import Loader from "../components/Atoms/Loader/Loader";
 
 type NewRecipeInputs = {
   recipeImageUrl: string;
@@ -28,6 +29,7 @@ const NewRecipe = () => {
   const { user } = useUser();
   const [tags, setTags] = useState<any[] | []>([]);
   const difficultyOptions = ["1", "2", "3", "4", "5"];
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -50,6 +52,7 @@ const NewRecipe = () => {
   }, []);
 
   const onSubmit: SubmitHandler<NewRecipeInputs> = async (data) => {
+    setIsLoading(true);
     const response = await addNewRecipe(
       data.recipeImageUrl,
       data.recipeName,
@@ -63,6 +66,7 @@ const NewRecipe = () => {
     );
 
     if (response) {
+      setIsLoading(false);
       router.push("/allrecipes");
     }
   };
@@ -83,102 +87,107 @@ const NewRecipe = () => {
 
   return (
     <>
-      <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="recipe name"
-          register={register}
-          inputType="text"
-          formField="recipeName"
-          rules={{
-            required: "Recipe name is required",
-            maxLength: {
-              value: 150,
-              message: "Recipe name can not be longer than 150 characters long",
-            },
-          }}
-          errorMsg={errors.recipeName?.message}
-        />
-        <Input
-          label="description (optional)"
-          register={register}
-          inputType="text"
-          formField="description"
-          rules={{
-            maxLength: {
-              value: 250,
-              message:
-                "Recipe description can not be longer than 250 characters long",
-            },
-          }}
-          errorMsg={errors.description?.message}
-        />
-        <Input
-          label="ingredients"
-          register={register}
-          inputType="text"
-          formField="ingredients"
-          rules={{
-            required: "Ingredients are required",
-            maxLength: {
-              value: 1000,
-              message:
-                "Recipe ingredients can not be longer than 1000 characters long",
-            },
-          }}
-          errorMsg={errors.ingredients?.message}
-        />
-        <Select
-          register={register}
-          formField="recipeDifficulty"
-          placeholder="Select a recipe difficulty level"
-          label="Difficulty"
-          rules={{ required: "Recipe difficulty is required" }}
-          options={difficultyOptions}
-          errorMsg={errors.recipeDifficulty?.message}
-        ></Select>
-        <Input
-          label="Make time"
-          register={register}
-          inputType="text"
-          formField="totaltime"
-          rules={{
-            required: "Make time is required",
-            maxLength: {
-              value: 500,
-              message:
-                "Recipe make time can not be longer than 500 characters long",
-            },
-          }}
-          errorMsg={errors.totaltime?.message}
-        />
-        <TextArea
-          label="instructions"
-          register={register}
-          formField="recipeInstructions"
-          rules={{ required: "Instructions are required" }}
-          errorMsg={errors.recipeInstructions?.message}
-        />
-        <div className={styles.tagsContainer}>
-          {tags.length > 0 ? (
-            tags.map((tag) => (
-              <TagComponent
-                key={tag._id}
-                label={tag.tagName}
-                onclick={() => addTag(tag._id)}
-                isActive={activeTags?.includes(tag._id) ? true : false}
-              />
-            ))
-          ) : (
-            <p>No tags</p>
-          )}
-        </div>
-        <Button
-          className={styles.button}
-          type="submit"
-          varient="primary"
-          label="add recipe"
-        ></Button>
-      </form>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label="recipe name"
+            register={register}
+            inputType="text"
+            formField="recipeName"
+            rules={{
+              required: "Recipe name is required",
+              maxLength: {
+                value: 150,
+                message:
+                  "Recipe name can not be longer than 150 characters long",
+              },
+            }}
+            errorMsg={errors.recipeName?.message}
+          />
+          <Input
+            label="description (optional)"
+            register={register}
+            inputType="text"
+            formField="description"
+            rules={{
+              maxLength: {
+                value: 250,
+                message:
+                  "Recipe description can not be longer than 250 characters long",
+              },
+            }}
+            errorMsg={errors.description?.message}
+          />
+          <Input
+            label="ingredients"
+            register={register}
+            inputType="text"
+            formField="ingredients"
+            rules={{
+              required: "Ingredients are required",
+              maxLength: {
+                value: 1000,
+                message:
+                  "Recipe ingredients can not be longer than 1000 characters long",
+              },
+            }}
+            errorMsg={errors.ingredients?.message}
+          />
+          <Select
+            register={register}
+            formField="recipeDifficulty"
+            placeholder="Select a recipe difficulty level"
+            label="Difficulty"
+            rules={{ required: "Recipe difficulty is required" }}
+            options={difficultyOptions}
+            errorMsg={errors.recipeDifficulty?.message}
+          ></Select>
+          <Input
+            label="Make time"
+            register={register}
+            inputType="text"
+            formField="totaltime"
+            rules={{
+              required: "Make time is required",
+              maxLength: {
+                value: 500,
+                message:
+                  "Recipe make time can not be longer than 500 characters long",
+              },
+            }}
+            errorMsg={errors.totaltime?.message}
+          />
+          <TextArea
+            label="instructions"
+            register={register}
+            formField="recipeInstructions"
+            rules={{ required: "Instructions are required" }}
+            errorMsg={errors.recipeInstructions?.message}
+          />
+          <div className={styles.tagsContainer}>
+            {tags.length > 0 ? (
+              tags.map((tag) => (
+                <TagComponent
+                  key={tag._id}
+                  label={tag.tagName}
+                  onclick={() => addTag(tag._id)}
+                  isActive={activeTags?.includes(tag._id) ? true : false}
+                />
+              ))
+            ) : (
+              <p>No tags</p>
+            )}
+          </div>
+          <Button
+            className={styles.button}
+            type="submit"
+            varient="primary"
+            label="add recipe"
+          ></Button>
+        </form>
+      )}
     </>
   );
 };
