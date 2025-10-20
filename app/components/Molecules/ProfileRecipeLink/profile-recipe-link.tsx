@@ -5,6 +5,7 @@ import styles from "./profileRecipeLink.module.css";
 import { Recipe } from "@/app/types/recipeTypes";
 import { Dispatch, SetStateAction } from "react";
 import { useUser } from "@/app/contextApi/UserProvider";
+import { recipeImageBasedOnTag } from "@/app/utilityFunctions/recipeImageBasedOnTag";
 
 type Props = {
   recipe: Recipe;
@@ -28,9 +29,9 @@ const ProfileRecipeLink: React.FC<Props> = ({
         }}
       >
         <div
-          style={{
-            backgroundImage: `url(${recipe?.image})`,
-          }}
+          style={recipeImageBasedOnTag(
+            recipe.tags?.length ? recipe.tags[0].tagName : ""
+          )}
           className={styles.recipeImage}
         ></div>
         <div className={styles.recipeDetails}>
